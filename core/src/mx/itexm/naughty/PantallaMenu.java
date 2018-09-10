@@ -1,5 +1,6 @@
 package mx.itexm.naughty;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -20,6 +21,7 @@ class PantallaMenu extends Pantalla {
     @Override
     public void show() {
         crearEscena();
+        Gdx.input.setInputProcessor(escenaMenu);
     }
 
     private void crearEscena() {
@@ -27,20 +29,37 @@ class PantallaMenu extends Pantalla {
         //Botones normales
         Texture textBtnPlay = new Texture("jugar.png");
         Texture textBtnCredit = new Texture("creditos.png");
+        Texture textBtnDificult = new Texture("dificultad.png");
+        Texture textBtnOptions = new Texture("opciones.png");
+
         TextureRegionDrawable trdP = new TextureRegionDrawable(new TextureRegion(textBtnPlay));
         TextureRegionDrawable trdC = new TextureRegionDrawable(new TextureRegion(textBtnCredit));
+        TextureRegionDrawable trdD = new TextureRegionDrawable(new TextureRegion(textBtnDificult));
+        TextureRegionDrawable trdO = new TextureRegionDrawable(new TextureRegion(textBtnOptions));
+
+
         //Botones suprimidos
         Texture textBtnPlayS = new Texture("jugar_s.png");
         Texture textBtnCreditS = new Texture("creditos_s.png");
+        Texture textBtnDificultS = new Texture("dificultad_s.png");
+        Texture textBtnOptionS = new Texture("opciones_s.png");
         TextureRegionDrawable trdPs = new TextureRegionDrawable(new TextureRegion(textBtnPlayS));
         TextureRegionDrawable trdCs = new TextureRegionDrawable(new TextureRegion(textBtnCreditS));
+        TextureRegionDrawable trdDs = new TextureRegionDrawable(new TextureRegion(textBtnDificultS));
+        TextureRegionDrawable trdOs = new TextureRegionDrawable(new TextureRegion(textBtnOptionS));
 
         ImageButton btnPlay = new ImageButton(trdP, trdPs);
         ImageButton btnCredit = new ImageButton(trdC, trdCs);
+        ImageButton btnDificult = new ImageButton(trdD, trdDs);
+        ImageButton btnOptions = new ImageButton(trdO, trdOs);
+
+
 
         //Posicion
-        btnPlay.setPosition(ANCHO/7-btnPlay.getWidth()/2, 0.8f*ALTO);
-        btnCredit.setPosition(ANCHO/7-btnPlay.getWidth()/2, 0.60f*ALTO);
+        btnPlay.setPosition(ANCHO/2-btnPlay.getWidth()/2, 0.8f*ALTO-btnPlay.getHeight()/2);
+        btnCredit.setPosition(ANCHO/2-btnCredit.getWidth()/2, 0.60f*ALTO-btnCredit.getHeight()/2);
+        btnDificult.setPosition(ANCHO/2-btnDificult.getWidth()/2, 0.40f*ALTO-btnDificult.getHeight()/2);
+        btnOptions.setPosition(ANCHO/2-btnOptions.getWidth()/2, 0.20f*ALTO-btnOptions.getHeight()/2);
 
 
         //Acciones Boton
@@ -54,6 +73,8 @@ class PantallaMenu extends Pantalla {
 
         escenaMenu.addActor(btnPlay);
         escenaMenu.addActor(btnCredit);
+        escenaMenu.addActor(btnDificult);
+        escenaMenu.addActor(btnOptions);
     }
 
     @Override
