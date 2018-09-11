@@ -3,6 +3,7 @@ package mx.itexm.naughty;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -18,6 +19,10 @@ class PantallaMenu extends Pantalla {
         this.pantallaInicio = pantallaInicio;
     }
 
+    // Numero de muertes totales en juego
+    private int puntosJugador = 0;
+    private Texto texto; // mensajes en el juego
+
     @Override
     public void show() {
         crearEscena();
@@ -26,44 +31,43 @@ class PantallaMenu extends Pantalla {
 
     private void crearEscena() {
         escenaMenu = new Stage(vista);
+
         //Botones normales
-        Texture textBtnPlay = new Texture("jugar.png");
-        Texture textBtnCredit = new Texture("creditos.png");
-        Texture textBtnDificult = new Texture("dificultad.png");
-        Texture textBtnOptions = new Texture("opciones.png");
+        Texture textBtnCPlay = new Texture("Cjugar.png");
+        Texture textBtnAjuste = new Texture("ajustes.png");
+        Texture textBtnAcerca = new Texture("acerca.png");
+        Texture logo = new Texture("logo.png");
 
-        TextureRegionDrawable trdP = new TextureRegionDrawable(new TextureRegion(textBtnPlay));
-        TextureRegionDrawable trdC = new TextureRegionDrawable(new TextureRegion(textBtnCredit));
-        TextureRegionDrawable trdD = new TextureRegionDrawable(new TextureRegion(textBtnDificult));
-        TextureRegionDrawable trdO = new TextureRegionDrawable(new TextureRegion(textBtnOptions));
-
+        TextureRegionDrawable trdCP = new TextureRegionDrawable(new TextureRegion(textBtnCPlay));
+        TextureRegionDrawable trdAj = new TextureRegionDrawable(new TextureRegion(textBtnAjuste));
+        TextureRegionDrawable trdA = new TextureRegionDrawable(new TextureRegion(textBtnAcerca));
+        TextureRegionDrawable trdLogo = new TextureRegionDrawable(new TextureRegion(logo));
 
         //Botones suprimidos
-        Texture textBtnPlayS = new Texture("jugar_s.png");
-        Texture textBtnCreditS = new Texture("creditos_s.png");
-        Texture textBtnDificultS = new Texture("dificultad_s.png");
-        Texture textBtnOptionS = new Texture("opciones_s.png");
-        TextureRegionDrawable trdPs = new TextureRegionDrawable(new TextureRegion(textBtnPlayS));
-        TextureRegionDrawable trdCs = new TextureRegionDrawable(new TextureRegion(textBtnCreditS));
-        TextureRegionDrawable trdDs = new TextureRegionDrawable(new TextureRegion(textBtnDificultS));
-        TextureRegionDrawable trdOs = new TextureRegionDrawable(new TextureRegion(textBtnOptionS));
+        Texture textBtnCPlayS = new Texture("Cjugar_s.png");
+        Texture textBtnAjusteS = new Texture("ajustes_s.png");
+        Texture textBtnAcercaS = new Texture("acerca_s.png");
+        TextureRegionDrawable trdCPs = new TextureRegionDrawable(new TextureRegion(textBtnCPlayS));
+        TextureRegionDrawable trdAjs = new TextureRegionDrawable(new TextureRegion(textBtnAjusteS));
+        TextureRegionDrawable trdAs = new TextureRegionDrawable(new TextureRegion(textBtnAcercaS));
 
-        ImageButton btnPlay = new ImageButton(trdP, trdPs);
-        ImageButton btnCredit = new ImageButton(trdC, trdCs);
-        ImageButton btnDificult = new ImageButton(trdD, trdDs);
-        ImageButton btnOptions = new ImageButton(trdO, trdOs);
+        ImageButton btnCPlay = new ImageButton(trdCP, trdCPs);
+        ImageButton btnAjuste = new ImageButton(trdAj, trdAjs);
+        ImageButton btnAcerca = new ImageButton(trdA, trdAs);
+        ImageButton btnLogo = new ImageButton(trdLogo);
 
 
 
         //Posicion
-        btnPlay.setPosition(ANCHO/2-btnPlay.getWidth()/2, 0.8f*ALTO-btnPlay.getHeight()/2);
-        btnCredit.setPosition(ANCHO/2-btnCredit.getWidth()/2, 0.60f*ALTO-btnCredit.getHeight()/2);
-        btnDificult.setPosition(ANCHO/2-btnDificult.getWidth()/2, 0.40f*ALTO-btnDificult.getHeight()/2);
-        btnOptions.setPosition(ANCHO/2-btnOptions.getWidth()/2, 0.20f*ALTO-btnOptions.getHeight()/2);
+        btnCPlay.setPosition(ANCHO/2-btnCPlay.getWidth()/2, 0.80f*ALTO-btnCPlay.getHeight()/2);
+        btnAjuste.setPosition(0.10f*ANCHO-btnAjuste.getWidth()/2, 0.10f*ALTO-btnAjuste.getHeight()/2);
+        btnAcerca.setPosition(0.86f*ANCHO-btnAcerca.getWidth()/2, 0.10f*ALTO-btnAcerca.getHeight()/2);
+        btnLogo.setPosition(ANCHO/2-btnLogo.getWidth()/2, 0.65f*ALTO-btnLogo.getHeight()/2);
+
 
 
         //Acciones Boton
-        btnPlay.addListener(new ClickListener() {
+        btnCPlay.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
@@ -71,17 +75,33 @@ class PantallaMenu extends Pantalla {
             }
         });
 
-        escenaMenu.addActor(btnPlay);
-        escenaMenu.addActor(btnCredit);
-        escenaMenu.addActor(btnDificult);
-        escenaMenu.addActor(btnOptions);
+        btnAcerca.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                pantallaInicio.setScreen( new PantallaAcerca(pantallaInicio));
+            }
+        });
+
+        btnAjuste.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                pantallaInicio.setScreen( new PantallaAjustes(pantallaInicio));
+            }
+        });
+        //escenaMenu.addActor(btnCPlay);
+        escenaMenu.addActor(btnAjuste);
+        escenaMenu.addActor(btnAcerca);
+        escenaMenu.addActor(btnLogo);
     }
 
     @Override
     public void render(float delta) {
-        borrarPantalla(0,0,0);
+        borrarPantalla(0.34f,0.43f,0.46f);
         batch.setProjectionMatrix(camara.combined);
         escenaMenu.draw();
+
     }
 
     @Override

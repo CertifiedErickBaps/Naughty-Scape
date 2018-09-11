@@ -9,16 +9,16 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
-class PantallaJuego extends Pantalla {
+class PantallaAjustes extends Pantalla {
     private final PantallaInicio pantallaInicio;
-    private Stage escenaJugar;
+    private Stage escenaAjustes;
     private Texture textFondo;
 
-    public PantallaJuego(PantallaInicio pantallaInicio) {
+    public PantallaAjustes(PantallaInicio pantallaInicio) {
         this.pantallaInicio=pantallaInicio;
     }
     private void crearEscena(){
-        escenaJugar=new Stage(vista);
+        escenaAjustes=new Stage(vista);
         TextureRegionDrawable trdRegresar_up=new TextureRegionDrawable(new TextureRegion(new Texture("regresar.png")));
         TextureRegionDrawable trdRegresar_down=new TextureRegionDrawable(new TextureRegion(new Texture("regresar_s.png")));
         ImageButton btnReg=new ImageButton(trdRegresar_up,trdRegresar_down);
@@ -30,14 +30,14 @@ class PantallaJuego extends Pantalla {
                 pantallaInicio.setScreen(new PantallaMenu(pantallaInicio));
             }
         });
-        escenaJugar.addActor(btnReg);
+        escenaAjustes.addActor(btnReg);
 
     }
     @Override
     public void show() {
         crearEscena();
-        textFondo=new Texture("jugar_fondo.png");
-        Gdx.input.setInputProcessor(escenaJugar);
+        textFondo=new Texture("creditos_fondo.png");
+        Gdx.input.setInputProcessor(escenaAjustes);
     }
 
     @Override
@@ -46,7 +46,7 @@ class PantallaJuego extends Pantalla {
         batch.begin();
         batch.draw(textFondo,0,0);
         batch.end();
-        escenaJugar.draw();
+        escenaAjustes.draw();
     }
 
     @Override
