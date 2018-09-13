@@ -9,10 +9,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
+import java.security.AlgorithmParameterGenerator;
+
 class PantallaAcerca extends Pantalla {
     private final PantallaInicio pantallaInicio;
     private Stage escenaAcerca;
     private Texture textFondo;
+    private Texto info;
 
     public PantallaAcerca(PantallaInicio pantallaInicio) {
         this.pantallaInicio=pantallaInicio;
@@ -36,7 +39,8 @@ class PantallaAcerca extends Pantalla {
     @Override
     public void show() {
         crearEscena();
-        textFondo=new Texture("dificultad_fondo.png");
+        textFondo=new Texture("acerca_fondo.jpg");
+        info=new Texto();
         Gdx.input.setInputProcessor(escenaAcerca);
     }
 
@@ -45,6 +49,7 @@ class PantallaAcerca extends Pantalla {
         batch.setProjectionMatrix(camara.combined);
         batch.begin();
         batch.draw(textFondo,0,0);
+        info.mostrarMensaje(batch, "--CREADO POR--"+"\n"+"Eric Gomez (ISC)"+"\n"+"Erick Bautista (ISC)"+"\n"+"Jessica I. Alvarez (LAD)"+"\n"+"Sebastian Gomez (LAD)" ,ANCHO*0.7f, ALTO*0.90f);
         batch.end();
         escenaAcerca.draw();
     }

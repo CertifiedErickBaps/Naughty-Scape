@@ -1,43 +1,21 @@
 package mx.itexm.naughty;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 class PantallaJuego extends Pantalla {
     private final PantallaInicio pantallaInicio;
-    private Stage escenaJugar;
     private Texture textFondo;
 
     public PantallaJuego(PantallaInicio pantallaInicio) {
         this.pantallaInicio=pantallaInicio;
     }
-    private void crearEscena(){
-        escenaJugar=new Stage(vista);
-        TextureRegionDrawable trdRegresar_up=new TextureRegionDrawable(new TextureRegion(new Texture("regresar.png")));
-        TextureRegionDrawable trdRegresar_down=new TextureRegionDrawable(new TextureRegion(new Texture("regresar_s.png")));
-        ImageButton btnReg=new ImageButton(trdRegresar_up,trdRegresar_down);
-        btnReg.setPosition(50,50);
-        btnReg.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                pantallaInicio.setScreen(new PantallaMenu(pantallaInicio));
-            }
-        });
-        escenaJugar.addActor(btnReg);
 
-    }
     @Override
     public void show() {
-        crearEscena();
-        textFondo=new Texture("jugar_fondo.png");
-        Gdx.input.setInputProcessor(escenaJugar);
+        textFondo=new Texture("juego_fondo.jpg");
+        Gdx.input.setInputProcessor(new ProcesadorEntrada());
     }
 
     @Override
@@ -46,7 +24,7 @@ class PantallaJuego extends Pantalla {
         batch.begin();
         batch.draw(textFondo,0,0);
         batch.end();
-        escenaJugar.draw();
+
     }
 
     @Override
@@ -72,5 +50,48 @@ class PantallaJuego extends Pantalla {
     @Override
     public void dispose() {
 
+    }
+    class ProcesadorEntrada implements InputProcessor {
+
+        @Override
+        public boolean keyDown(int keycode) {
+            return false;
+        }
+
+        @Override
+        public boolean keyUp(int keycode) {
+            return false;
+        }
+
+        @Override
+        public boolean keyTyped(char character) {
+            return false;
+        }
+
+        @Override
+        public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+            pantallaInicio.setScreen(new PantallaMenu(pantallaInicio));
+            return true;
+        }
+
+        @Override
+        public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+            return false;
+        }
+
+        @Override
+        public boolean touchDragged(int screenX, int screenY, int pointer) {
+            return false;
+        }
+
+        @Override
+        public boolean mouseMoved(int screenX, int screenY) {
+            return false;
+        }
+
+        @Override
+        public boolean scrolled(int amount) {
+            return false;
+        }
     }
 }

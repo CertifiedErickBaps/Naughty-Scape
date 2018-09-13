@@ -13,16 +13,26 @@ class PantallaAjustes extends Pantalla {
     private final PantallaInicio pantallaInicio;
     private Stage escenaAjustes;
     private Texture textFondo;
+    private Texto Sound_FX;
+    private Texto Music;
 
     public PantallaAjustes(PantallaInicio pantallaInicio) {
         this.pantallaInicio=pantallaInicio;
     }
     private void crearEscena(){
         escenaAjustes=new Stage(vista);
+
         TextureRegionDrawable trdRegresar_up=new TextureRegionDrawable(new TextureRegion(new Texture("regresar.png")));
         TextureRegionDrawable trdRegresar_down=new TextureRegionDrawable(new TextureRegion(new Texture("regresar_s.png")));
+        TextureRegionDrawable trdCasiilla_up=new TextureRegionDrawable(new TextureRegion(new Texture("check.png")));
+        TextureRegionDrawable trdCasilla_down=new TextureRegionDrawable(new TextureRegion(new Texture("check_s.png")));
+
         ImageButton btnReg=new ImageButton(trdRegresar_up,trdRegresar_down);
+        ImageButton btnCheck1=new ImageButton(trdCasiilla_up,trdCasilla_down);
+        ImageButton btnCheck2=new ImageButton(trdCasiilla_up,trdCasilla_down);
         btnReg.setPosition(50,50);
+        btnCheck1.setPosition(ANCHO*0.60f,ALTO*0.60f);
+        btnCheck2.setPosition(ANCHO*0.60f,ALTO*0.30f);
         btnReg.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -31,12 +41,16 @@ class PantallaAjustes extends Pantalla {
             }
         });
         escenaAjustes.addActor(btnReg);
+        escenaAjustes.addActor(btnCheck1);
+        escenaAjustes.addActor(btnCheck2);
 
     }
     @Override
     public void show() {
         crearEscena();
-        textFondo=new Texture("creditos_fondo.png");
+        textFondo=new Texture("menu_fondo.jpg");
+        Sound_FX=new Texto();
+        Music=new Texto();
         Gdx.input.setInputProcessor(escenaAjustes);
     }
 
@@ -45,6 +59,8 @@ class PantallaAjustes extends Pantalla {
         batch.setProjectionMatrix(camara.combined);
         batch.begin();
         batch.draw(textFondo,0,0);
+        Sound_FX.mostrarMensaje(batch,"Sound FX",ANCHO*0.40f,ALTO*0.70f);
+        Music.mostrarMensaje(batch,"Music",ANCHO*0.40f,ALTO*0.40f);
         batch.end();
         escenaAjustes.draw();
     }

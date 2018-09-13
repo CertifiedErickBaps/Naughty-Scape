@@ -1,6 +1,7 @@
 package mx.itexm.naughty;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -14,18 +15,19 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 class PantallaMenu extends Pantalla {
     private final PantallaInicio pantallaInicio;
     private Stage escenaMenu;
+    private Sprite logo;
+    private Texture fondo;
 
     public PantallaMenu(PantallaInicio pantallaInicio){
         this.pantallaInicio = pantallaInicio;
     }
 
-    // Numero de muertes totales en juego
-    private int puntosJugador = 0;
-    private Texto texto; // mensajes en el juego
-
     @Override
     public void show() {
         crearEscena();
+        fondo=new Texture("menu_fondo.jpg");
+        logo =new Sprite(new Texture("logo.png"));
+        logo.setPosition(ANCHO/2-logo.getWidth()/2, 0.65f*ALTO-logo.getHeight()/2);
         Gdx.input.setInputProcessor(escenaMenu);
     }
 
@@ -33,45 +35,30 @@ class PantallaMenu extends Pantalla {
         escenaMenu = new Stage(vista);
 
         //Botones normales
-        Texture textBtnCPlay = new Texture("Cjugar.png");
-        Texture textBtnAjuste = new Texture("ajustes.png");
-        Texture textBtnAcerca = new Texture("acerca.png");
-        Texture logo = new Texture("logo.png");
-
-        TextureRegionDrawable trdCP = new TextureRegionDrawable(new TextureRegion(textBtnCPlay));
-        TextureRegionDrawable trdAj = new TextureRegionDrawable(new TextureRegion(textBtnAjuste));
-        TextureRegionDrawable trdA = new TextureRegionDrawable(new TextureRegion(textBtnAcerca));
-        TextureRegionDrawable trdLogo = new TextureRegionDrawable(new TextureRegion(logo));
-
+        TextureRegionDrawable trdP = new TextureRegionDrawable(new TextureRegion(new Texture("button_jugar.png")));
+        TextureRegionDrawable trdAj = new TextureRegionDrawable(new TextureRegion(new Texture("button_ajustes.png")));
+        TextureRegionDrawable trdA = new TextureRegionDrawable(new TextureRegion(new Texture("button_acerca.png")));
         //Botones suprimidos
-        Texture textBtnCPlayS = new Texture("Cjugar_s.png");
-        Texture textBtnAjusteS = new Texture("ajustes_s.png");
-        Texture textBtnAcercaS = new Texture("acerca_s.png");
-        TextureRegionDrawable trdCPs = new TextureRegionDrawable(new TextureRegion(textBtnCPlayS));
-        TextureRegionDrawable trdAjs = new TextureRegionDrawable(new TextureRegion(textBtnAjusteS));
-        TextureRegionDrawable trdAs = new TextureRegionDrawable(new TextureRegion(textBtnAcercaS));
+        TextureRegionDrawable trdPs = new TextureRegionDrawable(new TextureRegion(new Texture("button_jugar_s.png")));
+        TextureRegionDrawable trdAjs = new TextureRegionDrawable(new TextureRegion(new Texture("button_ajustes_s.png")));
+        TextureRegionDrawable trdAs = new TextureRegionDrawable(new TextureRegion(new Texture("button_acerca_s.png")));
 
-        ImageButton btnCPlay = new ImageButton(trdCP, trdCPs);
+        ImageButton btnPlay = new ImageButton(trdP, trdPs);
         ImageButton btnAjuste = new ImageButton(trdAj, trdAjs);
         ImageButton btnAcerca = new ImageButton(trdA, trdAs);
-        ImageButton btnLogo = new ImageButton(trdLogo);
-
-
-
         //Posicion
-        btnCPlay.setPosition(ANCHO/2-btnCPlay.getWidth()/2, 0.80f*ALTO-btnCPlay.getHeight()/2);
+        btnPlay.setPosition(ANCHO/2-btnPlay.getWidth()/2, 0.10f*ALTO-btnPlay.getHeight()/2);
         btnAjuste.setPosition(0.10f*ANCHO-btnAjuste.getWidth()/2, 0.10f*ALTO-btnAjuste.getHeight()/2);
         btnAcerca.setPosition(0.86f*ANCHO-btnAcerca.getWidth()/2, 0.10f*ALTO-btnAcerca.getHeight()/2);
-        btnLogo.setPosition(ANCHO/2-btnLogo.getWidth()/2, 0.65f*ALTO-btnLogo.getHeight()/2);
 
 
 
         //Acciones Boton
-        btnCPlay.addListener(new ClickListener() {
+        btnPlay.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                pantallaInicio.setScreen( new PantallaJuego(pantallaInicio));
+                pantallaInicio.setScreen( new PantallaDificultad(pantallaInicio));
             }
         });
 
@@ -90,16 +77,20 @@ class PantallaMenu extends Pantalla {
                 pantallaInicio.setScreen( new PantallaAjustes(pantallaInicio));
             }
         });
-        //escenaMenu.addActor(btnCPlay);
+        escenaMenu.addActor(btnPlay);
         escenaMenu.addActor(btnAjuste);
         escenaMenu.addActor(btnAcerca);
-        escenaMenu.addActor(btnLogo);
+
     }
 
     @Override
     public void render(float delta) {
         borrarPantalla(0.34f,0.43f,0.46f);
         batch.setProjectionMatrix(camara.combined);
+        batch.begin();
+        batch.draw(fondo,0,0);
+        batch.draw(logo,logo.getX(),logo.getY());
+        batch.end();
         escenaMenu.draw();
 
     }
@@ -128,4 +119,5 @@ class PantallaMenu extends Pantalla {
     public void dispose() {
 
     }
+
 }
