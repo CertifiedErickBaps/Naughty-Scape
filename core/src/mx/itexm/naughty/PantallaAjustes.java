@@ -22,10 +22,10 @@ class PantallaAjustes extends Pantalla {
     private void crearEscena(){
         escenaAjustes=new Stage(vista);
 
-        TextureRegionDrawable trdRegresar_up=new TextureRegionDrawable(new TextureRegion(new Texture("regresar.png")));
-        TextureRegionDrawable trdRegresar_down=new TextureRegionDrawable(new TextureRegion(new Texture("regresar_s.png")));
-        TextureRegionDrawable trdCasiilla_up=new TextureRegionDrawable(new TextureRegion(new Texture("check.png")));
-        TextureRegionDrawable trdCasilla_down=new TextureRegionDrawable(new TextureRegion(new Texture("check_s.png")));
+        TextureRegionDrawable trdRegresar_up=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/regresar.png")));
+        TextureRegionDrawable trdRegresar_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/regresar_s.png")));
+        TextureRegionDrawable trdCasiilla_up=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/check.png")));
+        TextureRegionDrawable trdCasilla_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/check_s.png")));
 
         ImageButton btnReg=new ImageButton(trdRegresar_up,trdRegresar_down);
         ImageButton btnCheck1=new ImageButton(trdCasiilla_up,trdCasilla_down);

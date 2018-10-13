@@ -22,8 +22,8 @@ class PantallaAcerca extends Pantalla {
     }
     private void crearEscena(){
         escenaAcerca=new Stage(vista);
-        TextureRegionDrawable trdRegresar_up=new TextureRegionDrawable(new TextureRegion(new Texture("regresar.png")));
-        TextureRegionDrawable trdRegresar_down=new TextureRegionDrawable(new TextureRegion(new Texture("regresar_s.png")));
+        TextureRegionDrawable trdRegresar_up=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/regresar.png")));
+        TextureRegionDrawable trdRegresar_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/regresar_s.png")));
         ImageButton btnReg=new ImageButton(trdRegresar_up,trdRegresar_down);
         btnReg.setPosition(50,50);
         btnReg.addListener(new ClickListener(){

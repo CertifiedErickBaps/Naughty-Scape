@@ -20,8 +20,8 @@ public class PantallaDificultad extends Pantalla {
 
     private void crearEscena(){
         escenaDificultad=new Stage(vista);
-        TextureRegionDrawable trdRegresar_up=new TextureRegionDrawable(new TextureRegion(new Texture("regresar.png")));
-        TextureRegionDrawable trdRegresar_down=new TextureRegionDrawable(new TextureRegion(new Texture("regresar_s.png")));
+        TextureRegionDrawable trdRegresar_up=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/regresar.png")));
+        TextureRegionDrawable trdRegresar_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/regresar_s.png")));
         TextureRegionDrawable trdJhony =new TextureRegionDrawable(new TextureRegion(new Texture("Jhony.png")));
         TextureRegionDrawable trdOrlando=new TextureRegionDrawable(new TextureRegion(new Texture("Orlando.png")));
         TextureRegionDrawable trdJiovany=new TextureRegionDrawable(new TextureRegion(new Texture("Jiovany.png")));
