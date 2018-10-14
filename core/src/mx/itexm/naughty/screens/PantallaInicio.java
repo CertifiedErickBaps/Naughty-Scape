@@ -1,8 +1,8 @@
-package mx.itexm.naughty;
+package mx.itexm.naughty.screens;
 
 import com.badlogic.gdx.Game;
 
-public class    PantallaInicio extends Game {
+public class PantallaInicio extends Game {
 
     @Override
     public void create() {

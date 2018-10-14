@@ -1,4 +1,4 @@
-package mx.itexm.naughty;
+package mx.itexm.naughty.screens;
 
 public class PantallaNivel1 {
 

@@ -1,4 +1,4 @@
-package mx.itexm.naughty;
+package mx.itexm.naughty.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;

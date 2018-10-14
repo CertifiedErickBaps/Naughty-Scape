@@ -1,4 +1,4 @@
-package mx.itexm.naughty;
+package mx.itexm.naughty.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -9,30 +9,21 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
-class PantallaAjustes extends Pantalla {
+class PantallaAcerca extends Pantalla {
     private final PantallaInicio pantallaInicio;
-    private Stage escenaAjustes;
+    private Stage escenaAcerca;
     private Texture textFondo;
-    private Texto Sound_FX;
-    private Texto Music;
+    private Texto info;
 
-    public PantallaAjustes(PantallaInicio pantallaInicio) {
+    public PantallaAcerca(PantallaInicio pantallaInicio) {
         this.pantallaInicio=pantallaInicio;
     }
     private void crearEscena(){
-        escenaAjustes=new Stage(vista);
-
+        escenaAcerca=new Stage(vista);
         TextureRegionDrawable trdRegresar_up=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/regresar.png")));
         TextureRegionDrawable trdRegresar_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/regresar_s.png")));
-        TextureRegionDrawable trdCasiilla_up=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/check.png")));
-        TextureRegionDrawable trdCasilla_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/check_s.png")));
-
         ImageButton btnReg=new ImageButton(trdRegresar_up,trdRegresar_down);
-        ImageButton btnCheck1=new ImageButton(trdCasiilla_up,trdCasilla_down);
-        ImageButton btnCheck2=new ImageButton(trdCasiilla_up,trdCasilla_down);
         btnReg.setPosition(50,50);
-        btnCheck1.setPosition(ANCHO*0.60f,ALTO*0.60f);
-        btnCheck2.setPosition(ANCHO*0.60f,ALTO*0.30f);
         btnReg.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -40,18 +31,15 @@ class PantallaAjustes extends Pantalla {
                 pantallaInicio.setScreen(new PantallaMenu(pantallaInicio));
             }
         });
-        escenaAjustes.addActor(btnReg);
-        escenaAjustes.addActor(btnCheck1);
-        escenaAjustes.addActor(btnCheck2);
+        escenaAcerca.addActor(btnReg);
 
     }
     @Override
     public void show() {
         crearEscena();
-        textFondo=new Texture("menu_fondo.jpg");
-        Sound_FX=new Texto();
-        Music=new Texto();
-        Gdx.input.setInputProcessor(escenaAjustes);
+        textFondo=new Texture("acerca_fondo.jpg");
+        info=new Texto();
+        Gdx.input.setInputProcessor(escenaAcerca);
     }
 
     @Override
@@ -59,10 +47,9 @@ class PantallaAjustes extends Pantalla {
         batch.setProjectionMatrix(camara.combined);
         batch.begin();
         batch.draw(textFondo,0,0);
-        Sound_FX.mostrarMensaje(batch,"Sound FX",ANCHO*0.40f,ALTO*0.70f);
-        Music.mostrarMensaje(batch,"Music",ANCHO*0.40f,ALTO*0.40f);
+        info.mostrarMensaje(batch, "--CREADO POR--"+"\n"+"Eric Gomez (ISC)"+"\n"+"Erick Bautista (ISC)"+"\n"+"Jessica I. Alvarez (LAD)"+"\n"+"Sebastian Gomez (LAD)" ,ANCHO*0.7f, ALTO*0.90f);
         batch.end();
-        escenaAjustes.draw();
+        escenaAcerca.draw();
     }
 
     @Override

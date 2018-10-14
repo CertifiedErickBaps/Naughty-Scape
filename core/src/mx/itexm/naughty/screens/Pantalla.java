@@ -1,4 +1,4 @@
-package mx.itexm.naughty;
+package mx.itexm.naughty.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -30,6 +30,11 @@ public abstract class Pantalla implements Screen {
     public void borrarPantalla(float r, float g, float b) {
         Gdx.gl.glClearColor(r, g, b,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+    }
+
+    @Override
+    public void dispose() {
+        batch.dispose();
     }
 
     @Override

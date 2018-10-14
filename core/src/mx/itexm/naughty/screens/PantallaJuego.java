@@ -1,7 +1,6 @@
-package mx.itexm.naughty;
+package mx.itexm.naughty.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -17,6 +16,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import mx.itexm.naughty.entities.Personaje;
+
 class PantallaJuego extends Pantalla
 {
     private static final float ANCHO_MAPA = 6784;
@@ -31,6 +32,7 @@ class PantallaJuego extends Pantalla
     private Viewport vistaHUD;
     // HUD con una escena para los botones y componentes
     private Stage escenaHUD;    // Tendrá un Pad virtual para mover al personaje y el botón de Pausa
+    private Skin skin;
 
     public PantallaJuego(PantallaInicio juego) {
         this.juego = juego;
@@ -53,7 +55,7 @@ class PantallaJuego extends Pantalla
         camaraHUD.update();
         vistaHUD = new StretchViewport(ANCHO, ALTO, camaraHUD);
         // Crea el pad
-        Skin skin = new Skin(); // Texturas para el pad
+        skin = new Skin(); // Texturas para el pad
         skin.add("fondo", new Texture("Controles/padBack.png"));
         skin.add("boton", new Texture("Controles/padKnob.png"));
         // Configura la vista del pad
@@ -157,5 +159,6 @@ class PantallaJuego extends Pantalla
     public void dispose() {
         mapa.dispose();
         escenaHUD.dispose();
+        skin.dispose();
     }
 }
