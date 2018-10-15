@@ -29,10 +29,11 @@ public class Personaje extends Objeto{
         timerAnimacion = 0;
 
         // Quieto
-        x = 0;
-        y = 64;
+
         sprite = new Sprite(texturaPersonaje[0][0]);
-        sprite.setPosition(x,y);
+        sprite.setPosition(120,64);
+        x = sprite.getX();
+        y = sprite.getY();
     }
 
     public void render(SpriteBatch batch){
@@ -43,13 +44,13 @@ public class Personaje extends Objeto{
             timerAnimacion += Gdx.graphics.getDeltaTime();
             TextureRegion region = (TextureRegion) animacion.getKeyFrame(timerAnimacion);
             if (estadoMover == EstadoMovimento.IZQUIERDA) {
-                region.flip(!region.isFlipX(), false);
+                region.flip(region.isFlipX(), false);
             } else if (estadoMover == EstadoMovimento.DERECHA) {
                 region.flip(region.isFlipX(), false);
             } else if (estadoMover == EstadoMovimento.ARRIBA) {
                 region.flip(false, region.isFlipY());
             } else if (estadoMover == EstadoMovimento.ABAJO) {
-                region.flip(false, !region.isFlipY());
+                region.flip(false, region.isFlipY());
             }
             batch.draw(region, x, y);
         }
@@ -61,28 +62,36 @@ public class Personaje extends Objeto{
         // Verificar si se puede mover (no hay obstáculos, por ahora tubos verdes)
         switch (estadoMover) {
             case DERECHA:
-                if (puedeMover(SPEED*Gdx.graphics.getDeltaTime(),mapa)) {
+                if (puedeMover(SPEED*Gdx.graphics.getDeltaTime(), 0 ,mapa)) {
                     mover(SPEED * Gdx.graphics.getDeltaTime(), 0);
                 }
                 break;
             case IZQUIERDA:
-                mover(-SPEED*Gdx.graphics.getDeltaTime(), 0);
+                if (puedeMover(-SPEED*Gdx.graphics.getDeltaTime(), 0, mapa)) {
+                    mover(-SPEED * Gdx.graphics.getDeltaTime(), 0);
+                }
                 break;
             case ARRIBA:
-                mover( 0, SPEED*Gdx.graphics.getDeltaTime());
+                if (puedeMover(0, SPEED*Gdx.graphics.getDeltaTime(), mapa)) {
+                    mover(0, SPEED * Gdx.graphics.getDeltaTime());
+                }
+                break;
             case ABAJO:
-                mover(0, -SPEED*Gdx.graphics.getDeltaTime());
+                if (puedeMover(0, -SPEED*Gdx.graphics.getDeltaTime(), mapa)) {
+                    mover(0, -SPEED * Gdx.graphics.getDeltaTime());
+                }
+                break;
         }
     }
 
-    private boolean puedeMover(float dx, TiledMap mapa) {
+    private boolean puedeMover(float dx, float dy,  TiledMap mapa) {
         int cx = (int)(getX()+32)/32;
         int cy = (int)(getY())/32;
         // Obtener la celda en x,y
         TiledMapTileLayer capa = (TiledMapTileLayer)mapa.getLayers().get(0);
         TiledMapTileLayer.Cell celda = capa.getCell(cx,cy);
-        Object tipo = celda.getTile().getProperties().get("Pared");
-        if (!"Coalisión".equals(tipo)) {
+        Object tipo = celda.getTile().getProperties().get("Tipo");
+        if (!"Pared".equals(tipo)) {
             return true;
         }
         return false;

@@ -41,9 +41,8 @@ class PantallaJuego extends Pantalla
 
     @Override
     public void show() {
-
         cargarMapa();
-        personaje = new Personaje(new Texture("Personaje/SpriteMario.png"));
+        personaje = new Personaje(new Texture("Personajes/SpriteMario.png"));
         crearHUD();
         Gdx.input.setInputProcessor(escenaHUD);
     }
@@ -56,8 +55,8 @@ class PantallaJuego extends Pantalla
         vistaHUD = new StretchViewport(ANCHO, ALTO, camaraHUD);
         // Crea el pad
         skin = new Skin(); // Texturas para el pad
-        skin.add("fondo", new Texture("Controles/padBack.png"));
-        skin.add("boton", new Texture("Controles/padKnob.png"));
+        skin.add("fondo", new Texture("Botones/padBack.png"));
+        skin.add("boton", new Texture("Botones/padKnob.png"));
         // Configura la vista del pad
         Touchpad.TouchpadStyle estilo = new Touchpad.TouchpadStyle();
         estilo.background = skin.getDrawable("fondo");
@@ -65,20 +64,20 @@ class PantallaJuego extends Pantalla
 
         // Crea el pad
         Touchpad pad = new Touchpad(64,estilo);     // Radio, estilo
-        pad.setBounds(16,16,256,256);               // x,y - ancho,alto
+        pad.setBounds(16,16,128,128);               // x,y - ancho,alto
 
         // Comportamiento del pad
         pad.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 Touchpad pad = (Touchpad)actor;
-                if (pad.getKnobPercentX() > 0.20) { // Más de 20% de desplazamiento DERECHA
+                if (pad.getKnobPercentX() > 0.10) { // Más de 20% de desplazamiento DERECHA
                     personaje.setEstadoMover(Personaje.EstadoMovimento.DERECHA);
-                } else if ( pad.getKnobPercentX() < -0.20 ) {   // Más de 20% IZQUIERDA
+                } else if ( pad.getKnobPercentX() < -0.10 ) {   // Más de 20% IZQUIERDA
                     personaje.setEstadoMover(Personaje.EstadoMovimento.IZQUIERDA);
-                } else if ( pad.getKnobPercentY() < -0.20) {
+                } else if ( pad.getKnobPercentY() < -0.10) {
                     personaje.setEstadoMover(Personaje.EstadoMovimento.ABAJO);
-                } else if( pad.getKnobPercentY() > 0.20) {
+                } else if( pad.getKnobPercentY() > 0.10) {
                     personaje.setEstadoMover(Personaje.EstadoMovimento.ARRIBA);
                 } else {
                     personaje.setEstadoMover(Personaje.EstadoMovimento.QUIETO);
@@ -96,10 +95,10 @@ class PantallaJuego extends Pantalla
     private void cargarMapa() {
         AssetManager manager = new AssetManager();
         manager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
-        manager.load("Mapas/MapaNE.tmx",TiledMap.class);
+        manager.load("Mapas/Test.tmx",TiledMap.class);
 
         manager.finishLoading(); // Espera
-        mapa = manager.get("Mapas/MapaNE.tmx");
+        mapa = manager.get("Mapas/Test.tmx");
         renderer = new OrthogonalTiledMapRenderer(mapa);
     }
 
@@ -128,11 +127,14 @@ class PantallaJuego extends Pantalla
     private void actualizarCamara() {
         // Depende de la posición del personaje. Siempre sigue al personaje
         float posX = personaje.getX();
+        float posY = personaje.getY();
         // Primera mitad de la pantalla
         if (posX < ANCHO/2 ) {
             camara.position.set(ANCHO/2, ALTO/2, 0);
-        } else if (posX > ANCHO_MAPA - ANCHO/2) {   // Última mitad de la pantalla
-            camara.position.set(ANCHO_MAPA-ANCHO/2,camara.position.y,0);
+        } else if (posX > ANCHO/2) {   // Última mitad de la pantalla
+            camara.position.set(ANCHO/2,camara.position.y,0);
+        } else if (posY > ALTO/2) {
+            camara.position.set(camara.position.x,ALTO/2,0);
         } else {    // En 'medio' del mapa
             camara.position.set(posX,camara.position.y,0);
         }
