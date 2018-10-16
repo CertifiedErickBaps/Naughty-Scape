@@ -18,10 +18,7 @@ public class Personaje extends Objeto{
     EstadoMovimento estadoMover = EstadoMovimento.QUIETO;
     private static final float SPEED = 240; // Velocidad [pixeles/segundo]
 
-    public Personaje(Texture texture,float x, float y) {
-        super(texture,x,y);
-        this.x=x;
-        this.y=y;
+    public Personaje(Texture texture) {
         // Crea una region
         TextureRegion region = new TextureRegion(texture);
 
@@ -32,8 +29,12 @@ public class Personaje extends Objeto{
         timerAnimacion = 0;
 
         // Quieto
+
         sprite = new Sprite(texturaPersonaje[0][0]);
-        }
+        sprite.setPosition(120,64);
+        x = sprite.getX();
+        y = sprite.getY();
+    }
 
     public void render(SpriteBatch batch){
         if (estadoMover==EstadoMovimento.QUIETO) {

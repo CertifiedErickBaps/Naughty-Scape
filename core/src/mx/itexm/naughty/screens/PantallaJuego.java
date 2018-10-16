@@ -42,7 +42,7 @@ class PantallaJuego extends Pantalla
     @Override
     public void show() {
         cargarMapa();
-        personaje = new Personaje(new Texture("Personajes/SpriteMario.png"),500,500);
+        personaje = new Personaje(new Texture("Personajes/SpriteMario.png"));
         crearHUD();
         Gdx.input.setInputProcessor(escenaHUD);
     }
