@@ -11,7 +11,9 @@ public class Objeto {
         sprite = new Sprite(textura);
         sprite.setPosition(x, y);
     }
+    public Objeto() {
 
+    }
 
     public void dibujar(SpriteBatch batch) {
         sprite.draw(batch);
