@@ -16,13 +16,14 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import mx.itexm.naughty.entities.Controller;
 import mx.itexm.naughty.entities.Personaje;
 
 class PantallaJuego extends Pantalla
 {
     private static final float ANCHO_MAPA = 6784;
     private final PantallaInicio juego;
-
+    private Controller controller;
     private TiledMap mapa;
     private OrthogonalTiledMapRenderer renderer;
     private Personaje personaje;
@@ -38,13 +39,22 @@ class PantallaJuego extends Pantalla
         this.juego = juego;
     }
 
-
     @Override
     public void show() {
         cargarMapa();
-        personaje = new Personaje(new Texture("Personajes/SpriteMario.png"));
         crearHUD();
-        Gdx.input.setInputProcessor(escenaHUD);
+        personaje = new Personaje(new Texture("Personajes/SpriteMario.png"));
+
+    }
+
+    private void cargarMapa() {
+        AssetManager manager = new AssetManager();
+        manager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
+        manager.load("Mapas/Test.tmx",TiledMap.class);
+
+        manager.finishLoading(); // Espera
+        mapa = manager.get("Mapas/Test.tmx");
+        renderer = new OrthogonalTiledMapRenderer(mapa);
     }
 
     private void crearHUD() {
@@ -53,21 +63,11 @@ class PantallaJuego extends Pantalla
         camaraHUD.position.set(ANCHO/2, ALTO/2, 0);
         camaraHUD.update();
         vistaHUD = new StretchViewport(ANCHO, ALTO, camaraHUD);
-        // Crea el pad
-        skin = new Skin(); // Texturas para el pad
-        skin.add("fondo", new Texture("Botones/padBack.png"));
-        skin.add("boton", new Texture("Botones/padKnob.png"));
-        // Configura la vista del pad
-        Touchpad.TouchpadStyle estilo = new Touchpad.TouchpadStyle();
-        estilo.background = skin.getDrawable("fondo");
-        estilo.knob = skin.getDrawable("boton");
 
-        // Crea el pad
-        Touchpad pad = new Touchpad(64,estilo);     // Radio, estilo
-        pad.setBounds(16,16,128,128);               // x,y - ancho,alto
+        controller = new Controller(0);
 
         // Comportamiento del pad
-        pad.addListener(new ChangeListener() {
+        controller.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 Touchpad pad = (Touchpad)actor;
@@ -84,22 +84,12 @@ class PantallaJuego extends Pantalla
                 }
             }
         });
-        pad.setColor(1,1,1,0.7f);   // Transparente
+        controller.setColor(1,1,1,0.7f);   // Transparente
 
         // Crea la escena y agrega el pad
         escenaHUD = new Stage(vistaHUD);    // Escalar con esta vista
-        escenaHUD.addActor(pad);
-
-    }
-
-    private void cargarMapa() {
-        AssetManager manager = new AssetManager();
-        manager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
-        manager.load("Mapas/Test.tmx",TiledMap.class);
-
-        manager.finishLoading(); // Espera
-        mapa = manager.get("Mapas/Test.tmx");
-        renderer = new OrthogonalTiledMapRenderer(mapa);
+        escenaHUD.addActor(controller);
+        Gdx.input.setInputProcessor(escenaHUD);
     }
 
     @Override

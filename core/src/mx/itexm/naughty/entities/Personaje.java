@@ -13,10 +13,18 @@ public class Personaje extends Objeto{
     private Animation animacion;
     private float timerAnimacion;
     private float x, y;
-
-    // Estado de reposo
+    private Controller controller;
+    // Posicion de reposo
     EstadoMovimento estadoMover = EstadoMovimento.QUIETO;
     private static final float SPEED = 240; // Velocidad [pixeles/segundo]
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
 
     public Personaje(Texture texture) {
         // Crea una region
@@ -28,57 +36,50 @@ public class Personaje extends Objeto{
         animacion.setPlayMode(Animation.PlayMode.LOOP);
         timerAnimacion = 0;
 
-        // Quieto
-
+        // Posicion de inicio
         sprite = new Sprite(texturaPersonaje[0][0]);
         sprite.setPosition(120,64);
+
+        // Posicion actual del jugador
         x = sprite.getX();
         y = sprite.getY();
     }
 
     public void render(SpriteBatch batch){
         if (estadoMover==EstadoMovimento.QUIETO) {
-            //batch.draw(marioQuieto.getTexture(),x,y);
             sprite.draw(batch);
         } else {
             timerAnimacion += Gdx.graphics.getDeltaTime();
             TextureRegion region = (TextureRegion) animacion.getKeyFrame(timerAnimacion);
-            if (estadoMover == EstadoMovimento.IZQUIERDA) {
+            // Verifica el movimiento en x o y
+            if (estadoMover == EstadoMovimento.IZQUIERDA || estadoMover == EstadoMovimento.DERECHA) {
                 region.flip(region.isFlipX(), false);
-            } else if (estadoMover == EstadoMovimento.DERECHA) {
-                region.flip(region.isFlipX(), false);
-            } else if (estadoMover == EstadoMovimento.ARRIBA) {
-                region.flip(false, region.isFlipY());
-            } else if (estadoMover == EstadoMovimento.ABAJO) {
+            } else if (estadoMover == EstadoMovimento.ARRIBA || estadoMover == EstadoMovimento.ABAJO) {
                 region.flip(false, region.isFlipY());
             }
             batch.draw(region, x, y);
         }
     }
 
-
-
     public void actualizar(TiledMap mapa) {
         // Verificar si se puede mover (no hay obstáculos, por ahora tubos verdes)
         switch (estadoMover) {
             case DERECHA:
                 if (puedeMover(SPEED*Gdx.graphics.getDeltaTime(), 0 ,mapa)) {
-                    mover(SPEED * Gdx.graphics.getDeltaTime(), 0);
+                    mover(SPEED*Gdx.graphics.getDeltaTime(), 0);
                 }
                 break;
             case IZQUIERDA:
-                if (puedeMover(-SPEED*Gdx.graphics.getDeltaTime(), 0, mapa)) {
-                    mover(-SPEED * Gdx.graphics.getDeltaTime(), 0);
-                }
+                mover(-SPEED*Gdx.graphics.getDeltaTime(), 0);
                 break;
             case ARRIBA:
                 if (puedeMover(0, SPEED*Gdx.graphics.getDeltaTime(), mapa)) {
-                    mover(0, SPEED * Gdx.graphics.getDeltaTime());
+                    mover(0, SPEED*Gdx.graphics.getDeltaTime());
                 }
                 break;
             case ABAJO:
                 if (puedeMover(0, -SPEED*Gdx.graphics.getDeltaTime(), mapa)) {
-                    mover(0, -SPEED * Gdx.graphics.getDeltaTime());
+                    mover(0, -SPEED*Gdx.graphics.getDeltaTime());
                 }
                 break;
         }
@@ -86,10 +87,12 @@ public class Personaje extends Objeto{
 
     private boolean puedeMover(float dx, float dy,  TiledMap mapa) {
         int cx = (int)(getX()+32)/32;
-        int cy = (int)(getY())/32;
+        int cy = (int)(getY()+32)/32;
         // Obtener la celda en x,y
         TiledMapTileLayer capa = (TiledMapTileLayer)mapa.getLayers().get(0);
         TiledMapTileLayer.Cell celda = capa.getCell(cx,cy);
+
+        // Checa las propiedades Tipo - pared
         Object tipo = celda.getTile().getProperties().get("Tipo");
         if (!"Pared".equals(tipo)) {
             return true;
@@ -98,12 +101,13 @@ public class Personaje extends Objeto{
     }
 
     public float getX() {
-        return x;
+        return sprite.getX();
     }
 
     public float getY() {
-        return y;
+        return sprite.getY();
     }
+
 
     public void mover(float dx, float dy) {
         x += dx;
@@ -111,11 +115,10 @@ public class Personaje extends Objeto{
         sprite.setPosition(x,y);
     }
 
+
     public void setEstadoMover(EstadoMovimento estadoMover) {
         this.estadoMover = estadoMover;
     }
-
-
 
     public enum EstadoMovimento {
         QUIETO,
