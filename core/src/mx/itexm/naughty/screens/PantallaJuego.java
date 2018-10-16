@@ -71,6 +71,8 @@ class PantallaJuego extends Pantalla
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 Touchpad pad = (Touchpad)actor;
+                personaje.setVx(pad.getKnobPercentX());
+                personaje.setVy(pad.getKnobPercentY());
                 if (pad.getKnobPercentX() > 0.10) { // Más de 20% de desplazamiento DERECHA
                     personaje.setEstadoMover(Personaje.EstadoMovimento.DERECHA);
                 } else if ( pad.getKnobPercentX() < -0.10 ) {   // Más de 20% IZQUIERDA
