@@ -12,7 +12,17 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 public class Personaje extends Objeto{
     private Animation animacion;
     private float timerAnimacion;
-    private float x, y;
+    private float x;
+
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    private float y;
 
     // Estado de reposo
     EstadoMovimento estadoMover = EstadoMovimento.QUIETO;
@@ -61,27 +71,27 @@ public class Personaje extends Objeto{
         // Verificar si se puede mover (no hay obstáculos, por ahora tubos verdes)
         switch (estadoMover) {
             case DERECHA:
-                if (puedeMover(mapa)) {
+                if (puedeMover(mapa, 1,1)) {
                     mover(SPEED * Gdx.graphics.getDeltaTime(), 0);
                 }break;
             case IZQUIERDA:
-                if (puedeMover(mapa)) {
+                if (puedeMover(mapa,0,1)) {
                     mover(-SPEED * Gdx.graphics.getDeltaTime(), 0);
                 }break;
             case ARRIBA:
-                if (puedeMover(mapa)) {
+                if (puedeMover(mapa,1,1)) {
                     mover(0, SPEED * Gdx.graphics.getDeltaTime());
                 }break;
             case ABAJO:
-                if (puedeMover( mapa)) {
+                if (puedeMover(mapa,1,0)) {
                     mover(0, -SPEED * Gdx.graphics.getDeltaTime());
                 }break;
         }
     }
 
-    private boolean puedeMover(TiledMap mapa) {
-        int cx = (int)(x+32)/32;
-        int cy = (int)(y+32)/32;
+    private boolean puedeMover(TiledMap mapa, int dirX, int dirY) {
+        int cx = (int)(x+dirX*32)/32;
+        int cy = (int)(y+dirY*32)/32;
         // Obtener la celda en x,y
         TiledMapTileLayer capa = (TiledMapTileLayer)mapa.getLayers().get(0);
         TiledMapTileLayer.Cell celda = capa.getCell(cx,cy);
