@@ -13,16 +13,20 @@ public class Personaje extends Objeto{
     private Animation animacion;
     private float timerAnimacion;
     private float x;
+
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
     private float y;
-    private float vx;
-    private float vy;
-
-
-
 
     // Estado de reposo
     EstadoMovimento estadoMover = EstadoMovimento.QUIETO;
-    private static final float SPEED = 2; // Velocidad [pixeles/segundo]
+    private static final float SPEED = 240; // Velocidad [pixeles/segundo]
 
     public Personaje(Texture texture) {
         // Crea una region
@@ -65,27 +69,24 @@ public class Personaje extends Objeto{
 
     public void actualizar(TiledMap mapa) {
         // Verificar si se puede mover (no hay obstáculos, por ahora tubos verdes)
-
-        //mover(SPEED * vx, SPEED * vy);
         switch (estadoMover) {
             case DERECHA:
                 if (puedeMover(mapa, 1,1)) {
-                    mover(SPEED * vx, SPEED * vy);
+                    mover(SPEED * Gdx.graphics.getDeltaTime(), 0);
                 }break;
             case IZQUIERDA:
                 if (puedeMover(mapa,0,1)) {
-                    mover(SPEED * vx, SPEED * vy);
+                    mover(-SPEED * Gdx.graphics.getDeltaTime(), 0);
                 }break;
             case ARRIBA:
                 if (puedeMover(mapa,1,1)) {
-                    mover(SPEED * vx, SPEED * vy);
+                    mover(0, SPEED * Gdx.graphics.getDeltaTime());
                 }break;
             case ABAJO:
                 if (puedeMover(mapa,1,0)) {
-                    mover(SPEED * vx, SPEED * vy);
+                    mover(0, -SPEED * Gdx.graphics.getDeltaTime());
                 }break;
         }
-
     }
 
     private boolean puedeMover(TiledMap mapa, int dirX, int dirY) {
@@ -111,6 +112,8 @@ public class Personaje extends Objeto{
         this.estadoMover = estadoMover;
     }
 
+
+
     public enum EstadoMovimento {
         QUIETO,
         ABAJO,
@@ -118,22 +121,4 @@ public class Personaje extends Objeto{
         DERECHA,
         IZQUIERDA
     }
-
-    public void setVy(float vy) {
-        this.vy = vy;
-    }
-
-    public void setVx(float vx) {
-        this.vx = vx;
-    }
-
-    public float getX() {
-        return x;
-    }
-
-    public float getY() {
-        return y;
-    }
-
 }
-
