@@ -13,20 +13,15 @@ public class Personaje extends Objeto{
     private Animation animacion;
     private float timerAnimacion;
     private float x;
-
-    public float getX() {
-        return x;
-    }
-
-    public float getY() {
-        return y;
-    }
-
     private float y;
+
+    // Valores para capturas las velocidades del touchpad
+    private float vx;
+    private float vy;
 
     // Estado de reposo
     EstadoMovimento estadoMover = EstadoMovimento.QUIETO;
-    private static final float SPEED = 240; // Velocidad [pixeles/segundo]
+    private static final float SPEED = 3; // Velocidad [pixeles/segundo]
 
     public Personaje(Texture texture) {
         // Crea una region
@@ -65,31 +60,30 @@ public class Personaje extends Objeto{
         }
     }
 
-
-
     public void actualizar(TiledMap mapa) {
         // Verificar si se puede mover (no hay obstáculos, por ahora tubos verdes)
         switch (estadoMover) {
             case DERECHA:
                 if (puedeMover(mapa, 1,1)) {
-                    mover(SPEED * Gdx.graphics.getDeltaTime(), 0);
+                    mover(vx*SPEED, vy*SPEED);
                 }break;
             case IZQUIERDA:
                 if (puedeMover(mapa,0,1)) {
-                    mover(-SPEED * Gdx.graphics.getDeltaTime(), 0);
+                    mover(vx*SPEED, vy*SPEED);
                 }break;
             case ARRIBA:
                 if (puedeMover(mapa,1,1)) {
-                    mover(0, SPEED * Gdx.graphics.getDeltaTime());
+                    mover(vx*SPEED, vy*SPEED);
                 }break;
             case ABAJO:
                 if (puedeMover(mapa,1,0)) {
-                    mover(0, -SPEED * Gdx.graphics.getDeltaTime());
+                    mover(vx*SPEED, vy*SPEED);
                 }break;
         }
     }
 
     private boolean puedeMover(TiledMap mapa, int dirX, int dirY) {
+        // Verifica si lo que esta delante de el es un obstaculo
         int cx = (int)(x+dirX*32)/32;
         int cy = (int)(y+dirY*32)/32;
         // Obtener la celda en x,y
@@ -112,13 +106,27 @@ public class Personaje extends Objeto{
         this.estadoMover = estadoMover;
     }
 
-
-
     public enum EstadoMovimento {
         QUIETO,
         ABAJO,
         ARRIBA,
         DERECHA,
         IZQUIERDA
+    }
+
+    public void setVx(float vx) {
+        this.vx = vx;
+    }
+
+    public void setVy(float vy) {
+        this.vy = vy;
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
     }
 }
