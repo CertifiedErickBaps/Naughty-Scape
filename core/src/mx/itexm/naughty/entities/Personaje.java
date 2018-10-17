@@ -17,21 +17,6 @@ public class Personaje extends Objeto{
     private float vx;
     private float vy;
 
-    public void setVy(float vy) {
-        this.vy = vy;
-    }
-
-    public void setVx(float vx) {
-        this.vx = vx;
-    }
-
-    public float getX() {
-        return x;
-    }
-
-    public float getY() {
-        return y;
-    }
 
 
 
@@ -126,8 +111,6 @@ public class Personaje extends Objeto{
         this.estadoMover = estadoMover;
     }
 
-
-
     public enum EstadoMovimento {
         QUIETO,
         ABAJO,
@@ -135,5 +118,22 @@ public class Personaje extends Objeto{
         DERECHA,
         IZQUIERDA
     }
+
+    public void setVy(float vy) {
+        this.vy = vy;
+    }
+
+    public void setVx(float vx) {
+        this.vx = vx;
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
 }
 
