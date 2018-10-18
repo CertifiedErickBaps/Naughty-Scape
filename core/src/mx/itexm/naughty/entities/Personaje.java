@@ -28,13 +28,15 @@ public class Personaje extends Objeto{
         TextureRegion region = new TextureRegion(texture);
 
         // Divide la región en frames de 32x64
-        TextureRegion[][] texturaPersonaje = region.split(36,72);
+        TextureRegion[][] texturaPersonaje = region.split(88,64);
+
         animacion = new Animation(0.15f,texturaPersonaje[0][3],texturaPersonaje[0][2],texturaPersonaje[0][1]);
         animacion.setPlayMode(Animation.PlayMode.LOOP);
         timerAnimacion = 0;
 
+        texture = new Texture("Personajes/Jhony_standing.png");
         // Quieto
-        sprite = new Sprite(texturaPersonaje[0][0]);
+        sprite = new Sprite(texture);
         sprite.setPosition(120,64);
         x = sprite.getX();
         y = sprite.getY();
@@ -42,19 +44,21 @@ public class Personaje extends Objeto{
 
     public void render(SpriteBatch batch){
         if (estadoMover==EstadoMovimento.QUIETO) {
+            batch.draw(sprite.getTexture(), x, y);
             //batch.draw(marioQuieto.getTexture(),x,y);
-            sprite.draw(batch);
+            //sprite.draw(batch);
+
         } else {
             timerAnimacion += Gdx.graphics.getDeltaTime();
             TextureRegion region = (TextureRegion) animacion.getKeyFrame(timerAnimacion);
             if (estadoMover == EstadoMovimento.IZQUIERDA) {
-                region.flip(region.isFlipX(), false);
+                region.flip(!region.isFlipX(), false);
             } else if (estadoMover == EstadoMovimento.DERECHA) {
-                region.flip(region.isFlipX(), false);
+                region.flip(false, region.isFlipX());
             } else if (estadoMover == EstadoMovimento.ARRIBA) {
                 region.flip(false, region.isFlipY());
             } else if (estadoMover == EstadoMovimento.ABAJO) {
-                region.flip(false, region.isFlipY());
+                region.flip(false, !region.isFlipY());
             }
             batch.draw(region, x, y);
         }
@@ -84,8 +88,8 @@ public class Personaje extends Objeto{
 
     private boolean puedeMover(TiledMap mapa, float dirX, float dirY) {
         // Verifica si lo que esta delante de el es un obstaculo
-        int cx = (int)(x+dirX*32)/32;
-        int cy = (int)(y+dirY*32)/32;
+        int cx = (int)(x+dirX*64)/32;
+        int cy = (int)(y+dirY*64)/32;
         // Obtener la celda en x,y
         TiledMapTileLayer capa = (TiledMapTileLayer)mapa.getLayers().get(0);
         TiledMapTileLayer.Cell celda = capa.getCell(cx,cy);
