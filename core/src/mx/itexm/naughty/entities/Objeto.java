@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Objeto {
+
     protected Sprite sprite;
 
     public Objeto(Texture textura, float x, float y) {
@@ -13,10 +14,6 @@ public class Objeto {
     }
     public Objeto() {
 
-    }
-
-    public void dibujar(SpriteBatch batch) {
-        sprite.draw(batch);
     }
 
 }
