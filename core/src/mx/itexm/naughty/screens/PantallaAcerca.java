@@ -19,7 +19,7 @@ class PantallaAcerca extends Pantalla {
         this.pantallaInicio=pantallaInicio;
     }
     private void crearEscena(){
-        escenaAcerca=new Stage(vista);
+        escenaAcerca=new Stage(vistaPantalla);
         TextureRegionDrawable trdRegresar_up=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/regresar.png")));
         TextureRegionDrawable trdRegresar_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/regresar_s.png")));
         ImageButton btnReg=new ImageButton(trdRegresar_up,trdRegresar_down);
@@ -44,11 +44,11 @@ class PantallaAcerca extends Pantalla {
 
     @Override
     public void render(float delta) {
-        batch.setProjectionMatrix(camara.combined);
-        batch.begin();
-        batch.draw(textFondo,0,0);
-        info.mostrarMensaje(batch, "--CREADO POR--"+"\n"+"Eric Gomez (ISC)"+"\n"+"Erick Bautista (ISC)"+"\n"+"Jessica I. Alvarez (LAD)"+"\n"+"Sebastian Gomez (LAD)" ,ANCHO*0.7f, ALTO*0.90f);
-        batch.end();
+        batchPantalla.setProjectionMatrix(camaraPantalla.combined);
+        batchPantalla.begin();
+        batchPantalla.draw(textFondo,0,0);
+        info.mostrarMensaje(batchPantalla, "--CREADO POR--"+"\n"+"Eric Gomez (ISC)"+"\n"+"Erick Bautista (ISC)"+"\n"+"Jessica I. Alvarez (LAD)"+"\n"+"Sebastian Gomez (LAD)" ,ANCHO_PANTALLA*0.7f, ALTO_PANTALLA*0.90f);
+        batchPantalla.end();
         escenaAcerca.draw();
     }
 

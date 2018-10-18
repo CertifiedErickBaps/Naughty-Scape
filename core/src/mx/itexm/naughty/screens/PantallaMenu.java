@@ -25,12 +25,12 @@ class PantallaMenu extends Pantalla {
         crearEscena();
         fondo=new Texture("menu_fondo.jpg");
         logo =new Sprite(new Texture("logo.png"));
-        logo.setPosition(ANCHO/2-logo.getWidth()/2, 0.65f*ALTO-logo.getHeight()/2);
+        logo.setPosition(ANCHO_PANTALLA/2-logo.getWidth()/2, 0.65f*ALTO_PANTALLA-logo.getHeight()/2);
         Gdx.input.setInputProcessor(escenaMenu);
     }
 
     private void crearEscena() {
-        escenaMenu = new Stage(vista);
+        escenaMenu = new Stage(vistaPantalla);
 
         //Botones normales
         TextureRegionDrawable trdP = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/button_jugar.png")));
@@ -45,9 +45,9 @@ class PantallaMenu extends Pantalla {
         ImageButton btnAjuste = new ImageButton(trdAj, trdAjs);
         ImageButton btnAcerca = new ImageButton(trdA, trdAs);
         //Posicion
-        btnPlay.setPosition(ANCHO/2-btnPlay.getWidth()/2, 0.10f*ALTO-btnPlay.getHeight()/2);
-        btnAjuste.setPosition(0.10f*ANCHO-btnAjuste.getWidth()/2, 0.10f*ALTO-btnAjuste.getHeight()/2);
-        btnAcerca.setPosition(0.86f*ANCHO-btnAcerca.getWidth()/2, 0.10f*ALTO-btnAcerca.getHeight()/2);
+        btnPlay.setPosition(ANCHO_PANTALLA/2-btnPlay.getWidth()/2, 0.10f*ALTO_PANTALLA-btnPlay.getHeight()/2);
+        btnAjuste.setPosition(0.10f*ANCHO_PANTALLA-btnAjuste.getWidth()/2, 0.10f*ALTO_PANTALLA-btnAjuste.getHeight()/2);
+        btnAcerca.setPosition(0.86f*ANCHO_PANTALLA-btnAcerca.getWidth()/2, 0.10f*ALTO_PANTALLA-btnAcerca.getHeight()/2);
 
 
 
@@ -84,11 +84,11 @@ class PantallaMenu extends Pantalla {
     @Override
     public void render(float delta) {
         borrarPantalla(0.34f,0.43f,0.46f);
-        batch.setProjectionMatrix(camara.combined);
-        batch.begin();
-        batch.draw(fondo,0,0);
-        batch.draw(logo,logo.getX(),logo.getY());
-        batch.end();
+        batchPantalla.setProjectionMatrix(camaraPantalla.combined);
+        batchPantalla.begin();
+        batchPantalla.draw(fondo,0,0);
+        batchPantalla.draw(logo,logo.getX(),logo.getY());
+        batchPantalla.end();
         escenaMenu.draw();
 
     }

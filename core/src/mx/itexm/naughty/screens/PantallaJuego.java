@@ -6,8 +6,10 @@ import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -16,16 +18,19 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import mx.itexm.naughty.entities.Controller;
 import mx.itexm.naughty.entities.Personaje;
 
 class PantallaJuego extends Pantalla
 {
-    private static final float ANCHO_MAPA = 6784;
+    private static final float ANCHO_MAPA = 1280;
+    private static final float ALTO_MAPA = 704;
     private final PantallaInicio juego;
-
+    private Controller controller;
     private TiledMap mapa;
     private OrthogonalTiledMapRenderer renderer;
     private Personaje personaje;
+    private Personaje jhony;
 
     // HUD, otra cámara con la imagen fija
     private OrthographicCamera camaraHUD;
@@ -38,58 +43,11 @@ class PantallaJuego extends Pantalla
         this.juego = juego;
     }
 
-
     @Override
     public void show() {
         cargarMapa();
-        personaje = new Personaje(new Texture("Personajes/SpriteMario.png"));
         crearHUD();
-        Gdx.input.setInputProcessor(escenaHUD);
-    }
-
-    private void crearHUD() {
-        // Crea la cámara y la vista
-        camaraHUD = new OrthographicCamera(ANCHO, ALTO);
-        camaraHUD.position.set(ANCHO/2, ALTO/2, 0);
-        camaraHUD.update();
-        vistaHUD = new StretchViewport(ANCHO, ALTO, camaraHUD);
-        // Crea el pad
-        skin = new Skin(); // Texturas para el pad
-        skin.add("fondo", new Texture("Botones/padBack.png"));
-        skin.add("boton", new Texture("Botones/padKnob.png"));
-        // Configura la vista del pad
-        Touchpad.TouchpadStyle estilo = new Touchpad.TouchpadStyle();
-        estilo.background = skin.getDrawable("fondo");
-        estilo.knob = skin.getDrawable("boton");
-
-        // Crea el pad
-        Touchpad pad = new Touchpad(64,estilo);     // Radio, estilo
-        pad.setBounds(16,16,128,128);               // x,y - ancho,alto
-
-        // Comportamiento del pad
-        pad.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                Touchpad pad = (Touchpad)actor;
-                if (pad.getKnobPercentX() > 0.10) { // Más de 20% de desplazamiento DERECHA
-                    personaje.setEstadoMover(Personaje.EstadoMovimento.DERECHA);
-                } else if ( pad.getKnobPercentX() < -0.10 ) {   // Más de 20% IZQUIERDA
-                    personaje.setEstadoMover(Personaje.EstadoMovimento.IZQUIERDA);
-                } else if ( pad.getKnobPercentY() < -0.10) {
-                    personaje.setEstadoMover(Personaje.EstadoMovimento.ABAJO);
-                } else if( pad.getKnobPercentY() > 0.10) {
-                    personaje.setEstadoMover(Personaje.EstadoMovimento.ARRIBA);
-                } else {
-                    personaje.setEstadoMover(Personaje.EstadoMovimento.QUIETO);
-                }
-            }
-        });
-        pad.setColor(1,1,1,0.7f);   // Transparente
-
-        // Crea la escena y agrega el pad
-        escenaHUD = new Stage(vistaHUD);    // Escalar con esta vista
-        escenaHUD.addActor(pad);
-
+        jhony = new Personaje(new Texture("Personajes/Jhony_caminando.png"));
     }
 
     private void cargarMapa() {
@@ -102,48 +60,97 @@ class PantallaJuego extends Pantalla
         renderer = new OrthogonalTiledMapRenderer(mapa);
     }
 
+    private void crearHUD() {
+
+        // Crea la cámara y la vista
+        camaraHUD = new OrthographicCamera(ANCHO_JUEGO, ALTO_JUEGO);
+        camaraHUD.position.set(ANCHO_JUEGO, ALTO_JUEGO, 0);
+        camaraHUD.update();
+        vistaHUD = new StretchViewport(ANCHO_JUEGO, ALTO_JUEGO, camaraHUD);
+        controller = new Controller(0);
+
+        // Comportamiento del pad
+        controller.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                Touchpad pad = (Touchpad)actor;
+                //Guarda las velocidades al momento de tomar el evento
+                jhony.setVx(pad.getKnobPercentX());
+                jhony.setVy(pad.getKnobPercentY());
+                if (pad.getKnobPercentX() > 0.10) { // Más de 20% de desplazamiento DERECHA
+                    jhony.setEstadoMover(Personaje.EstadoMovimento.DERECHA);
+                } else if ( pad.getKnobPercentX() < -0.10 ) {   // Más de 20% IZQUIERDA
+                    jhony.setEstadoMover(Personaje.EstadoMovimento.IZQUIERDA);
+                } else if ( pad.getKnobPercentY() < -0.10) {
+                    jhony.setEstadoMover(Personaje.EstadoMovimento.ABAJO);
+                } else if( pad.getKnobPercentY() > 0.10) {
+                    jhony.setEstadoMover(Personaje.EstadoMovimento.ARRIBA);
+                } else {
+                    jhony.setEstadoMover(Personaje.EstadoMovimento.QUIETO);
+                }
+            }
+        });
+        controller.setColor(1,1,1,0.7f);   // Transparente
+
+        // Crea la escena y agrega el pad
+        escenaHUD = new Stage(vistaHUD);    // Escalar con esta vista
+        escenaHUD.addActor(controller);
+        Gdx.input.setInputProcessor(escenaHUD);
+    }
+
     @Override
     public void render(float delta) {
         // Actualiza todos los objetos
-        personaje.actualizar(mapa);
+        jhony.actualizar(mapa);
         actualizarCamara();
         // Cámara fondo
 
         borrarPantalla(0.35f,0.55f,1);
-        batch.setProjectionMatrix(camara.combined);
+        batchJuego.setProjectionMatrix(camaraJuego.combined);
 
-        renderer.setView(camara);
+        renderer.setView(camaraJuego);
         renderer.render();
 
-        batch.begin();
-        personaje.render(batch);
-        batch.end();
+        batchJuego.begin();
+        jhony.render(batchJuego);
+        batchJuego.end();
 
         // Cámara HUD
-        batch.setProjectionMatrix(camaraHUD.combined);
+        batchJuego.setProjectionMatrix(camaraHUD.combined);
         escenaHUD.draw();
     }
 
     private void actualizarCamara() {
+
         // Depende de la posición del personaje. Siempre sigue al personaje
-        float posX = personaje.getX();
-        float posY = personaje.getY();
+        float posX = jhony.getX();
+        float posY = jhony.getY();
         // Primera mitad de la pantalla
-        if (posX < ANCHO/2 ) {
-            camara.position.set(ANCHO/2, ALTO/2, 0);
-        } else if (posX > ANCHO/2) {   // Última mitad de la pantalla
-            camara.position.set(ANCHO/2,camara.position.y,0);
-        } else if (posY > ALTO/2) {
-            camara.position.set(camara.position.x,ALTO/2,0);
-        } else {    // En 'medio' del mapa
-            camara.position.set(posX,camara.position.y,0);
+
+        if (posX < ANCHO_JUEGO/2) {
+            camaraJuego.position.x = ANCHO_JUEGO/2;
         }
-        camara.update();
+        else if (posX > ANCHO_MAPA - ANCHO_JUEGO/2) {   // Última mitad de la pantalla
+            camaraJuego.position.x = ANCHO_MAPA -ANCHO_JUEGO/2;
+        }
+        else {// En 'medio' del mapa
+            camaraJuego.position.x = posX;
+        }
+        if (posY > ALTO_MAPA - ALTO_JUEGO/2){
+            camaraJuego.position.y = ALTO_MAPA - ALTO_JUEGO/2;
+        }
+        else if (posY < ALTO_JUEGO/2){
+            camaraJuego.position.y = ALTO_JUEGO/2;
+        }
+        else{
+            camaraJuego.position.y= posY;
+        }
+        camaraJuego.update();
     }
 
     @Override
     public void resize(int width, int height) {
-        vista.update(width, height);
+        vistaJuego.update(width, height);
         vistaHUD.update(width, height);
     }
 

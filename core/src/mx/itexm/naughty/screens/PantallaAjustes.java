@@ -20,7 +20,7 @@ class PantallaAjustes extends Pantalla {
         this.pantallaInicio=pantallaInicio;
     }
     private void crearEscena(){
-        escenaAjustes=new Stage(vista);
+        escenaAjustes=new Stage(vistaPantalla);
 
         TextureRegionDrawable trdRegresar_up=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/regresar.png")));
         TextureRegionDrawable trdRegresar_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/regresar_s.png")));
@@ -31,8 +31,8 @@ class PantallaAjustes extends Pantalla {
         ImageButton btnCheck1=new ImageButton(trdCasiilla_up,trdCasilla_down);
         ImageButton btnCheck2=new ImageButton(trdCasiilla_up,trdCasilla_down);
         btnReg.setPosition(50,50);
-        btnCheck1.setPosition(ANCHO*0.60f,ALTO*0.60f);
-        btnCheck2.setPosition(ANCHO*0.60f,ALTO*0.30f);
+        btnCheck1.setPosition(ANCHO_PANTALLA*0.60f,ALTO_PANTALLA*0.60f);
+        btnCheck2.setPosition(ANCHO_PANTALLA*0.60f,ALTO_PANTALLA*0.30f);
         btnReg.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -56,12 +56,12 @@ class PantallaAjustes extends Pantalla {
 
     @Override
     public void render(float delta) {
-        batch.setProjectionMatrix(camara.combined);
-        batch.begin();
-        batch.draw(textFondo,0,0);
-        Sound_FX.mostrarMensaje(batch,"Sound FX",ANCHO*0.40f,ALTO*0.70f);
-        Music.mostrarMensaje(batch,"Music",ANCHO*0.40f,ALTO*0.40f);
-        batch.end();
+        batchPantalla.setProjectionMatrix(camaraPantalla.combined);
+        batchPantalla.begin();
+        batchPantalla.draw(textFondo,0,0);
+        Sound_FX.mostrarMensaje(batchPantalla,"Sound FX",ANCHO_PANTALLA*0.40f,ALTO_PANTALLA*0.70f);
+        Music.mostrarMensaje(batchPantalla,"Music",ANCHO_PANTALLA*0.40f,ALTO_PANTALLA*0.40f);
+        batchPantalla.end();
         escenaAjustes.draw();
     }
 
