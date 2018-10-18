@@ -82,7 +82,7 @@ public class Personaje extends Objeto{
         }
     }
 
-    private boolean puedeMover(TiledMap mapa, int dirX, int dirY) {
+    private boolean puedeMover(TiledMap mapa, float dirX, float dirY) {
         // Verifica si lo que esta delante de el es un obstaculo
         int cx = (int)(x+dirX*32)/32;
         int cy = (int)(y+dirY*32)/32;

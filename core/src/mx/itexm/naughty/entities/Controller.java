@@ -9,7 +9,7 @@ public class Controller extends Touchpad {
 
     public Controller(float deadzoneRadius) {
         super(deadzoneRadius, Controller.getTouchPadStyle());
-        setBounds(16, 16, 128, 128);
+        setBounds(16, 16, 100, 100);
     }
 
     private static TouchpadStyle getTouchPadStyle(){

@@ -9,22 +9,33 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 public abstract class Pantalla implements Screen {
-    public static final float ANCHO = 1280;
-    public static final float ALTO = 720;
+    public static final float ANCHO_PANTALLA = 1280;
+    public static final float ALTO_PANTALLA = 720;
+    public static final float ANCHO_JUEGO = 640;
+    public static final float ALTO_JUEGO = 360;
 
-    protected OrthographicCamera camara;
-    protected Viewport vista;
-    protected SpriteBatch batch;
+
+    protected OrthographicCamera camaraPantalla;
+    protected OrthographicCamera camaraJuego;
+    protected Viewport vistaPantalla;
+    protected Viewport vistaJuego;
+    protected SpriteBatch batchPantalla;
+    protected SpriteBatch batchJuego;
 
     public Pantalla() {
-        camara = new OrthographicCamera(ANCHO, ALTO);
+        camaraPantalla = new OrthographicCamera(ANCHO_PANTALLA, ALTO_PANTALLA);
+        camaraJuego = new OrthographicCamera(ANCHO_PANTALLA, ALTO_PANTALLA);
 
-        camara.position.set(ANCHO/2, ALTO/2, 0);
-        camara.update();
+        camaraPantalla.position.set(ANCHO_PANTALLA/2, ALTO_PANTALLA/2, 0);
+        camaraJuego.position.set(ANCHO_JUEGO/2, ALTO_JUEGO/2, 0);
+        camaraPantalla.update();
+        camaraJuego.update();
 
-        vista = new StretchViewport(ANCHO, ALTO, camara);
+        vistaPantalla = new StretchViewport(ANCHO_PANTALLA, ALTO_PANTALLA, camaraPantalla);
+        vistaJuego = new StretchViewport(ANCHO_JUEGO, ALTO_JUEGO, camaraJuego);
 
-        batch = new SpriteBatch();
+        batchPantalla = new SpriteBatch();
+        batchJuego = new SpriteBatch();
     }
 
     public void borrarPantalla(float r, float g, float b) {
@@ -34,12 +45,14 @@ public abstract class Pantalla implements Screen {
 
     @Override
     public void dispose() {
-        batch.dispose();
+        batchPantalla.dispose();
+        batchJuego.dispose();
     }
 
     @Override
     public void resize(int width, int height) {
-        vista.update(width, height);
+        vistaPantalla.update(width, height);
+        vistaJuego.update(width, height);
     }
 
     @Override

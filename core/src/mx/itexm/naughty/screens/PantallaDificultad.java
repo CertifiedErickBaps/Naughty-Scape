@@ -19,7 +19,7 @@ public class PantallaDificultad extends Pantalla {
     }
 
     private void crearEscena(){
-        escenaDificultad=new Stage(vista);
+        escenaDificultad=new Stage(vistaPantalla);
         TextureRegionDrawable trdRegresar_up=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/regresar.png")));
         TextureRegionDrawable trdRegresar_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/regresar_s.png")));
         TextureRegionDrawable trdJhony =new TextureRegionDrawable(new TextureRegion(new Texture("Jhony.png")));
@@ -31,9 +31,9 @@ public class PantallaDificultad extends Pantalla {
         ImageButton btnJiovany=new ImageButton(trdJiovany);
         ImageButton btnReg=new ImageButton(trdRegresar_up,trdRegresar_down);
 
-        btnJhony.setPosition(ANCHO*0.25f,ALTO/2);
-        btnOrlando.setPosition(ANCHO*0.45f,ALTO/2);
-        btnJiovany.setPosition(ANCHO*0.65f,ALTO/2);
+        btnJhony.setPosition(ANCHO_PANTALLA*0.25f,ALTO_PANTALLA/2);
+        btnOrlando.setPosition(ANCHO_PANTALLA*0.45f,ALTO_PANTALLA/2);
+        btnJiovany.setPosition(ANCHO_PANTALLA*0.65f,ALTO_PANTALLA/2);
         btnReg.setPosition(50,50);
 
         btnJhony.addListener(new ClickListener(){
@@ -81,10 +81,10 @@ public class PantallaDificultad extends Pantalla {
 
     @Override
     public void render(float delta) {
-        batch.setProjectionMatrix(camara.combined);
-        batch.begin();
-        batch.draw(fondo,0,0);
-        batch.end();
+        batchPantalla.setProjectionMatrix(camaraPantalla.combined);
+        batchPantalla.begin();
+        batchPantalla.draw(fondo,0,0);
+        batchPantalla.end();
         escenaDificultad.draw();
     }
 
