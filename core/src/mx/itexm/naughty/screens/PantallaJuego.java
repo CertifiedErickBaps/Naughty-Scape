@@ -30,6 +30,7 @@ class PantallaJuego extends Pantalla
     private TiledMap mapa;
     private OrthogonalTiledMapRenderer renderer;
     private Personaje personaje;
+    private Personaje jhony;
 
     // HUD, otra cámara con la imagen fija
     private OrthographicCamera camaraHUD;
@@ -46,7 +47,7 @@ class PantallaJuego extends Pantalla
     public void show() {
         cargarMapa();
         crearHUD();
-        personaje = new Personaje(new Texture("Personajes/SpriteMario.png"));
+        jhony = new Personaje(new Texture("Personajes/Jhony_caminando.png"));
     }
 
     private void cargarMapa() {
@@ -74,18 +75,18 @@ class PantallaJuego extends Pantalla
             public void changed(ChangeEvent event, Actor actor) {
                 Touchpad pad = (Touchpad)actor;
                 //Guarda las velocidades al momento de tomar el evento
-                personaje.setVx(pad.getKnobPercentX());
-                personaje.setVy(pad.getKnobPercentY());
+                jhony.setVx(pad.getKnobPercentX());
+                jhony.setVy(pad.getKnobPercentY());
                 if (pad.getKnobPercentX() > 0.10) { // Más de 20% de desplazamiento DERECHA
-                    personaje.setEstadoMover(Personaje.EstadoMovimento.DERECHA);
+                    jhony.setEstadoMover(Personaje.EstadoMovimento.DERECHA);
                 } else if ( pad.getKnobPercentX() < -0.10 ) {   // Más de 20% IZQUIERDA
-                    personaje.setEstadoMover(Personaje.EstadoMovimento.IZQUIERDA);
+                    jhony.setEstadoMover(Personaje.EstadoMovimento.IZQUIERDA);
                 } else if ( pad.getKnobPercentY() < -0.10) {
-                    personaje.setEstadoMover(Personaje.EstadoMovimento.ABAJO);
+                    jhony.setEstadoMover(Personaje.EstadoMovimento.ABAJO);
                 } else if( pad.getKnobPercentY() > 0.10) {
-                    personaje.setEstadoMover(Personaje.EstadoMovimento.ARRIBA);
+                    jhony.setEstadoMover(Personaje.EstadoMovimento.ARRIBA);
                 } else {
-                    personaje.setEstadoMover(Personaje.EstadoMovimento.QUIETO);
+                    jhony.setEstadoMover(Personaje.EstadoMovimento.QUIETO);
                 }
             }
         });
@@ -100,7 +101,7 @@ class PantallaJuego extends Pantalla
     @Override
     public void render(float delta) {
         // Actualiza todos los objetos
-        personaje.actualizar(mapa);
+        jhony.actualizar(mapa);
         actualizarCamara();
         // Cámara fondo
 
@@ -111,7 +112,7 @@ class PantallaJuego extends Pantalla
         renderer.render();
 
         batchJuego.begin();
-        personaje.render(batchJuego);
+        jhony.render(batchJuego);
         batchJuego.end();
 
         // Cámara HUD
@@ -122,8 +123,8 @@ class PantallaJuego extends Pantalla
     private void actualizarCamara() {
 
         // Depende de la posición del personaje. Siempre sigue al personaje
-        float posX = personaje.getX();
-        float posY = personaje.getY();
+        float posX = jhony.getX();
+        float posY = jhony.getY();
         // Primera mitad de la pantalla
 
         if (posX < ANCHO_JUEGO/2) {
