@@ -1,6 +1,7 @@
 package mx.itexm.naughty.entities;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
 
@@ -10,6 +11,7 @@ public class Controller extends Touchpad {
     public Controller(float deadzoneRadius) {
         super(deadzoneRadius, Controller.getTouchPadStyle());
         setBounds(16, 16, 100, 100);
+
     }
 
     private static TouchpadStyle getTouchPadStyle(){
