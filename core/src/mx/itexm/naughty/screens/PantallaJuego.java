@@ -6,14 +6,19 @@ import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -39,6 +44,8 @@ class PantallaJuego extends Pantalla
     private Stage escenaHUD;    // Tendrá un Pad virtual para mover al personaje y el botón de Pausa
     private Skin skin;
     private Music music;
+    private static Texture corazon;
+    private static Sprite spriteCorazon;
 
 
     public PantallaJuego(PantallaInicio juego) {
@@ -49,7 +56,7 @@ class PantallaJuego extends Pantalla
     public void show() {
         cargarMapa();
         crearHUD();
-        cargarMusica();
+        //cargarMusica();
         jhony = new Personaje(new Texture("Personajes/Jhony_caminando.png"));
     }
 
@@ -78,6 +85,13 @@ class PantallaJuego extends Pantalla
         camaraHUD = new OrthographicCamera(ANCHO_JUEGO, ALTO_JUEGO);
         camaraHUD.position.set(ANCHO_JUEGO, ALTO_JUEGO, 0);
         camaraHUD.update();
+
+        corazon = new Texture("Personajes/corazon.png");
+        Image corazonImagen = new Image(corazon);
+        corazonImagen.setPosition(ANCHO_JUEGO - corazonImagen.getWidth(), ALTO_JUEGO - corazonImagen.getHeight());
+
+
+
         vistaHUD = new StretchViewport(ANCHO_JUEGO, ALTO_JUEGO, camaraHUD);
         controller = new Controller(0);
 
@@ -104,9 +118,12 @@ class PantallaJuego extends Pantalla
         });
         controller.setColor(1,1,1,0.7f);   // Transparente
 
+
         // Crea la escena y agrega el pad
         escenaHUD = new Stage(vistaHUD);    // Escalar con esta vista
         escenaHUD.addActor(controller);
+        escenaHUD.addActor(corazonImagen);
+        //corazonImagen.remove();
         Gdx.input.setInputProcessor(escenaHUD);
     }
 
