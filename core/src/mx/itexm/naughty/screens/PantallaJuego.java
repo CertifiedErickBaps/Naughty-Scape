@@ -3,13 +3,12 @@ package mx.itexm.naughty.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -35,9 +34,12 @@ class PantallaJuego extends Pantalla
     // HUD, otra cámara con la imagen fija
     private OrthographicCamera camaraHUD;
     private Viewport vistaHUD;
+
     // HUD con una escena para los botones y componentes
     private Stage escenaHUD;    // Tendrá un Pad virtual para mover al personaje y el botón de Pausa
     private Skin skin;
+    private Music music;
+
 
     public PantallaJuego(PantallaInicio juego) {
         this.juego = juego;
@@ -47,7 +49,17 @@ class PantallaJuego extends Pantalla
     public void show() {
         cargarMapa();
         crearHUD();
+        cargarMusica();
         jhony = new Personaje(new Texture("Personajes/Jhony_caminando.png"));
+    }
+
+    private void cargarMusica() {
+        AssetManager manager = new AssetManager();
+        manager.load("Musica/Nivel1.mp3", Music.class);
+        manager.finishLoading();
+        music = manager.get("Musica/Nivel1.mp3");
+        music.setLooping(true);
+        music.play();
     }
 
     private void cargarMapa() {
@@ -169,5 +181,6 @@ class PantallaJuego extends Pantalla
         mapa.dispose();
         escenaHUD.dispose();
         skin.dispose();
+        music.dispose();
     }
 }
