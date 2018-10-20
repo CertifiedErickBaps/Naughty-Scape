@@ -1,39 +1,62 @@
 package mx.itexm.naughty.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import java.sql.Time;
+
 import mx.itexm.naughty.entities.Controller;
+import mx.itexm.naughty.entities.EstadoJuego;
 import mx.itexm.naughty.entities.Personaje;
 
 class PantallaJuego extends Pantalla
 {
-    private static final float ANCHO_MAPA = 1280;
-    private static final float ALTO_MAPA = 704;
+
+    private boolean isPlaying;
+
+    // Botón atrás
+    private Texture texturaBtnAtras;
+
+    // Botón pausa
+    private Texture texturaBtnPausa;
+
+    // PAUSA
+    private EscenaPausa escenaPausa;      // Muestra la pausa como pop-up
+
+    // Estados. ahora el juego puede estar JUGANDO, PAUSADO, etc
+    private EstadoJuego estado;
+
+    private float ANCHO_MAPA = 1280;
+    private float ALTO_MAPA = 704;
     private final PantallaInicio juego;
     private Controller controller;
     private TiledMap mapa;
     private OrthogonalTiledMapRenderer renderer;
-    private Personaje personaje;
     private Personaje jhony;
 
     // HUD, otra cámara con la imagen fija
@@ -45,7 +68,6 @@ class PantallaJuego extends Pantalla
     private Skin skin;
     private Music music;
     private static Texture corazon;
-    private static Sprite spriteCorazon;
 
 
     public PantallaJuego(PantallaInicio juego) {
@@ -56,7 +78,8 @@ class PantallaJuego extends Pantalla
     public void show() {
         cargarMapa();
         crearHUD();
-        //cargarMusica();
+        cargarMusica();
+        estado = EstadoJuego.JUGANDO;
         jhony = new Personaje(new Texture("Personajes/Jhony_caminando.png"));
     }
 
@@ -86,11 +109,17 @@ class PantallaJuego extends Pantalla
         camaraHUD.position.set(ANCHO_JUEGO, ALTO_JUEGO, 0);
         camaraHUD.update();
 
+        //Corazones jugador
         corazon = new Texture("Personajes/corazon.png");
         Image corazonImagen = new Image(corazon);
         corazonImagen.setPosition(ANCHO_JUEGO - corazonImagen.getWidth(), ALTO_JUEGO - corazonImagen.getHeight());
 
 
+        // Botón atrás y botón pausa
+        TextureRegionDrawable trdPausa = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/btnPausa.png")));
+        TextureRegionDrawable trdBack = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/backBtn.png")));
+        ImageButton btnPausa = new ImageButton(trdPausa, trdBack);
+        btnPausa.setPosition(ANCHO_JUEGO/2 - btnPausa.getWidth(), ALTO_JUEGO - btnPausa.getHeight());
 
         vistaHUD = new StretchViewport(ANCHO_JUEGO, ALTO_JUEGO, camaraHUD);
         controller = new Controller(0);
@@ -118,12 +147,25 @@ class PantallaJuego extends Pantalla
         });
         controller.setColor(1,1,1,0.7f);   // Transparente
 
+        btnPausa.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                if(escenaPausa == null){
+                    escenaPausa = new EscenaPausa(vistaHUD, batchJuego);
+                }
+                estado = EstadoJuego.PAUSADO;
+                Gdx.input.setInputProcessor(escenaPausa);
+            }
+        });
 
         // Crea la escena y agrega el pad
         escenaHUD = new Stage(vistaHUD);    // Escalar con esta vista
         escenaHUD.addActor(controller);
         escenaHUD.addActor(corazonImagen);
+        escenaHUD.addActor(btnPausa);
         //corazonImagen.remove();
+
         Gdx.input.setInputProcessor(escenaHUD);
     }
 
@@ -144,6 +186,11 @@ class PantallaJuego extends Pantalla
         jhony.render(batchJuego);
         batchJuego.end();
 
+        // Checar condicional
+
+        if (estado==EstadoJuego.PAUSADO) {
+            escenaPausa.draw(); // Solo si está pausado muestra la imagen
+        }
         // Cámara HUD
         batchJuego.setProjectionMatrix(camaraHUD.combined);
         escenaHUD.draw();
@@ -185,7 +232,6 @@ class PantallaJuego extends Pantalla
 
     @Override
     public void pause() {
-
     }
 
     @Override
@@ -200,4 +246,57 @@ class PantallaJuego extends Pantalla
         skin.dispose();
         music.dispose();
     }
+
+    private class EscenaPausa extends Stage
+    {
+        // La escena que se muestra cuando está pausado
+        public EscenaPausa(final Viewport vistaHUD, SpriteBatch batchJuego) {
+            super(vistaHUD,batchJuego);
+            // Crear rectángulo transparente
+            Pixmap pixmap = new Pixmap((int)(ANCHO_JUEGO*0.7f), (int)(ALTO_JUEGO*0.8f), Pixmap.Format.RGBA8888 );
+            pixmap.setColor( 1f, 1f, 1f, 0.65f );
+            pixmap.fillRectangle(0, 0, pixmap.getWidth(), pixmap.getHeight());
+            Texture texturaRectangulo = new Texture( pixmap );
+            pixmap.dispose();
+            Image imgRectangulo = new Image(texturaRectangulo);
+            imgRectangulo.setPosition(0.15f*ANCHO_JUEGO, 0.1f*ALTO_JUEGO);
+            this.addActor(imgRectangulo);
+
+            // Salir
+            Texture texturaBtnSalir = new Texture("Botones/btnSalir.png");
+            TextureRegionDrawable trdSalir = new TextureRegionDrawable(new TextureRegion(texturaBtnSalir));
+            final ImageButton btnSalir = new ImageButton(trdSalir);
+            btnSalir.setPosition(ANCHO_JUEGO/2-btnSalir.getWidth()/2, ALTO_JUEGO/2);
+            btnSalir.addListener(new ClickListener(){
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    if(btnSalir.isChecked()) {
+                        btnSalir.setChecked(true);
+                        music.play();
+                    } else {
+                        btnSalir.setChecked(false);
+                        music.play();
+                    }
+                }
+            });
+            this.addActor(btnSalir);
+
+            // Continuar
+            Texture texturaBtnContinuar = new Texture("Botones/btnContinuar.png");
+            TextureRegionDrawable trdContinuar = new TextureRegionDrawable(new TextureRegion(texturaBtnContinuar));
+            ImageButton btnContinuar = new ImageButton(trdContinuar);
+            btnContinuar.setPosition(ANCHO_JUEGO/2-btnContinuar.getWidth()/2, ALTO_JUEGO/4);
+
+            btnContinuar.addListener(new ClickListener(){
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    // Regresa al juego
+                    estado = EstadoJuego.JUGANDO;
+                    Gdx.input.setInputProcessor(escenaHUD); // No debería crear uno nuevo
+                }
+            });
+            this.addActor(btnContinuar);
+        }
+    }
+
 }

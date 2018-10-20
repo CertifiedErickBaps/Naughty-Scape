@@ -28,9 +28,9 @@ public class Personaje extends Objeto{
         TextureRegion region = new TextureRegion(texture);
 
         // Divide la región en frames de 32x64
-        TextureRegion[][] texturaPersonaje = region.split(88,64);
+        TextureRegion[][] texturaPersonaje = region.split(90,90);
 
-        animacion = new Animation(0.15f,texturaPersonaje[0][3],texturaPersonaje[0][2],texturaPersonaje[0][1]);
+        animacion = new Animation(0.15f,texturaPersonaje[0][0],texturaPersonaje[0][1],texturaPersonaje[0][3], texturaPersonaje[0][4]);
         animacion.setPlayMode(Animation.PlayMode.LOOP);
         timerAnimacion = 0;
 
@@ -54,7 +54,7 @@ public class Personaje extends Objeto{
             if (estadoMover == EstadoMovimento.IZQUIERDA) {
                 region.flip(!region.isFlipX(), false);
             } else if (estadoMover == EstadoMovimento.DERECHA) {
-                region.flip(false, region.isFlipX());
+                region.flip(region.isFlipX(), false);
             } else if (estadoMover == EstadoMovimento.ARRIBA) {
                 region.flip(false, region.isFlipY());
             } else if (estadoMover == EstadoMovimento.ABAJO) {
@@ -88,8 +88,8 @@ public class Personaje extends Objeto{
 
     private boolean puedeMover(TiledMap mapa, float dirX, float dirY) {
         // Verifica si lo que esta delante de el es un obstaculo
-        int cx = (int)(x+dirX*64)/32;
-        int cy = (int)(y+dirY*64)/32;
+        int cx = (int)(x+dirX*90)/32;
+        int cy = (int)(y+dirY*45)/32;
         // Obtener la celda en x,y
         TiledMapTileLayer capa = (TiledMapTileLayer)mapa.getLayers().get(0);
         TiledMapTileLayer.Cell celda = capa.getCell(cx,cy);
