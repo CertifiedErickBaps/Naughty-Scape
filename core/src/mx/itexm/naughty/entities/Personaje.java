@@ -37,7 +37,7 @@ public class Personaje extends Objeto{
         texture = new Texture("Personajes/Jhony_standing.png");
         // Quieto
         sprite = new Sprite(texture);
-        sprite.setPosition(120,64);
+        sprite.setPosition(150,150);
         x = sprite.getX();
         y = sprite.getY();
     }
@@ -91,9 +91,11 @@ public class Personaje extends Objeto{
         int cx = (int)(x+dirX*90)/32;
         int cy = (int)(y+dirY*45)/32;
         // Obtener la celda en x,y
-        TiledMapTileLayer capa = (TiledMapTileLayer)mapa.getLayers().get(0);
+        TiledMapTileLayer capa = (TiledMapTileLayer)mapa.getLayers().get("Suelo");
         TiledMapTileLayer.Cell celda = capa.getCell(cx,cy);
-        Object tipo = celda.getTile().getProperties().get("Tipo");
+        Object tipo = celda.getTile().getProperties().get();
+
+
         if (!"Pared".equals(tipo)) {
             return true;
         }

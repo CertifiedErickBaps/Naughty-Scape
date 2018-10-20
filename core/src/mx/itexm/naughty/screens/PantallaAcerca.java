@@ -18,6 +18,7 @@ class PantallaAcerca extends Pantalla {
     public PantallaAcerca(PantallaInicio pantallaInicio) {
         this.pantallaInicio=pantallaInicio;
     }
+
     private void crearEscena(){
         escenaAcerca=new Stage(vistaPantalla);
         TextureRegionDrawable trdRegresar_up=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/regresar.png")));

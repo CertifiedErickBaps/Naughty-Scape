@@ -36,9 +36,6 @@ import mx.itexm.naughty.entities.Personaje;
 
 class PantallaJuego extends Pantalla
 {
-
-    private boolean isPlaying;
-
     // Botón atrás
     private Texture texturaBtnAtras;
 
@@ -52,7 +49,7 @@ class PantallaJuego extends Pantalla
     private EstadoJuego estado;
 
     private float ANCHO_MAPA = 1280;
-    private float ALTO_MAPA = 704;
+    private float ALTO_MAPA = 2880;
     private final PantallaInicio juego;
     private Controller controller;
     private TiledMap mapa;
@@ -95,10 +92,10 @@ class PantallaJuego extends Pantalla
     private void cargarMapa() {
         AssetManager manager = new AssetManager();
         manager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
-        manager.load("Mapas/Test.tmx",TiledMap.class);
+        manager.load("Mapas/MapaNivel1.tmx",TiledMap.class);
 
         manager.finishLoading(); // Espera
-        mapa = manager.get("Mapas/Test.tmx");
+        mapa = manager.get("Mapas/MapaNivel1.tmx");
         renderer = new OrthogonalTiledMapRenderer(mapa);
     }
 
@@ -112,14 +109,14 @@ class PantallaJuego extends Pantalla
         //Corazones jugador
         corazon = new Texture("Personajes/corazon.png");
         Image corazonImagen = new Image(corazon);
-        corazonImagen.setPosition(ANCHO_JUEGO - corazonImagen.getWidth(), ALTO_JUEGO - corazonImagen.getHeight());
+        corazonImagen.setPosition(0, ALTO_JUEGO - corazonImagen.getHeight());
 
 
         // Botón atrás y botón pausa
         TextureRegionDrawable trdPausa = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/btnPausa.png")));
         TextureRegionDrawable trdBack = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/backBtn.png")));
         ImageButton btnPausa = new ImageButton(trdPausa, trdBack);
-        btnPausa.setPosition(ANCHO_JUEGO/2 - btnPausa.getWidth(), ALTO_JUEGO - btnPausa.getHeight());
+        btnPausa.setPosition(ANCHO_JUEGO - btnPausa.getWidth(), ALTO_JUEGO - btnPausa.getHeight());
 
         vistaHUD = new StretchViewport(ANCHO_JUEGO, ALTO_JUEGO, camaraHUD);
         controller = new Controller(0);
@@ -272,7 +269,7 @@ class PantallaJuego extends Pantalla
                 public void clicked(InputEvent event, float x, float y) {
                     if(btnSalir.isChecked()) {
                         btnSalir.setChecked(true);
-                        music.play();
+                        music.pause();
                     } else {
                         btnSalir.setChecked(false);
                         music.play();
