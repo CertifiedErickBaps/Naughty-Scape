@@ -1,7 +1,6 @@
 package mx.itexm.naughty.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
@@ -13,10 +12,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -27,8 +24,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-
-import java.sql.Time;
 
 import mx.itexm.naughty.entities.Controller;
 import mx.itexm.naughty.entities.EstadoJuego;
@@ -66,7 +61,6 @@ class PantallaJuego extends Pantalla
     private Music music;
     private static Texture corazon;
 
-
     public PantallaJuego(PantallaInicio juego) {
         this.juego = juego;
     }
@@ -74,10 +68,11 @@ class PantallaJuego extends Pantalla
     @Override
     public void show() {
         cargarMapa();
+        jhony = new Personaje(new Texture("Personajes/Jhony_caminando.png"));
         crearHUD();
         cargarMusica();
         estado = EstadoJuego.JUGANDO;
-        jhony = new Personaje(new Texture("Personajes/Jhony_caminando.png"));
+
     }
 
     private void cargarMusica() {
@@ -93,7 +88,6 @@ class PantallaJuego extends Pantalla
         AssetManager manager = new AssetManager();
         manager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
         manager.load("Mapas/MapaNivel1.tmx",TiledMap.class);
-
         manager.finishLoading(); // Espera
         mapa = manager.get("Mapas/MapaNivel1.tmx");
         renderer = new OrthogonalTiledMapRenderer(mapa);
@@ -110,6 +104,11 @@ class PantallaJuego extends Pantalla
         corazon = new Texture("Personajes/corazon.png");
         Image corazonImagen = new Image(corazon);
         corazonImagen.setPosition(0, ALTO_JUEGO - corazonImagen.getHeight());
+
+        //Boton x
+        TextureRegionDrawable trdX = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/boton_x.png")));
+        final ImageButton btnX = new ImageButton(trdX);
+        btnX.setPosition(ANCHO_JUEGO - btnX.getWidth(), 0);
 
 
         // Botón atrás y botón pausa
@@ -131,19 +130,39 @@ class PantallaJuego extends Pantalla
                 jhony.setVy(pad.getKnobPercentY());
                 if (pad.getKnobPercentX() > 0.10) { // Más de 20% de desplazamiento DERECHA
                     jhony.setEstadoMover(Personaje.EstadoMovimento.DERECHA);
-                } else if ( pad.getKnobPercentX() < -0.10 ) {   // Más de 20% IZQUIERDA
+                }
+                else if ( pad.getKnobPercentX() < -0.10 ) {   // Más de 20% IZQUIERDA
                     jhony.setEstadoMover(Personaje.EstadoMovimento.IZQUIERDA);
-                } else if ( pad.getKnobPercentY() < -0.10) {
+                }
+                else if ( pad.getKnobPercentY() < -0.10) {
                     jhony.setEstadoMover(Personaje.EstadoMovimento.ABAJO);
-                } else if( pad.getKnobPercentY() > 0.10) {
+                }
+                else if( pad.getKnobPercentY() > 0.10) {
                     jhony.setEstadoMover(Personaje.EstadoMovimento.ARRIBA);
-                } else {
+                }
+                else {
                     jhony.setEstadoMover(Personaje.EstadoMovimento.QUIETO);
                 }
             }
         });
         controller.setColor(1,1,1,0.7f);   // Transparente
 
+        // Accion boton golpe
+        btnX.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                if(btnX.isChecked()){
+                    jhony.setEstadoMover(Personaje.EstadoMovimento.ATAQUE_GOLPE_UP);
+                    btnX.setChecked(true);
+                } else {
+                    jhony.setEstadoMover(Personaje.EstadoMovimento.QUIETO);
+                    btnX.setChecked(false);
+                }
+            }
+        });
+
+        //Acciones boton pausa
         btnPausa.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -160,8 +179,10 @@ class PantallaJuego extends Pantalla
         escenaHUD = new Stage(vistaHUD);    // Escalar con esta vista
         escenaHUD.addActor(controller);
         escenaHUD.addActor(corazonImagen);
+        escenaHUD.addActor(btnX);
         escenaHUD.addActor(btnPausa);
         //corazonImagen.remove();
+        //botonXImagen.remove();
 
         Gdx.input.setInputProcessor(escenaHUD);
     }

@@ -90,7 +90,6 @@ class PantallaMenu extends Pantalla {
         batchPantalla.draw(logo,logo.getX(),logo.getY());
         batchPantalla.end();
         escenaMenu.draw();
-
     }
 
     @Override
