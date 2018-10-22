@@ -31,6 +31,7 @@ import mx.itexm.naughty.entities.Personaje;
 
 class PantallaJuego extends Pantalla
 {
+
     // Botón atrás
     private Texture texturaBtnAtras;
 
@@ -68,7 +69,7 @@ class PantallaJuego extends Pantalla
     @Override
     public void show() {
         cargarMapa();
-        jhony = new Personaje(new Texture("Personajes/Jhony_caminando.png"));
+        jhony = new Personaje(new Texture("Personajes/Jhony_walkUpDown.png"));
         crearHUD();
         cargarMusica();
         estado = EstadoJuego.JUGANDO;
@@ -106,14 +107,15 @@ class PantallaJuego extends Pantalla
         corazonImagen.setPosition(0, ALTO_JUEGO - corazonImagen.getHeight());
 
         //Boton x
-        TextureRegionDrawable trdX = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/boton_x.png")));
-        final ImageButton btnX = new ImageButton(trdX);
+        TextureRegionDrawable trdX = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/A.png")));
+        TextureRegionDrawable trdXPs = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/APres.png")));
+        final ImageButton btnX = new ImageButton(trdX, trdXPs);
         btnX.setPosition(ANCHO_JUEGO - btnX.getWidth(), 0);
 
 
         // Botón atrás y botón pausa
-        TextureRegionDrawable trdPausa = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/btnPausa.png")));
-        TextureRegionDrawable trdBack = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/backBtn.png")));
+        TextureRegionDrawable trdPausa = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/Pause.png")));
+        TextureRegionDrawable trdBack = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/PausaPres.png")));
         ImageButton btnPausa = new ImageButton(trdPausa, trdBack);
         btnPausa.setPosition(ANCHO_JUEGO - btnPausa.getWidth(), ALTO_JUEGO - btnPausa.getHeight());
 
@@ -280,30 +282,46 @@ class PantallaJuego extends Pantalla
             imgRectangulo.setPosition(0.15f*ANCHO_JUEGO, 0.1f*ALTO_JUEGO);
             this.addActor(imgRectangulo);
 
-            // Salir
-            Texture texturaBtnSalir = new Texture("Botones/btnSalir.png");
-            TextureRegionDrawable trdSalir = new TextureRegionDrawable(new TextureRegion(texturaBtnSalir));
-            final ImageButton btnSalir = new ImageButton(trdSalir);
-            btnSalir.setPosition(ANCHO_JUEGO/2-btnSalir.getWidth()/2, ALTO_JUEGO/2);
-            btnSalir.addListener(new ClickListener(){
+            // Sonido
+            Texture texturaBtnSonido = new Texture("Botones/Sonido.png");
+            Texture texturaBtnSonidoPres = new Texture("Botones/SonidoPres.png");
+            TextureRegionDrawable trdSonido = new TextureRegionDrawable(new TextureRegion(texturaBtnSonido));
+            TextureRegionDrawable trdSonidoPres = new TextureRegionDrawable(new TextureRegion(texturaBtnSonidoPres));
+            final ImageButton btnSonido = new ImageButton(trdSonido, trdSonidoPres);
+            btnSonido.setPosition(ANCHO_JUEGO/2-btnSonido.getWidth()/2, 0.80f*ALTO_JUEGO - btnSonido.getHeight() /2);
+            btnSonido.addListener(new ClickListener(){
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    if(btnSalir.isChecked()) {
-                        btnSalir.setChecked(true);
+                    if(btnSonido.isChecked()) {
+                        btnSonido.setChecked(true);
                         music.pause();
                     } else {
-                        btnSalir.setChecked(false);
+                        btnSonido.setChecked(false);
                         music.play();
                     }
                 }
             });
+            this.addActor(btnSonido);
+
+            // Salir
+            Texture texturaBtnSalir = new Texture("Botones/Salir.png");
+            Texture texturaBtnSalirPres = new Texture("Botones/SalirPres.png");
+            TextureRegionDrawable trdSalir = new TextureRegionDrawable(new TextureRegion(texturaBtnSalir));
+            TextureRegionDrawable trdSalirPres = new TextureRegionDrawable(new TextureRegion(texturaBtnSalirPres));
+            final ImageButton btnSalir = new ImageButton(trdSalir, trdSalirPres);
+            btnSalir.setPosition(ANCHO_JUEGO/2-btnSalir.getWidth()/2, 0.35f* ALTO_JUEGO - btnSalir.getHeight() /2);
+            btnSalir.addListener(new ClickListener(){
+                // falta accion de salir
+            });
             this.addActor(btnSalir);
 
             // Continuar
-            Texture texturaBtnContinuar = new Texture("Botones/btnContinuar.png");
+            Texture texturaBtnContinuar = new Texture("Botones/Continuar.png");
+            Texture texturaBtnContinuarPres = new Texture("Botones/ContinuarPres.png");
             TextureRegionDrawable trdContinuar = new TextureRegionDrawable(new TextureRegion(texturaBtnContinuar));
-            ImageButton btnContinuar = new ImageButton(trdContinuar);
-            btnContinuar.setPosition(ANCHO_JUEGO/2-btnContinuar.getWidth()/2, ALTO_JUEGO/4);
+            TextureRegionDrawable trdContinuarPres = new TextureRegionDrawable(new TextureRegion(texturaBtnContinuarPres));
+            ImageButton btnContinuar = new ImageButton(trdContinuar, trdContinuarPres);
+            btnContinuar.setPosition(ANCHO_JUEGO/2-btnContinuar.getWidth()/2, 0.55f* ALTO_JUEGO - btnContinuar.getHeight() /4);
 
             btnContinuar.addListener(new ClickListener(){
                 @Override

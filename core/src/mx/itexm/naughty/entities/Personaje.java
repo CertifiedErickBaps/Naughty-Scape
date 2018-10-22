@@ -37,13 +37,13 @@ public class Personaje extends Objeto{
         animacion = new Animation(0.15f,texturaPersonaje[0][0],texturaPersonaje[0][1],texturaPersonaje[0][2], texturaPersonaje[0][3]);
         animacion.setPlayMode(Animation.PlayMode.LOOP);
         // Animacion
-        TextureRegion textureAtaque = new TextureRegion(new Texture("Personajes/Jhony_golpes.png"));
+        TextureRegion textureAtaque = new TextureRegion(new Texture("Personajes/Jhony_golpesUpDown.png"));
         TextureRegion[][] texturaPersonajeAtaque = textureAtaque.split(90,90);
         animacionAtaque = new Animation(0.15f,texturaPersonajeAtaque[0][0],texturaPersonajeAtaque[0][1],texturaPersonajeAtaque[0][2], texturaPersonajeAtaque[0][3]);
         animacionAtaque.setPlayMode(Animation.PlayMode.LOOP);
         timerAnimacion = 0;
 
-        texture = new Texture("Personajes/Jhony_standing.png");
+        texture = new Texture("Personajes/Jhony_standingUpDown.png");
         // Quieto
         sprite = new Sprite(texture);
         sprite.setPosition(150,150);
