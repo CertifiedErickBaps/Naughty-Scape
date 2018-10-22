@@ -15,6 +15,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 public class Personaje extends Objeto{
     private Animation animacion;
     private Animation animacionAtaque;
+    private Animation animacionLeft;
     private float timerAnimacion;
     private float x;
     private float y;
@@ -32,11 +33,18 @@ public class Personaje extends Objeto{
         TextureRegion region = new TextureRegion(texture);
         // Divide la región en frames de 90x90
 
-        // Animacion caminar
+        // Animacion caminarUpDown
         TextureRegion[][] texturaPersonaje = region.split(90,90);
         animacion = new Animation(0.15f,texturaPersonaje[0][0],texturaPersonaje[0][1],texturaPersonaje[0][2], texturaPersonaje[0][3]);
         animacion.setPlayMode(Animation.PlayMode.LOOP);
-        // Animacion
+
+        // Animacion caminarUpDown
+        TextureRegion textureLeft = new TextureRegion(new Texture("Personajes/Jhony_walkLeft.png"));
+        TextureRegion[][] texturaPersonajeLeft = textureLeft.split(90,90);
+        animacionLeft = new Animation(0.15f,texturaPersonajeLeft[0][0],texturaPersonajeLeft[0][1],texturaPersonajeLeft[0][2], texturaPersonajeLeft[0][3],texturaPersonajeLeft[0][4]);
+        animacionLeft.setPlayMode(Animation.PlayMode.LOOP);
+
+        // Animacion golpes
         TextureRegion textureAtaque = new TextureRegion(new Texture("Personajes/Jhony_golpesUpDown.png"));
         TextureRegion[][] texturaPersonajeAtaque = textureAtaque.split(90,90);
         animacionAtaque = new Animation(0.15f,texturaPersonajeAtaque[0][0],texturaPersonajeAtaque[0][1],texturaPersonajeAtaque[0][2], texturaPersonajeAtaque[0][3]);
@@ -60,14 +68,14 @@ public class Personaje extends Objeto{
         } else {
             if (estadoMover == EstadoMovimento.IZQUIERDA) {
                 timerAnimacion += Gdx.graphics.getDeltaTime();
-                TextureRegion region = (TextureRegion) animacion.getKeyFrame(timerAnimacion);
-                region.flip(!region.isFlipX(), false);
-                batch.draw(region, x, y);
+                TextureRegion regionLeft = (TextureRegion) animacionLeft.getKeyFrame(timerAnimacion);
+                regionLeft.flip(regionLeft.isFlipX(), false);
+                batch.draw(regionLeft, x, y);
             } else if (estadoMover == EstadoMovimento.DERECHA) {
                 timerAnimacion += Gdx.graphics.getDeltaTime();
-                TextureRegion region = (TextureRegion) animacion.getKeyFrame(timerAnimacion);
-                region.flip(region.isFlipX(), false);
-                batch.draw(region, x, y);
+                TextureRegion regionRight = (TextureRegion) animacionLeft.getKeyFrame(timerAnimacion);
+                regionRight.flip(!regionRight.isFlipX(), false);
+                batch.draw(regionRight, x, y);
             } else if (estadoMover == EstadoMovimento.ARRIBA) {
                 timerAnimacion += Gdx.graphics.getDeltaTime();
                 TextureRegion region = (TextureRegion) animacion.getKeyFrame(timerAnimacion);

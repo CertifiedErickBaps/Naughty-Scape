@@ -29,7 +29,7 @@ import mx.itexm.naughty.entities.Controller;
 import mx.itexm.naughty.entities.EstadoJuego;
 import mx.itexm.naughty.entities.Personaje;
 
-class PantallaJuego extends Pantalla
+class PantallaNivel1 extends Pantalla
 {
 
     // Botón atrás
@@ -62,7 +62,7 @@ class PantallaJuego extends Pantalla
     private Music music;
     private static Texture corazon;
 
-    public PantallaJuego(PantallaInicio juego) {
+    public PantallaNivel1(PantallaInicio juego) {
         this.juego = juego;
     }
 

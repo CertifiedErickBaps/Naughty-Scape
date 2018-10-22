@@ -34,7 +34,7 @@ class PantallaMenu extends Pantalla {
 
         //Botones normales
         TextureRegionDrawable trdP = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/Play.png")));
-        TextureRegionDrawable trdAj = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/Ajustes.png")));
+        TextureRegionDrawable trdAj = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/btnAjustes.png")));
         TextureRegionDrawable trdA = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/Acerca.png")));
         //Botones suprimidos
         TextureRegionDrawable trdPs = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/PlayPres.png")));
