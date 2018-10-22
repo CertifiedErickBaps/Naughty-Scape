@@ -100,12 +100,10 @@ class PantallaNivel1 extends Pantalla
         camaraHUD = new OrthographicCamera(ANCHO_JUEGO, ALTO_JUEGO);
         camaraHUD.position.set(ANCHO_JUEGO, ALTO_JUEGO, 0);
         camaraHUD.update();
-
         //Corazones jugador
         corazon = new Texture("Personajes/corazon.png");
         Image corazonImagen = new Image(corazon);
         corazonImagen.setPosition(0, ALTO_JUEGO - corazonImagen.getHeight());
-
         //Boton A
         TextureRegionDrawable trdA = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/btnA.png")));
         TextureRegionDrawable trdAPs = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/APres.png")));
