@@ -40,7 +40,7 @@ public class PantallaDificultad extends Pantalla {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                pantallaInicio.setScreen(new PantallaJuego(pantallaInicio));
+                pantallaInicio.setScreen(new PantallaNivel1(pantallaInicio));
             }
         });
 
@@ -48,7 +48,7 @@ public class PantallaDificultad extends Pantalla {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                pantallaInicio.setScreen(new PantallaJuego(pantallaInicio));
+                pantallaInicio.setScreen(new PantallaNivel1(pantallaInicio));
             }
         });
 
@@ -56,7 +56,7 @@ public class PantallaDificultad extends Pantalla {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                pantallaInicio.setScreen(new PantallaJuego(pantallaInicio));
+                pantallaInicio.setScreen(new PantallaNivel1(pantallaInicio));
             }
         });
 
