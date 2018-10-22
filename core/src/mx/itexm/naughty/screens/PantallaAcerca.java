@@ -18,10 +18,11 @@ class PantallaAcerca extends Pantalla {
     public PantallaAcerca(PantallaInicio pantallaInicio) {
         this.pantallaInicio=pantallaInicio;
     }
+
     private void crearEscena(){
         escenaAcerca=new Stage(vistaPantalla);
-        TextureRegionDrawable trdRegresar_up=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/regresar.png")));
-        TextureRegionDrawable trdRegresar_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/regresar_s.png")));
+        TextureRegionDrawable trdRegresar_up=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/Back.png")));
+        TextureRegionDrawable trdRegresar_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/BackPres.png")));
         ImageButton btnReg=new ImageButton(trdRegresar_up,trdRegresar_down);
         btnReg.setPosition(50,50);
         btnReg.addListener(new ClickListener(){

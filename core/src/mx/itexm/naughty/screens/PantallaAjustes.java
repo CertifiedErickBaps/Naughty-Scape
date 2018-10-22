@@ -3,10 +3,13 @@ package mx.itexm.naughty.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 class PantallaAjustes extends Pantalla {
@@ -20,18 +23,32 @@ class PantallaAjustes extends Pantalla {
         this.pantallaInicio=pantallaInicio;
     }
     private void crearEscena(){
-        escenaAjustes=new Stage(vistaPantalla);
+        escenaAjustes = new Stage(vistaPantalla);
 
-        TextureRegionDrawable trdRegresar_up=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/regresar.png")));
-        TextureRegionDrawable trdRegresar_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/regresar_s.png")));
+        TextureRegionDrawable trdRegresar_up=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/Back.png")));
+        TextureRegionDrawable trdRegresar_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/BackPres.png")));
         TextureRegionDrawable trdCasiilla_up=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/check.png")));
         TextureRegionDrawable trdCasilla_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/check_s.png")));
 
-        ImageButton btnReg=new ImageButton(trdRegresar_up,trdRegresar_down);
-        ImageButton btnCheck1=new ImageButton(trdCasiilla_up,trdCasilla_down);
-        ImageButton btnCheck2=new ImageButton(trdCasiilla_up,trdCasilla_down);
+
+        ImageButton btnReg = new ImageButton(trdRegresar_up,trdRegresar_down);
+
+        final ImageButton btnCheck1 = new ImageButton(trdCasiilla_up,trdCasilla_down, trdCasilla_down);
+        ImageButton btnCheck2 = new ImageButton(trdCasiilla_up,trdCasilla_down);
         btnReg.setPosition(50,50);
         btnCheck1.setPosition(ANCHO_PANTALLA*0.60f,ALTO_PANTALLA*0.60f);
+        btnCheck1.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                if(btnCheck1.isChecked()){
+                    btnCheck1.setChecked(true);
+                } else{
+                    btnCheck1.setChecked(false);
+                }
+            }
+        });
+
         btnCheck2.setPosition(ANCHO_PANTALLA*0.60f,ALTO_PANTALLA*0.30f);
         btnReg.addListener(new ClickListener(){
             @Override
@@ -40,6 +57,8 @@ class PantallaAjustes extends Pantalla {
                 pantallaInicio.setScreen(new PantallaMenu(pantallaInicio));
             }
         });
+
+
         escenaAjustes.addActor(btnReg);
         escenaAjustes.addActor(btnCheck1);
         escenaAjustes.addActor(btnCheck2);

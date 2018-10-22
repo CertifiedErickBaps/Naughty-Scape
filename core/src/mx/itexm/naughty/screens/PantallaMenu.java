@@ -33,13 +33,13 @@ class PantallaMenu extends Pantalla {
         escenaMenu = new Stage(vistaPantalla);
 
         //Botones normales
-        TextureRegionDrawable trdP = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/button_jugar.png")));
-        TextureRegionDrawable trdAj = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/button_ajustes.png")));
-        TextureRegionDrawable trdA = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/button_acerca.png")));
+        TextureRegionDrawable trdP = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/Play.png")));
+        TextureRegionDrawable trdAj = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/Ajustes.png")));
+        TextureRegionDrawable trdA = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/Acerca.png")));
         //Botones suprimidos
-        TextureRegionDrawable trdPs = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/button_jugar_s.png")));
-        TextureRegionDrawable trdAjs = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/button_ajustes_s.png")));
-        TextureRegionDrawable trdAs = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/button_acerca_s.png")));
+        TextureRegionDrawable trdPs = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/PlayPres.png")));
+        TextureRegionDrawable trdAjs = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/AjustesPres.png")));
+        TextureRegionDrawable trdAs = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/AcercaPres.png")));
 
         ImageButton btnPlay = new ImageButton(trdP, trdPs);
         ImageButton btnAjuste = new ImageButton(trdAj, trdAjs);
@@ -90,7 +90,6 @@ class PantallaMenu extends Pantalla {
         batchPantalla.draw(logo,logo.getX(),logo.getY());
         batchPantalla.end();
         escenaMenu.draw();
-
     }
 
     @Override
