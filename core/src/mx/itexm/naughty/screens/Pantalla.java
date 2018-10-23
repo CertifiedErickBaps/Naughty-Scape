@@ -47,6 +47,7 @@ public abstract class Pantalla implements Screen {
     public void dispose() {
         batchPantalla.dispose();
         batchJuego.dispose();
+
     }
 
     @Override

@@ -22,12 +22,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import mx.itexm.naughty.entities.Controller;
+import mx.itexm.naughty.entities.Enemigo;
 import mx.itexm.naughty.entities.EstadoJuego;
 import mx.itexm.naughty.entities.Personaje;
+import mx.itexm.naughty.entities.Score;
 
 class PantallaNivel1 extends Pantalla
 {
@@ -41,26 +44,40 @@ class PantallaNivel1 extends Pantalla
     // PAUSA
     private EscenaPausa escenaPausa;      // Muestra la pausa como pop-up
 
-    // Estados. ahora el juego puede estar JUGANDO, PAUSADO, etc
+    // Estado y valores basicos pantalla
     private EstadoJuego estado;
-
     private float ANCHO_MAPA = 1280;
     private float ALTO_MAPA = 2880;
     private final PantallaInicio juego;
-    private Controller controller;
+    private Score score;
+
+    // TiledMap y pad
     private TiledMap mapa;
     private OrthogonalTiledMapRenderer renderer;
-    private Personaje jhony;
+    private Controller controller;
 
     // HUD, otra cámara con la imagen fija
     private OrthographicCamera camaraHUD;
     private Viewport vistaHUD;
 
+    //Personajes
+    private Personaje jhony;
+
+    // Enemigos
+    private Array<Enemigo> arrEnemigos;
+    private float DX = 28;
+    private int pasos = 10;  // +20 a la derecha, -20 a la izquierda, +20 derecha, ...
+    private float tiempoPasoAlien = 0;
+    private final float TIEMPO_PASO = 0.8f;
+
     // HUD con una escena para los botones y componentes
     private Stage escenaHUD;    // Tendrá un Pad virtual para mover al personaje y el botón de Pausa
-    private Skin skin;
+
     private Music music;
     private static Texture corazon;
+
+    // Score
+
 
     public PantallaNivel1(PantallaInicio juego) {
         this.juego = juego;
@@ -69,6 +86,14 @@ class PantallaNivel1 extends Pantalla
     @Override
     public void show() {
         cargarMapa();
+        //190 y 150
+        arrEnemigos = new Array<Enemigo>(2*2);
+        for (int i=0; i<2; i++) {
+            for (int j=0; j<2; j++) {
+                Enemigo enemigo = new Enemigo(190 + j*60, 150 + i*60);
+                arrEnemigos.add(enemigo);
+            }
+        }
         jhony = new Personaje(new Texture("Personajes/Jhony_walkUpDown.png"));
         crearHUD();
         cargarMusica();
@@ -104,12 +129,12 @@ class PantallaNivel1 extends Pantalla
         corazon = new Texture("Personajes/corazon.png");
         Image corazonImagen = new Image(corazon);
         corazonImagen.setPosition(0, ALTO_JUEGO - corazonImagen.getHeight());
+
         //Boton A
         TextureRegionDrawable trdA = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/btnA.png")));
         TextureRegionDrawable trdAPs = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/APres.png")));
         final ImageButton btnA = new ImageButton(trdA, trdAPs);
         btnA.setPosition(0.80f*ANCHO_JUEGO - btnA.getWidth(), 10);
-
 
         // Botón pausa
         TextureRegionDrawable trdPausa = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/Pause.png")));
@@ -124,6 +149,7 @@ class PantallaNivel1 extends Pantalla
         btnB.setPosition(0.92f*ANCHO_JUEGO - btnB.getWidth(), 30);
 
         vistaHUD = new StretchViewport(ANCHO_JUEGO, ALTO_JUEGO, camaraHUD);
+
         controller = new Controller(0);
 
         // Comportamiento del pad
@@ -153,7 +179,7 @@ class PantallaNivel1 extends Pantalla
         });
         controller.setColor(1,1,1,0.7f);   // Transparente
 
-        // Accion boton golpe
+        // Accion botonA golpe
         btnA.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -167,6 +193,24 @@ class PantallaNivel1 extends Pantalla
                 }
             }
         });
+
+        // Accion botonB agarre/cambio de sprite
+        btnB.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+
+
+                if(btnB.isChecked()){
+                    jhony.setEstadoMover(Personaje.EstadoMovimento.BATE);
+                    btnB.setChecked(true);
+                } else {
+                    jhony.setEstadoMover(Personaje.EstadoMovimento.QUIETO);
+                    btnB.setChecked(false);
+                }
+            }
+        });
+
 
         //Acciones boton pausa
         btnPausa.addListener(new ClickListener() {
@@ -183,6 +227,7 @@ class PantallaNivel1 extends Pantalla
 
         // Crea la escena y agrega el pad
         escenaHUD = new Stage(vistaHUD);    // Escalar con esta vista
+        score = new Score(batchJuego);
         escenaHUD.addActor(controller);
         escenaHUD.addActor(corazonImagen);
         escenaHUD.addActor(btnA);
@@ -197,10 +242,15 @@ class PantallaNivel1 extends Pantalla
     @Override
     public void render(float delta) {
         // Actualiza todos los objetos
+        score.update(delta);
         jhony.actualizar(mapa);
         actualizarCamara();
-        // Cámara fondo
+        moverEnemigo();
 
+        // Colisiones
+        verificarColisiones();
+
+        // Cámara fondo
         borrarPantalla(0.35f,0.55f,1);
         batchJuego.setProjectionMatrix(camaraJuego.combined);
 
@@ -208,19 +258,70 @@ class PantallaNivel1 extends Pantalla
         renderer.render();
 
         batchJuego.begin();
+
+        for(Enemigo enemigo:
+                arrEnemigos){
+            enemigo.render(batchJuego);
+        }
         jhony.render(batchJuego);
+
         batchJuego.end();
 
         // Checar condicional
-
         if (estado==EstadoJuego.PAUSADO) {
             escenaPausa.draw(); // Solo si está pausado muestra la imagen
         }
         // Cámara HUD
         batchJuego.setProjectionMatrix(camaraHUD.combined);
+        batchJuego.setProjectionMatrix(score.stage.getCamera().combined);
+        score.stage.draw();
         escenaHUD.draw();
+
     }
 
+    private void verificarColisiones() {
+        for (int i=arrEnemigos.size-1; i>=0; i--) {
+            Enemigo enemigo = arrEnemigos.get(i);
+            if (enemigo.getEstado() == Enemigo.EstadoEnemigo.MUERTO) {
+                arrEnemigos.removeIndex(i);
+                break;
+            }
+            if (enemigo.getEstado() == Enemigo.EstadoEnemigo.DISPOSE) {
+                continue;
+            }
+            if (jhony.estaColisionando(enemigo)) {
+                // Lo mató!!!
+                score.addScore(200);
+                enemigo.disposeEnemigo();
+                break;
+            }
+        }
+    }
+
+    private void moverEnemigo() {
+        float dy = 0;
+        tiempoPasoAlien += Gdx.graphics.getDeltaTime();
+        if (tiempoPasoAlien>=TIEMPO_PASO) {
+            tiempoPasoAlien = 0;
+            if (pasos >= 20) {
+                DX = -DX;
+                pasos = 1;
+                dy = -32;
+            }
+            float dx = DX;
+            if (pasos==1) {
+                dx = 0;
+            }
+            for (Enemigo enemigo :
+                    arrEnemigos) {
+                enemigo.mover(dx, dy);
+            }
+            pasos++;
+        }
+
+    }
+
+    //Sigue al jugador
     private void actualizarCamara() {
 
         // Depende de la posición del personaje. Siempre sigue al personaje
@@ -268,7 +369,9 @@ class PantallaNivel1 extends Pantalla
     public void dispose() {
         mapa.dispose();
         escenaHUD.dispose();
-        skin.dispose();
+        music.dispose();
+        batchJuego.dispose();
+        batchPantalla.dispose();
         music.dispose();
     }
 

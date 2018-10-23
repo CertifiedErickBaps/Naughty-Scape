@@ -16,6 +16,11 @@ public class Personaje extends Objeto{
     private Animation animacion;
     private Animation animacionAtaque;
     private Animation animacionLeft;
+    private Animation animacionKatana;
+    private Animation animacionBate;
+    private Animation animacionBateAtaque;
+    private Animation animacionKatanaAtaque;
+    private Animation animacionHerido;
     private float timerAnimacion;
     private float x;
     private float y;
@@ -49,8 +54,38 @@ public class Personaje extends Objeto{
         TextureRegion[][] texturaPersonajeAtaque = textureAtaque.split(90,90);
         animacionAtaque = new Animation(0.15f,texturaPersonajeAtaque[0][0],texturaPersonajeAtaque[0][1],texturaPersonajeAtaque[0][2], texturaPersonajeAtaque[0][3]);
         animacionAtaque.setPlayMode(Animation.PlayMode.LOOP);
-        timerAnimacion = 0;
 
+        // Animacion katana caminar
+        TextureRegion textureKatana = new TextureRegion(new Texture("Personajes/Jhony_walk_katana.png"));
+        TextureRegion[][] texturaPersonajeKatana = textureKatana.split(89,90);
+        animacionKatana = new Animation(0.15f,texturaPersonajeKatana[0][0],texturaPersonajeKatana[0][1],texturaPersonajeKatana[0][2], texturaPersonajeKatana[0][3]);
+        animacionKatana.setPlayMode(Animation.PlayMode.LOOP);
+
+        // Animacion bate caminar
+        TextureRegion textureBate = new TextureRegion(new Texture("Personajes/Jhony_walk_bate.png"));
+        TextureRegion[][] texturaPersonajeBate = textureBate.split(89,90);
+        animacionBate = new Animation(0.15f,texturaPersonajeBate[0][0],texturaPersonajeBate[0][1],texturaPersonajeBate[0][2], texturaPersonajeBate[0][3]);
+        animacionBate.setPlayMode(Animation.PlayMode.LOOP);
+
+        // Animacion golpe bate
+        TextureRegion textureBateAtaque = new TextureRegion(new Texture("Personajes/Jhony_bateAttackUpDown.png"));
+        TextureRegion[][] texturaPersonajeBateAtaque = textureBateAtaque.split(90,90);
+        animacionBateAtaque = new Animation(0.15f,texturaPersonajeBateAtaque[0][0],texturaPersonajeBateAtaque[0][1],texturaPersonajeBateAtaque[0][2], texturaPersonajeBateAtaque[0][3]);
+        animacionBateAtaque.setPlayMode(Animation.PlayMode.LOOP);
+
+        // Animacion golpe katana
+        TextureRegion textureKatanaAtaque = new TextureRegion(new Texture("Personajes/Jhony_katanaAttackUpDown.png"));
+        TextureRegion[][] texturaPersonajeKatanaAtaque = textureKatanaAtaque.split(90,90);
+        animacionKatanaAtaque = new Animation(0.15f,texturaPersonajeKatanaAtaque[0][0],texturaPersonajeKatanaAtaque[0][1],texturaPersonajeKatanaAtaque[0][2], texturaPersonajeKatanaAtaque[0][3]);
+        animacionKatanaAtaque.setPlayMode(Animation.PlayMode.LOOP);
+
+        // Animacion herido
+        TextureRegion textureHerido = new TextureRegion(new Texture("Personajes/Jhony_golpeado.png"));
+        TextureRegion[][] texturaPersonajeHerido = textureHerido.split(90,90);
+        animacionHerido = new Animation(0.15f,texturaPersonajeHerido[0][0],texturaPersonajeHerido[0][1],texturaPersonajeHerido[0][2], texturaPersonajeHerido[0][3]);
+        animacionHerido.setPlayMode(Animation.PlayMode.LOOP);
+
+        timerAnimacion = 0;
         texture = new Texture("Personajes/Jhony_standingUpDown.png");
         // Quieto
         sprite = new Sprite(texture);
@@ -59,6 +94,8 @@ public class Personaje extends Objeto{
         y = sprite.getY();
     }
 
+
+    // Cambio de sprites
     public void render(SpriteBatch batch){
         if (estadoMover==EstadoMovimento.QUIETO) {
             batch.draw(sprite.getTexture(), x, y);
@@ -91,10 +128,22 @@ public class Personaje extends Objeto{
                 TextureRegion regionAtaque = (TextureRegion) animacionAtaque.getKeyFrame(timerAnimacion);
                 regionAtaque.flip(false, regionAtaque.isFlipY());
                 batch.draw(regionAtaque, x, y);
+            } else if (estadoMover == EstadoMovimento.BATE) {
+                timerAnimacion += Gdx.graphics.getDeltaTime();
+                TextureRegion regionBate = (TextureRegion) animacionBate.getKeyFrame(timerAnimacion);
+                regionBate.flip(false, regionBate.isFlipY());
+                batch.draw(regionBate, x, y);
+            }
+            else if (estadoMover == EstadoMovimento.HERIDO) {
+                timerAnimacion += Gdx.graphics.getDeltaTime();
+                TextureRegion regionHerido = (TextureRegion) animacionHerido.getKeyFrame(timerAnimacion);
+                regionHerido.flip(false, regionHerido.isFlipY());
+                batch.draw(regionHerido, x, y);
             }
         }
     }
 
+    //Movimiento
     public void actualizar(TiledMap mapa) {
         // Verificar si se puede mover (no hay obstáculos, por ahora tubos verdes)
         switch (estadoMover) {
@@ -136,10 +185,20 @@ public class Personaje extends Objeto{
         return true;
     }
 
+
     public void mover(float dx, float dy) {
         x += dx;
         y += dy;
         sprite.setPosition(x,y);
+    }
+
+    public boolean estaColisionando(Enemigo enemigo) {
+        if (x>=enemigo.getX() && x<=enemigo.getX()+enemigo.getTextura().getWidth()) {
+            if (y>=enemigo.getY() && y<=enemigo.getY()+enemigo.getTextura().getHeight()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void setEstadoMover(EstadoMovimento estadoMover) {
@@ -152,7 +211,12 @@ public class Personaje extends Objeto{
         ARRIBA,
         DERECHA,
         IZQUIERDA,
-        ATAQUE_GOLPE_UP
+        ATAQUE_GOLPE_UP,
+        BATE,
+        KATANA,
+        BATE_ATAQUE,
+        KATANA_ATAQUE,
+        HERIDO
     }
 
     public void setVx(float vx) {
