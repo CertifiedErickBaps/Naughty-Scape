@@ -26,7 +26,8 @@ public class Enemigo extends Objeto{
     public Enemigo(float x, float y) {
         // Crea una region
         // Divide la región en frames de 90x90
-
+        //Cambia los texture a textureRegion
+        //
         texturePersonaje = new Texture("Personajes/enemigoArriba.png");
         textureDispose = new Texture("Personajes/enemigoExplota.png");
 

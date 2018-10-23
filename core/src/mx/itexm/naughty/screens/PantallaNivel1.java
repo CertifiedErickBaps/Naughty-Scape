@@ -199,8 +199,6 @@ class PantallaNivel1 extends Pantalla
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-
-
                 if(btnB.isChecked()){
                     jhony.setEstadoMover(Personaje.EstadoMovimento.BATE);
                     btnB.setChecked(true);
@@ -419,7 +417,11 @@ class PantallaNivel1 extends Pantalla
             final ImageButton btnSalir = new ImageButton(trdSalir, trdSalirPres);
             btnSalir.setPosition(ANCHO_JUEGO/2-btnSalir.getWidth()/2, 0.35f* ALTO_JUEGO - btnSalir.getHeight() /2);
             btnSalir.addListener(new ClickListener(){
-                // falta accion de salir
+                PantallaInicio pantallaInicio;
+                public void setPantallaInicio(PantallaInicio pantallaInicio) {
+                    this.pantallaInicio = pantallaInicio;
+                    pantallaInicio.setScreen(new PantallaMenu(pantallaInicio));
+                }
             });
             this.addActor(btnSalir);
 

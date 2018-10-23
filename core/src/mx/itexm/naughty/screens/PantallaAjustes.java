@@ -34,7 +34,7 @@ class PantallaAjustes extends Pantalla {
         ImageButton btnReg = new ImageButton(trdRegresar_up,trdRegresar_down);
 
         final ImageButton btnCheck1 = new ImageButton(trdCasiilla_up,trdCasilla_down, trdCasilla_down);
-        ImageButton btnCheck2 = new ImageButton(trdCasiilla_up,trdCasilla_down);
+        final ImageButton btnCheck2 = new ImageButton(trdCasiilla_up,trdCasilla_down, trdCasilla_down);
         btnReg.setPosition(50,50);
         btnCheck1.setPosition(ANCHO_PANTALLA*0.60f,ALTO_PANTALLA*0.60f);
         btnCheck1.addListener(new ClickListener() {
@@ -50,6 +50,19 @@ class PantallaAjustes extends Pantalla {
         });
 
         btnCheck2.setPosition(ANCHO_PANTALLA*0.60f,ALTO_PANTALLA*0.30f);
+        btnCheck2.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                if(btnCheck2.isChecked()){
+                    btnCheck2.setChecked(true);
+                } else{
+                    btnCheck2.setChecked(false);
+                }
+            }
+        });
+
+
         btnReg.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
