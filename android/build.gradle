@@ -3,7 +3,7 @@ android {
         config {
             keyAlias 'ErickKey'
             keyPassword 'android'
-            storeFile file('C:/Users/ercv1/.android/debug.keystore')
+            storeFile file('C:/Users/Erick Bautista/.android/debug.keystore')
             storePassword 'android'
         }
     }

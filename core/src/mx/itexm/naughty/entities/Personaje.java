@@ -193,8 +193,8 @@ public class Personaje extends Objeto{
     }
 
     public boolean estaColisionando(Enemigo enemigo) {
-        if (x>=enemigo.getX() && x<=enemigo.getX()+enemigo.getTextura().getWidth()) {
-            if (y>=enemigo.getY() && y<=enemigo.getY()+enemigo.getTextura().getHeight()) {
+        if (x>=enemigo.getX() && x<=enemigo.getX()+enemigo.getTextura().getRegionWidth()) {
+            if (y>=enemigo.getY() && y<=enemigo.getY()+enemigo.getTextura().getRegionHeight()) {
                 return true;
             }
         }
