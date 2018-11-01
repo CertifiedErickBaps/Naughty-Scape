@@ -35,13 +35,11 @@ public class Box2DCreator {
         // Create armas bodies/fixtures
         for(MapObject object: map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
-
             new Arma(world, map, rect);
         }
         // Create cofre bodies/fixtures
         for(MapObject object: map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
-
             new Cofre(world, map, rect);
         }
     }

@@ -15,10 +15,14 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import mx.itesm.naughty.Box2DCreator;
+import mx.itesm.naughty.Controller;
 import mx.itesm.naughty.MainGame;
 import mx.itesm.naughty.Sprites.Player;
 
@@ -37,6 +41,7 @@ public class PlayScreen implements Screen {
     private Box2DDebugRenderer b2dr;
     private Player player;
 
+    private Controller controller;
     //Sistema de particulas
     //private ParticleEffect sp;
 
@@ -44,7 +49,7 @@ public class PlayScreen implements Screen {
         atlas = new TextureAtlas("naughty.pack");
 
         this.game = game;
-        gameCam = new OrthographicCamera(MainGame.ANCHO_JUEGO / MainGame.PPM, MainGame.ALTO_JUEGO / MainGame.PPM);
+        gameCam = new OrthographicCamera();
         gamePort = new StretchViewport(MainGame.ANCHO_JUEGO / MainGame.PPM, MainGame.ALTO_JUEGO / MainGame.PPM, gameCam);
         hud = new Hud(game.batch);
 
@@ -57,6 +62,12 @@ public class PlayScreen implements Screen {
 
         new Box2DCreator(world, map);
         player = new Player(world, this);
+
+        // Pad para mover jugador
+        controller = new Controller(0);
+        controller.setColor(1,1,1,0.7f);
+        hud.stage.addActor(controller);
+
 
 
     }
@@ -86,11 +97,36 @@ public class PlayScreen implements Screen {
     }
 
     private void handleInput(float dt) {
+
+        // Comportamiento del pad
+        controller.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                Touchpad pad = (Touchpad)actor;
+                //Guarda las velocidades al momento de tomar el evento
+                if ((pad.getKnobPercentX() > 0.10) && player.b2body.getLinearVelocity().x <= 2.3f) { // Más de 20% de desplazamiento DERECHA
+                    player.b2body.applyLinearImpulse(new Vector2(0.3f, 0f), player.b2body.getWorldCenter(), true);
+                }
+                else if ( (pad.getKnobPercentX() < -0.10) && player.b2body.getLinearVelocity().x >= -2.3f) {   // Más de 20% IZQUIERDA
+                    player.b2body.applyLinearImpulse(new Vector2(-0.3f, 0f), player.b2body.getWorldCenter(), true);
+                }
+                else if ( (pad.getKnobPercentY() < -0.10) && player.b2body.getLinearVelocity().y >= -2.3f) {
+                    player.b2body.applyLinearImpulse(new Vector2(0, -0.3f), player.b2body.getWorldCenter(), true);
+                }
+                else if( (pad.getKnobPercentY() > 0.10) && player.b2body.getLinearVelocity().y <= 2.3f) {
+                    player.b2body.applyLinearImpulse(new Vector2(0, 0.3f), player.b2body.getWorldCenter(), true);
+                }
+                else {
+                    player.b2body.setLinearVelocity(0,0);
+                }
+            }
+        });
+
+
+
         if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
             player.b2body.applyLinearImpulse(new Vector2(0, 0.3f), player.b2body.getWorldCenter(), true);
-
         }
-
         if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){
             player.b2body.applyLinearImpulse(new Vector2(0, -0.3f), player.b2body.getWorldCenter(), true);
         }
@@ -120,20 +156,19 @@ public class PlayScreen implements Screen {
     @Override
     public void render(float delta) {
         //sp.update(delta);
-        update(delta);
 
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         update(delta);
+
         renderer.render();
+        b2dr.render(world,gameCam.combined);
+
+        game.batch.setProjectionMatrix(gameCam.combined);
         game.batch.begin();
         player.draw(game.batch);
         //sp.draw(game.batch);
         game.batch.end();
-
-
-
-        b2dr.render(world,gameCam.combined);
 
         // Dibuja el hud
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);

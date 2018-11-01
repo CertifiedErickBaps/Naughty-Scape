@@ -1,16 +1,21 @@
 package mx.itesm.naughty.Screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import mx.itesm.naughty.Controller;
 import mx.itesm.naughty.MainGame;
 
 public class Hud implements Disposable {
@@ -45,6 +50,11 @@ public class Hud implements Disposable {
         table.add(scoreLabel).expandX();
         table.add(countDownLabel).expandX();
         stage.addActor(table);
+
+        // Hace que el pad se pueda usar
+        Gdx.input.setInputProcessor(stage);
+
+
     }
 
     public void update(float dt){
