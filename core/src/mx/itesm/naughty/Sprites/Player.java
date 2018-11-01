@@ -26,6 +26,9 @@ public class Player extends Sprite {
     private boolean runningRight;
     private boolean runningUp;
 
+    private float Vx;
+    private float Vy;
+
 
     public Player(World world, PlayScreen screen){
         this.world = world;
