@@ -33,7 +33,7 @@ public class Hud implements Disposable {
         worldTimer = 300;
         timeCount = 0;
         score = 0;
-        viewport = new StretchViewport(MainGame.ANCHO_JUEGO, MainGame.ALTO_JUEGO,new OrthographicCamera());
+        viewport = new StretchViewport(MainScreen.ANCHO_JUEGO, MainScreen.ALTO_JUEGO,new OrthographicCamera());
         stage = new Stage(viewport, sb);
 
         Table table = new Table();

@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 import mx.itesm.naughty.MainGame;
+import mx.itesm.naughty.Screens.MainScreen;
 
 
 public abstract class InteractiveTileObject {
@@ -29,10 +30,10 @@ public abstract class InteractiveTileObject {
         PolygonShape shape = new PolygonShape();
 
         bdef.type = BodyDef.BodyType.StaticBody;
-        bdef.position.set((bounds.getX() + bounds.getWidth() / 2) / MainGame.PPM , (bounds.getY() + bounds.getHeight() / 2) / MainGame.PPM);
+        bdef.position.set((bounds.getX() + bounds.getWidth() / 2) / MainScreen.PPM , (bounds.getY() + bounds.getHeight() / 2) / MainScreen.PPM);
         body = world.createBody(bdef);
 
-        shape.setAsBox((bounds.getWidth() / 2) / MainGame.PPM, (bounds.getHeight() / 2) / MainGame.PPM);
+        shape.setAsBox((bounds.getWidth() / 2) / MainScreen.PPM, (bounds.getHeight() / 2) / MainScreen.PPM);
         fdef.shape = shape;
         body.createFixture(fdef);
     }

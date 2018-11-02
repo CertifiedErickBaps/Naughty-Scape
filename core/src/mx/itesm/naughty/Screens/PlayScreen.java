@@ -26,11 +26,9 @@ import mx.itesm.naughty.Controller;
 import mx.itesm.naughty.MainGame;
 import mx.itesm.naughty.Sprites.Player;
 
-public class PlayScreen implements Screen {
+public class PlayScreen extends MainScreen {
     private MainGame game;
     private TextureAtlas atlas;
-    private OrthographicCamera gameCam;
-    private Viewport gamePort;
     private Hud hud;
 
     private TiledMap map;
@@ -50,8 +48,8 @@ public class PlayScreen implements Screen {
 
         this.game = game;
         gameCam = new OrthographicCamera();
-        gamePort = new StretchViewport(MainGame.ANCHO_JUEGO / MainGame.PPM, MainGame.ALTO_JUEGO / MainGame.PPM, gameCam);
-        hud = new Hud(game.batch);
+        gamePort = new StretchViewport(ANCHO_JUEGO / PPM, ALTO_JUEGO / PPM, gameCam);
+        hud = new Hud(batch);
 
         LoadMap();
 
@@ -82,7 +80,7 @@ public class PlayScreen implements Screen {
         manager.load("Mapas/Nivel1.tmx",TiledMap.class);
         manager.finishLoading(); // Espera
         map = manager.get("Mapas/Nivel1.tmx");
-        renderer = new OrthogonalTiledMapRenderer(map, 1 / MainGame.PPM);
+        renderer = new OrthogonalTiledMapRenderer(map, 1 / PPM);
     }
     
     public void update(float dt){
@@ -104,16 +102,16 @@ public class PlayScreen implements Screen {
             public void changed(ChangeEvent event, Actor actor) {
                 Touchpad pad = (Touchpad)actor;
                 //Guarda las velocidades al momento de tomar el evento
-                if ((pad.getKnobPercentX() > 0.10) && player.b2body.getLinearVelocity().x <= 2.3f) { // Más de 20% de desplazamiento DERECHA
-                    player.b2body.applyLinearImpulse(new Vector2(0.3f, 0f), player.b2body.getWorldCenter(), true);
+                if ((pad.getKnobPercentX() > 0.10) && (player.b2body.getLinearVelocity().x <= 2.3f)) { // Más de 20% de desplazamiento DERECHA
+                    player.b2body.applyLinearImpulse(new Vector2(0.3f, 0), player.b2body.getWorldCenter(), true);
                 }
-                else if ( (pad.getKnobPercentX() < -0.10) && player.b2body.getLinearVelocity().x >= -2.3f) {   // Más de 20% IZQUIERDA
-                    player.b2body.applyLinearImpulse(new Vector2(-0.3f, 0f), player.b2body.getWorldCenter(), true);
+                else if ( (pad.getKnobPercentX() < -0.10) && (player.b2body.getLinearVelocity().x >= -2.3f)) {   // Más de 20% IZQUIERDA
+                    player.b2body.applyLinearImpulse(new Vector2(-0.3f, 0), player.b2body.getWorldCenter(), true);
                 }
-                else if ( (pad.getKnobPercentY() < -0.10) && player.b2body.getLinearVelocity().y >= -2.3f) {
+                else if ( (pad.getKnobPercentY() < -0.10) && (player.b2body.getLinearVelocity().y >= -2.3f)) {
                     player.b2body.applyLinearImpulse(new Vector2(0, -0.3f), player.b2body.getWorldCenter(), true);
                 }
-                else if( (pad.getKnobPercentY() > 0.10) && player.b2body.getLinearVelocity().y <= 2.3f) {
+                else if( (pad.getKnobPercentY() > 0.10) && (player.b2body.getLinearVelocity().y <= 2.3f)) {
                     player.b2body.applyLinearImpulse(new Vector2(0, 0.3f), player.b2body.getWorldCenter(), true);
                 }
                 else {
@@ -164,14 +162,14 @@ public class PlayScreen implements Screen {
         renderer.render();
         b2dr.render(world,gameCam.combined);
 
-        game.batch.setProjectionMatrix(gameCam.combined);
-        game.batch.begin();
-        player.draw(game.batch);
+        batch.setProjectionMatrix(gameCam.combined);
+        batch.begin();
+        player.draw(batch);
         //sp.draw(game.batch);
-        game.batch.end();
+        batch.end();
 
         // Dibuja el hud
-        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
     }
 
@@ -202,6 +200,7 @@ public class PlayScreen implements Screen {
         world.dispose();
         b2dr.dispose();
         hud.dispose();
+        batch.dispose();
         //sp.dispose();
     }
 }

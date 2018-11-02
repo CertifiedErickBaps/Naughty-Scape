@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+import mx.itesm.naughty.Screens.MainScreen;
 import mx.itesm.naughty.Sprites.Arma;
 import mx.itesm.naughty.Sprites.Cofre;
 
@@ -24,10 +25,10 @@ public class Box2DCreator {
         for(MapObject object: map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
             bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set((rect.getX() + rect.getWidth() / 2) / MainGame.PPM , (rect.getY() + rect.getHeight() / 2) / MainGame.PPM);
+            bdef.position.set((rect.getX() + rect.getWidth() / 2) / MainScreen.PPM , (rect.getY() + rect.getHeight() / 2) / MainScreen.PPM);
             body = world.createBody(bdef);
 
-            shape.setAsBox((rect.getWidth() / 2) / MainGame.PPM, (rect.getHeight() / 2) / MainGame.PPM);
+            shape.setAsBox((rect.getWidth() / 2) / MainScreen.PPM, (rect.getHeight() / 2) / MainScreen.PPM);
             fdef.shape = shape;
             body.createFixture(fdef);
         }

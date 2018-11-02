@@ -10,7 +10,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
-import mx.itesm.naughty.MainGame;
+import mx.itesm.naughty.Screens.MainScreen;
 import mx.itesm.naughty.Screens.PlayScreen;
 
 public class Player extends Sprite {
@@ -25,10 +25,6 @@ public class Player extends Sprite {
     private float stateTimer;
     private boolean runningRight;
     private boolean runningUp;
-
-    private float Vx;
-    private float Vy;
-
 
     public Player(World world, PlayScreen screen){
         this.world = world;
@@ -57,7 +53,7 @@ public class Player extends Sprite {
         jhonyStand = new TextureRegion(screen.getAtlas().findRegion("Jhony_standingUpDown"), 0,5,90,90);
 
         definePlayer();
-        setBounds(0,0,90 / MainGame.PPM,90 / MainGame.PPM);
+        setBounds(0,0,90 / MainScreen.PPM,90 / MainScreen.PPM);
         setRegion(jhonyStand);
 
     }
@@ -116,13 +112,13 @@ public class Player extends Sprite {
 
     private void definePlayer() {
         BodyDef bdef = new BodyDef();
-        bdef.position.set(170 / MainGame.PPM,170 / MainGame.PPM);
+        bdef.position.set(170 / MainScreen.PPM,170 / MainScreen.PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body = world.createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(25 / MainGame.PPM);
+        shape.setRadius(25 / MainScreen.PPM);
 
         fdef.shape = shape;
         b2body.createFixture(fdef);
