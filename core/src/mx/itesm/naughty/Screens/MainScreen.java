@@ -8,22 +8,26 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 
 public class MainScreen implements Screen {
-    public static final int ANCHO_JUEGO = 800;
-    public static final int ALTO_JUEGO = 480;
+    public static final float ANCHO_PANTALLA = 1280;
+    public static final float ALTO_PANTALLA = 720;
+    public static final float ANCHO_JUEGO = 800;
+    public static final float ALTO_JUEGO = 480;
     public static final float PPM = 100f;
 
-    public SpriteBatch batch;
-    public OrthographicCamera gameCam;
-    public Viewport gamePort;
+    public static SpriteBatch batch;
+    public static OrthographicCamera gameCam;
+    public static Viewport gamePort;
 
     public MainScreen(){
         gameCam = new OrthographicCamera();
-
+        gamePort = new StretchViewport(ANCHO_PANTALLA, ALTO_PANTALLA, gameCam);
+        gameCam.position.set(gamePort.getWorldWidth() / 2,gamePort.getWorldHeight() / 2, 0);
         gameCam.update();
 
-        gamePort = new StretchViewport(ANCHO_JUEGO / PPM, ALTO_JUEGO / PPM, gameCam);
+
         batch = new SpriteBatch();
     }
+
     @Override
     public void show() {
 
@@ -51,7 +55,7 @@ public class MainScreen implements Screen {
 
     @Override
     public void hide() {
-
+        dispose();
     }
 
     @Override
