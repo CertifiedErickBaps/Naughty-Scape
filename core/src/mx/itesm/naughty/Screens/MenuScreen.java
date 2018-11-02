@@ -118,6 +118,6 @@ public class MenuScreen extends MainScreen {
 
     @Override
     public void dispose() {
-
+        escenaMenu.dispose();
     }
 }

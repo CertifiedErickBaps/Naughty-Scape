@@ -119,6 +119,6 @@ class PantallaAjustes extends MainScreen {
 
     @Override
     public void dispose() {
-
+        escenaAjustes.dispose();
     }
 }

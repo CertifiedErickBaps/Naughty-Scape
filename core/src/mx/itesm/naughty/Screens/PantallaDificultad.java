@@ -103,6 +103,6 @@ class PantallaDificultad extends MainScreen {
 
     @Override
     public void dispose() {
-
+        escenaDificultad.dispose();
     }
 }

@@ -78,6 +78,6 @@ class PantallaAcerca extends MainScreen {
 
     @Override
     public void dispose() {
-
+        escenaAcerca.dispose();
     }
 }

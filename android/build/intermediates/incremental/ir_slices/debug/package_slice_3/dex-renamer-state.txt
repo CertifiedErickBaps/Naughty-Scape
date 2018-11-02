@@ -1,0 +1,4 @@
+#Fri Nov 02 11:40:28 CST 2018
+base.0=C\:\\Users\\Erick Bautista\\Documents\\KaliSad\\Proyectos de Videojuegos\\NaughtyScape\\android\\build\\intermediates\\transforms\\dexMerger\\debug\\4
+path.0=classes.dex
+renamed.0=classes.dex
