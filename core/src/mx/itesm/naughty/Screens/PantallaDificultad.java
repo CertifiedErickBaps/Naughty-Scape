@@ -67,7 +67,7 @@ class PantallaDificultad extends MainScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                mainGame.setScreen(new PlayScreen(mainGame));
+                mainGame.setScreen(new MenuScreen(mainGame));
             }
         });
         escenaDificultad.addActor(btnJhony);
