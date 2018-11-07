@@ -47,6 +47,7 @@ public class PlayScreen extends MainScreen {
     private OrthogonalTiledMapRenderer renderer;
 
     private World world;
+    private Box2DCreator box2DCreator;
     private Box2DDebugRenderer b2dr;
     private Player player;
     //Sistema de particulas
@@ -70,7 +71,7 @@ public class PlayScreen extends MainScreen {
         world = new World(new Vector2(0,0), true);
         b2dr = new Box2DDebugRenderer();
 
-        new Box2DCreator(world, map);
+        box2DCreator = new Box2DCreator(world, map);
         player = new Player(world, this);
 
 
@@ -127,7 +128,72 @@ public class PlayScreen extends MainScreen {
             }
         });
 
+        El porcentaje mas grande se mueva hacia arriba
          */
+
+        hud.getBtnUp().addListener(new ClickListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                if((hud.getBtnUp().isPressed()) && (player.b2body.getLinearVelocity().y <= 2.3f)){
+                    player.b2body.applyLinearImpulse(new Vector2(0, 0.3f), player.b2body.getWorldCenter(), true);
+                }
+                return super.touchDown(event, x, y, pointer, button);
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                super.touchUp(event, x, y, pointer, button);
+                player.b2body.setLinearVelocity(0,0);
+            }
+        });
+
+        hud.getBtnDown().addListener(new ClickListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                if((hud.getBtnDown().isPressed()) && (player.b2body.getLinearVelocity().y >= -2.3f)){
+                    player.b2body.applyLinearImpulse(new Vector2(0, -0.3f), player.b2body.getWorldCenter(), true);
+                }
+                return super.touchDown(event, x, y, pointer, button);
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                super.touchUp(event, x, y, pointer, button);
+                player.b2body.setLinearVelocity(0,0);
+            }
+
+        });
+        hud.getBtnLeft().addListener(new ClickListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                if((hud.getBtnLeft().isPressed()) && (player.b2body.getLinearVelocity().x >= -2.3f)){
+                    player.b2body.applyLinearImpulse(new Vector2(-0.3f, 0f), player.b2body.getWorldCenter(), true);
+                }
+                return super.touchDown(event, x, y, pointer, button);
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                super.touchUp(event, x, y, pointer, button);
+                player.b2body.setLinearVelocity(0,0);
+            }
+
+        });
+        hud.getBtnRight().addListener(new ClickListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                if((hud.getBtnRight().isPressed()) && (player.b2body.getLinearVelocity().x <= 2.3f)){
+                    player.b2body.applyLinearImpulse(new Vector2(0.3f, 0f), player.b2body.getWorldCenter(), true);
+                }
+                return super.touchDown(event, x, y, pointer, button);
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                super.touchUp(event, x, y, pointer, button);
+                player.b2body.setLinearVelocity(0,0);
+            }
+        });
 
 
 
