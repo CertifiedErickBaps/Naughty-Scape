@@ -3,9 +3,11 @@ package mx.itesm.naughty.Sprites;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
@@ -26,11 +28,6 @@ public class Player extends Sprite {
     private float stateTimer;
     private boolean runningRight;
     private boolean runningUp;
-
-    public void setPushing(boolean pushing) {
-        this.pushing = pushing;
-    }
-
     private boolean pushing;
 
     public Player(World world, PlayScreen screen){
@@ -64,8 +61,6 @@ public class Player extends Sprite {
         jhonyPushUpDown = new Animation(0.1f, frames);
         //jhonyPushUpDown.setPlayMode(Animation.PlayMode.LOOP);
         frames.clear();
-
-
 
         jhonyStand = new TextureRegion(screen.getAtlas().findRegion("Jhony_standingUpDown"), 0,5,90,90);
 
@@ -131,6 +126,10 @@ public class Player extends Sprite {
 
     }
 
+    public void setPushing(boolean pushing) {
+        this.pushing = pushing;
+    }
+
     private void definePlayer() {
         BodyDef bdef = new BodyDef();
         bdef.position.set(170 / MainScreen.PPM,170 / MainScreen.PPM);
@@ -140,9 +139,18 @@ public class Player extends Sprite {
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
         shape.setRadius(25 / MainScreen.PPM);
+        fdef.filter.categoryBits = MainScreen.PLAYER_BIT;
+        fdef.filter.maskBits = MainScreen.DEFAULT_BIT | MainScreen.ARMA_BIT | MainScreen.COFRE_BIT;
+
 
         fdef.shape = shape;
         b2body.createFixture(fdef);
+
+        EdgeShape head = new EdgeShape();
+        head.set(new Vector2(-20/ MainScreen.PPM, 30 / MainScreen.PPM), new Vector2(20/ MainScreen.PPM, 30 / MainScreen.PPM));
+        fdef.shape = head;
+        fdef.isSensor = true;
+        b2body.createFixture(fdef).setUserData("head");
 
     }
 
