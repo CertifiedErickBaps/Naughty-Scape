@@ -102,35 +102,6 @@ public class PlayScreen extends MainScreen {
     }
 
     private void handleInput(float dt) {
-
-        // Comportamiento del pad
-        /*
-        hud.getController().addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                Touchpad pad = (Touchpad)actor;
-                //Guarda las velocidades al momento de tomar el evento
-                if ((pad.getKnobPercentX() > 0.10) && (player.b2body.getLinearVelocity().x <= 2.3f)) { // Más de 20% de desplazamiento DERECHA
-                    player.b2body.applyLinearImpulse(new Vector2(0.3f, 0), player.b2body.getWorldCenter(), true);
-                }
-                else if ( (pad.getKnobPercentX() < -0.10) && (player.b2body.getLinearVelocity().x >= -2.3f)) {   // Más de 20% IZQUIERDA
-                    player.b2body.applyLinearImpulse(new Vector2(-0.3f, 0), player.b2body.getWorldCenter(), true);
-                }
-                else if ( (pad.getKnobPercentY() < -0.10) && (player.b2body.getLinearVelocity().y >= -2.3f)) {
-                    player.b2body.applyLinearImpulse(new Vector2(0, -0.3f), player.b2body.getWorldCenter(), true);
-                }
-                else if( (pad.getKnobPercentY() > 0.10) && (player.b2body.getLinearVelocity().y <= 2.3f)) {
-                    player.b2body.applyLinearImpulse(new Vector2(0, 0.3f), player.b2body.getWorldCenter(), true);
-                }
-                else {
-                    player.b2body.setLinearVelocity(0,0);
-                }
-            }
-        });
-
-        El porcentaje mas grande se mueva hacia arriba
-         */
-
         hud.getBtnUp().addListener(new ClickListener(){
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -194,10 +165,24 @@ public class PlayScreen extends MainScreen {
                 player.b2body.setLinearVelocity(0,0);
             }
         });
+        hud.getBtnA().addListener(new ClickListener(){
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                player.setPushing(true);
+                return super.touchDown(event, x, y, pointer, button);
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                super.touchUp(event, x, y, pointer, button);
+                player.setPushing(false);
+            }
+        });
 
 
 
 
+        /*
         if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
             player.b2body.applyLinearImpulse(new Vector2(0, 0.3f), player.b2body.getWorldCenter(), true);
         }
@@ -213,6 +198,7 @@ public class PlayScreen extends MainScreen {
         if(Gdx.input.isKeyJustPressed(Input.Keys.D)){
             player.b2body.setLinearVelocity(0,0);
         }
+        */
 
     }
 
@@ -225,8 +211,6 @@ public class PlayScreen extends MainScreen {
         sp.getEmitters().get(0).setPosition(0, MainGame.ALTO_JUEGO);
         sp.start();
         */
-
-
     }
 
 
@@ -289,8 +273,7 @@ public class PlayScreen extends MainScreen {
         hud.dispose();
         batch.dispose();
         game.dispose();
+
         //sp.dispose();
     }
-
-
 }

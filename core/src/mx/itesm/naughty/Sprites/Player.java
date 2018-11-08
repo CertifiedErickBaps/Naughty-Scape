@@ -14,7 +14,7 @@ import mx.itesm.naughty.Screens.MainScreen;
 import mx.itesm.naughty.Screens.PlayScreen;
 
 public class Player extends Sprite {
-    public enum State { UP, STANDING, RUNNINGLR};
+    public enum State { UP, STANDING, RUNNINGLR, PUSHING};
     public State currentState;
     public State previousState;
     public World world;
@@ -22,9 +22,16 @@ public class Player extends Sprite {
     private TextureRegion jhonyStand;
     private Animation jhonyRunRight;
     private Animation jhonyRunUpDown;
+    private Animation jhonyPushUpDown;
     private float stateTimer;
     private boolean runningRight;
     private boolean runningUp;
+
+    public void setPushing(boolean pushing) {
+        this.pushing = pushing;
+    }
+
+    private boolean pushing;
 
     public Player(World world, PlayScreen screen){
         this.world = world;
@@ -50,6 +57,16 @@ public class Player extends Sprite {
         jhonyRunUpDown = new Animation(0.1f, frames);
         frames.clear();
 
+        //Animation pushing
+        for(int i = 0; i < 3; i++){
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_golpesUpDown"), i * 90, 4, 90, 90));
+        }
+        jhonyPushUpDown = new Animation(0.1f, frames);
+        //jhonyPushUpDown.setPlayMode(Animation.PlayMode.LOOP);
+        frames.clear();
+
+
+
         jhonyStand = new TextureRegion(screen.getAtlas().findRegion("Jhony_standingUpDown"), 0,5,90,90);
 
         definePlayer();
@@ -72,6 +89,9 @@ public class Player extends Sprite {
                 break;
             case UP:
                 region = (TextureRegion) jhonyRunUpDown.getKeyFrame(stateTimer, true);
+                break;
+            case PUSHING:
+                region = (TextureRegion) jhonyPushUpDown.getKeyFrame(stateTimer, true);
                 break;
             case STANDING:
             default:
@@ -106,6 +126,7 @@ public class Player extends Sprite {
     private State getState() {
         if(b2body.getLinearVelocity().y != 0) return State.UP;
         else if(b2body.getLinearVelocity().x != 0) return State.RUNNINGLR;
+        else if(pushing) return State.PUSHING;
         else return State.STANDING;
 
     }

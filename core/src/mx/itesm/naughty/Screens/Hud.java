@@ -6,15 +6,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -39,23 +35,9 @@ public class Hud implements Disposable {
     private Viewport viewport;
 
     private Button btnRight;
-
-    public ImageButton getBtnRight() {
-        return btnRight.getImageButton();
-    }
-
-    public ImageButton getBtnLeft() {
-        return btnLeft.getImageButton();
-    }
-
-    public ImageButton getBtnUp() {
-        return btnUp.getImageButton();
-    }
-
-    public ImageButton getBtnDown() {
-        return btnDown.getImageButton();
-    }
-
+    private Button btnA;
+    private Button btnB;
+    private Button btnPausa;
     private Button btnLeft;
     private Button btnUp;
     private Button btnDown;
@@ -121,12 +103,12 @@ public class Hud implements Disposable {
 
     public void createButtons(){
         // Boton A
-        Button btnA = new Button("Botones/btnA.png", "Botones/APres.png", 0.75f*ANCHO_JUEGO, 10);
+        btnA = new Button("Botones/btnA.png", "Botones/APres.png", 0.75f*ANCHO_JUEGO, 10);
 
         // Botón pausa
-        Button btnPausa = new Button("Botones/Pause.png", "Botones/PausaPres.png", ANCHO_JUEGO*0.80f, ALTO_JUEGO*0.83f);
+        btnPausa = new Button("Botones/Pause.png", "Botones/PausaPres.png", ANCHO_JUEGO*0.80f, ALTO_JUEGO*0.83f);
         // Boton B
-        Button btnB = new Button("Botones/btnB.png", "Botones/BPres.png", 0.89f*ANCHO_JUEGO, 30);
+        btnB = new Button("Botones/btnB.png", "Botones/BPres.png", 0.89f*ANCHO_JUEGO, 30);
 
         // Boton right
         btnRight = new Button("Botones/btnRight.png", "Botones/btnRightPress.png", 150, 65);
@@ -147,6 +129,34 @@ public class Hud implements Disposable {
         stage.addActor(btnLeft.getImageButton());
         stage.addActor(btnUp.getImageButton());
         stage.addActor(btnDown.getImageButton());
+    }
+
+    public ImageButton getBtnA() {
+        return btnA.getImageButton();
+    }
+
+    public ImageButton getBtnB() {
+        return btnB.getImageButton();
+    }
+
+    public ImageButton getBtnPausa() {
+        return btnPausa.getImageButton();
+    }
+
+    public ImageButton getBtnRight() {
+        return btnRight.getImageButton();
+    }
+
+    public ImageButton getBtnLeft() {
+        return btnLeft.getImageButton();
+    }
+
+    public ImageButton getBtnUp() {
+        return btnUp.getImageButton();
+    }
+
+    public ImageButton getBtnDown() {
+        return btnDown.getImageButton();
     }
 
 }

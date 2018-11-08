@@ -565,8 +565,8 @@
  </layer>
  <objectgroup id="8" name="Pared">
   <object id="2" x="0" y="2402.67" width="892.667" height="152.667"/>
-  <object id="4" x="2.42424" y="2558.91" width="121.455" height="319.879"/>
-  <object id="6" x="128.667" y="2756" width="1023.33" height="120"/>
+  <object id="4" x="2.42424" y="2556.24" width="121.455" height="322.546"/>
+  <object id="6" x="125.334" y="2756" width="1026.66" height="120"/>
   <object id="7" x="1153.33" y="3.39394" width="125.879" height="2871.82"/>
   <object id="10" x="0.666667" y="2113" width="124.333" height="287.667"/>
   <object id="11" x="451" y="2109.33" width="276" height="129.667"/>
@@ -577,8 +577,6 @@
   <object id="16" x="833.333" y="897.333" width="320" height="253.333"/>
   <object id="18" x="130.788" y="1.36364" width="474" height="123.424"/>
   <object id="19" x="0" y="2.66667" width="127.5" height="1856"/>
-  <object id="20" x="641.5" y="1536" width="29" height="31"/>
-  <object id="21" x="641.5" y="1663.5" width="29" height="31"/>
   <object id="22" x="641" y="1696" width="509.667" height="31"/>
   <object id="23" x="672.667" y="1.288" width="479.333" height="123.424"/>
   <object id="24" x="604.667" y="0.666667" width="66.6667" height="62.6667"/>
