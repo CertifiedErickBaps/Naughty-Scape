@@ -47,7 +47,7 @@ public class Hud implements Disposable {
     private Image pause;
 
     public Hud(SpriteBatch sb){
-        worldTimer = 300;
+        worldTimer = 000;
         timeCount = 0;
         score = 0;
         viewport = new StretchViewport(ANCHO_JUEGO, ALTO_JUEGO,new OrthographicCamera());
@@ -81,7 +81,7 @@ public class Hud implements Disposable {
     public void update(float dt){
         timeCount += dt;
         if(timeCount >= 1){
-            worldTimer--;
+            worldTimer++;
             countDownLabel.setText(String.format("%03d", worldTimer));
             timeCount = 0;
         }

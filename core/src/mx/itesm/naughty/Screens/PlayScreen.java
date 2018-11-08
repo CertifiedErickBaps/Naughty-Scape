@@ -78,6 +78,7 @@ public class PlayScreen extends MainScreen {
         box2DCreator = new Box2DCreator(world, map);
         player = new Player(world, this);
 
+
         world.setContactListener(new WorldContactListener());
 
 
@@ -101,6 +102,7 @@ public class PlayScreen extends MainScreen {
         world.step(1/ 60f, 6, 2);
 
         player.update(dt);
+        hud.update(dt);
         gameCam.position.x = player.b2body.getPosition().x;
         gameCam.position.y = player.b2body.getPosition().y;
         gameCam.update();
