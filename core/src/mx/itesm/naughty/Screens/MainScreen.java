@@ -1,6 +1,8 @@
 package mx.itesm.naughty.Screens;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -23,6 +25,8 @@ public class MainScreen implements Screen {
     public static OrthographicCamera gameCam;
     public static Viewport gamePort;
 
+    public static AssetManager manager;
+
     public MainScreen(){
         gameCam = new OrthographicCamera();
         gamePort = new StretchViewport(ANCHO_PANTALLA, ALTO_PANTALLA, gameCam);
@@ -31,6 +35,9 @@ public class MainScreen implements Screen {
 
 
         batch = new SpriteBatch();
+        manager = new AssetManager();
+        manager.load("", Music.class);
+        manager.finishLoading();
     }
 
     @Override
