@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -57,10 +58,13 @@ public class PlayScreen extends MainScreen {
     //Sistema de particulas
     //private ParticleEffect sp;
 
+    //Sound effects
+    private Music music;
+
     public PlayScreen(MainGame game){
         this.game = game;
         estado = EstadoJuego.JUGANDO;
-        atlas = new TextureAtlas("naughty.pack");
+        atlas = new TextureAtlas("naughtyScape.pack");
 
         gameCam = new OrthographicCamera();
         gamePort = new StretchViewport(ANCHO_JUEGO / PPM, ALTO_JUEGO / PPM, gameCam);
@@ -75,17 +79,29 @@ public class PlayScreen extends MainScreen {
         world = new World(new Vector2(0,0), true);
         b2dr = new Box2DDebugRenderer();
 
-        box2DCreator = new Box2DCreator(world, map);
-        player = new Player(world, this);
+        box2DCreator = new Box2DCreator(this);
+        player = new Player(this);
 
 
         world.setContactListener(new WorldContactListener());
+
+        music = MainScreen.manager.get("Musica/nivel1.mp3", Music.class);
+        music.setLooping(true);
+        music.play();
 
 
     }
 
     public TextureAtlas getAtlas(){
         return atlas;
+    }
+
+    public TiledMap getMap(){
+        return map;
+    }
+
+    public World getWorld(){
+        return world;
     }
 
     private void LoadMap() {

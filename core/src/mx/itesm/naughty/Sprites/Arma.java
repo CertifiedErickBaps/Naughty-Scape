@@ -8,14 +8,15 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import mx.itesm.naughty.Screens.Hud;
 import mx.itesm.naughty.Screens.MainScreen;
+import mx.itesm.naughty.Screens.PlayScreen;
 
 
 public class Arma extends InteractiveTileObject {
 
     private static TiledMapTileSet tileSet;
 
-    public Arma(World world, TiledMap map, Rectangle bounds) {
-        super(world, map, bounds);
+    public Arma(PlayScreen screen, Rectangle bounds) {
+        super(screen, bounds);
 
         fixture.setUserData(this);
         setCategoryFilter(MainScreen.ARMA_BIT);

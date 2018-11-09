@@ -11,11 +11,14 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 import mx.itesm.naughty.Screens.MainScreen;
+import mx.itesm.naughty.Screens.PlayScreen;
 import mx.itesm.naughty.Sprites.Arma;
 import mx.itesm.naughty.Sprites.Cofre;
 
 public class Box2DCreator {
-    public Box2DCreator(World world, TiledMap map){
+    public Box2DCreator(PlayScreen screen){
+        World world = screen.getWorld();
+        TiledMap map = screen.getMap();
         BodyDef bdef = new BodyDef();
         PolygonShape shape  = new PolygonShape();
         FixtureDef fdef = new FixtureDef();
@@ -36,12 +39,12 @@ public class Box2DCreator {
         // Create armas bodies/fixtures
         for(MapObject object: map.getLayers().get(5).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            new Arma(world, map, rect);
+            new Arma(screen, rect);
         }
         // Create cofre bodies/fixtures
         for(MapObject object: map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            new Cofre(world, map, rect);
+            new Cofre(screen, rect);
         }
     }
 

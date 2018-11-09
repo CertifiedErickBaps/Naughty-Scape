@@ -36,7 +36,12 @@ public class MainScreen implements Screen {
 
         batch = new SpriteBatch();
         manager = new AssetManager();
-        manager.load("", Music.class);
+        manager.load("Musica/chest.mp3", Music.class);
+        manager.load("Musica/menuSound.mp3", Music.class);
+        manager.load("Musica/nivel1.mp3", Music.class);
+        manager.load("Musica/nivel2.mp3", Music.class);
+        manager.load("Musica/punch.mp3", Music.class);
+        manager.load("Musica/error.mp3", Music.class);
         manager.finishLoading();
     }
 
@@ -73,5 +78,6 @@ public class MainScreen implements Screen {
     @Override
     public void dispose() {
         batch.dispose();
+        manager.dispose();
     }
 }

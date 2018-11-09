@@ -1,0 +1,192 @@
+
+naughtyScape.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+DeathGulAnimDer
+  rotate: false
+  xy: 1, 989
+  size: 960, 32
+  orig: 960, 32
+  offset: 0, 0
+  index: -1
+DeathGulAnimIzq
+  rotate: false
+  xy: 1, 955
+  size: 960, 32
+  orig: 960, 32
+  offset: 0, 0
+  index: -1
+DeathGulAnimUpDownDispose
+  rotate: false
+  xy: 1, 863
+  size: 635, 90
+  orig: 635, 90
+  offset: 0, 0
+  index: -1
+jhony_caminado_bate_lado
+  rotate: false
+  xy: 1, 771
+  size: 540, 90
+  orig: 540, 90
+  offset: 0, 0
+  index: -1
+jhony_caminado_katana_lado
+  rotate: false
+  xy: 1, 679
+  size: 540, 90
+  orig: 540, 90
+  offset: 0, 0
+  index: -1
+orlando_caminando_frente
+  rotate: false
+  xy: 1, 587
+  size: 540, 90
+  orig: 540, 90
+  offset: 0, 0
+  index: -1
+orlando_caminando_lado
+  rotate: false
+  xy: 1, 495
+  size: 540, 90
+  orig: 540, 90
+  offset: 0, 0
+  index: -1
+Jhony_walkLeft
+  rotate: false
+  xy: 1, 403
+  size: 537, 90
+  orig: 537, 90
+  offset: 0, 0
+  index: -1
+Jhony_walkRight
+  rotate: false
+  xy: 1, 311
+  size: 537, 90
+  orig: 537, 90
+  offset: 0, 0
+  index: -1
+Jhony_walkUpDown
+  rotate: false
+  xy: 1, 219
+  size: 537, 90
+  orig: 537, 90
+  offset: 0, 0
+  index: -1
+Jhony_walk_bate
+  rotate: false
+  xy: 1, 127
+  size: 537, 90
+  orig: 537, 90
+  offset: 0, 0
+  index: -1
+Jhony_walk_katana
+  rotate: false
+  xy: 1, 35
+  size: 537, 90
+  orig: 537, 90
+  offset: 0, 0
+  index: -1
+jhony_ataque_bate_lado
+  rotate: false
+  xy: 638, 863
+  size: 360, 90
+  orig: 360, 90
+  offset: 0, 0
+  index: -1
+jhony_daño_lado
+  rotate: false
+  xy: 543, 771
+  size: 450, 90
+  orig: 450, 90
+  offset: 0, 0
+  index: -1
+Jhony_golpeado
+  rotate: false
+  xy: 543, 679
+  size: 450, 90
+  orig: 450, 90
+  offset: 0, 0
+  index: -1
+jhony_ataque_katana_lado
+  rotate: false
+  xy: 543, 587
+  size: 360, 90
+  orig: 360, 90
+  offset: 0, 0
+  index: -1
+Jhony_bateAttackUpDown
+  rotate: false
+  xy: 543, 495
+  size: 360, 90
+  orig: 360, 90
+  offset: 0, 0
+  index: -1
+Jhony_golpesUpDown
+  rotate: false
+  xy: 540, 403
+  size: 360, 90
+  orig: 360, 90
+  offset: 0, 0
+  index: -1
+jhony_golpes_lado
+  rotate: false
+  xy: 540, 311
+  size: 360, 90
+  orig: 360, 90
+  offset: 0, 0
+  index: -1
+Jhony_katanaAttackUpDown
+  rotate: false
+  xy: 540, 219
+  size: 360, 90
+  orig: 360, 90
+  offset: 0, 0
+  index: -1
+AnimCorazon
+  rotate: false
+  xy: 1, 1
+  size: 352, 32
+  orig: 352, 32
+  offset: 0, 0
+  index: -1
+DeathGulUpDown
+  rotate: false
+  xy: 540, 127
+  size: 270, 90
+  orig: 270, 90
+  offset: 0, 0
+  index: -1
+Jhony_standingUpDown
+  rotate: false
+  xy: 540, 35
+  size: 90, 90
+  orig: 90, 90
+  offset: 0, 0
+  index: -1
+orlando_standing
+  rotate: false
+  xy: 632, 35
+  size: 90, 90
+  orig: 90, 90
+  offset: 0, 0
+  index: -1
+corazon
+  rotate: false
+  xy: 963, 989
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+
+naughtyScape2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Jhony_weapon
+  rotate: false
+  xy: 1, 1
+  size: 537, 90
+  orig: 537, 90
+  offset: 0, 0
+  index: -1

@@ -30,8 +30,8 @@ public class Player extends Sprite {
     private boolean runningUp;
     private boolean pushing;
 
-    public Player(World world, PlayScreen screen){
-        this.world = world;
+    public Player(PlayScreen screen){
+        this.world = screen.getWorld();
         currentState = State.STANDING;
         previousState = State.STANDING;
         stateTimer = 0;
