@@ -140,17 +140,25 @@ public class Player extends Sprite {
         CircleShape shape = new CircleShape();
         shape.setRadius(25 / MainScreen.PPM);
         fdef.filter.categoryBits = MainScreen.PLAYER_BIT;
-        fdef.filter.maskBits = MainScreen.DEFAULT_BIT | MainScreen.ARMA_BIT | MainScreen.COFRE_BIT;
+        fdef.filter.maskBits = MainScreen.GROUND_BIT
+                | MainScreen.ARMA_BIT
+                | MainScreen.COFRE_BIT
+                | MainScreen.ENEMY_BIT
+                | MainScreen.OBJECT_BIT;
 
 
         fdef.shape = shape;
         b2body.createFixture(fdef);
 
-        EdgeShape head = new EdgeShape();
-        head.set(new Vector2(-20/ MainScreen.PPM, 30 / MainScreen.PPM), new Vector2(20/ MainScreen.PPM, 30 / MainScreen.PPM));
-        fdef.shape = head;
-        fdef.isSensor = true;
-        b2body.createFixture(fdef).setUserData("head");
+    }
+
+    public void redefineColision(Vector2 vector1, Vector2 vector2){
+        FixtureDef colisionador = new FixtureDef();
+        EdgeShape up = new EdgeShape();
+        up.set(vector1, vector2);
+        colisionador.shape = up;
+        colisionador.isSensor = true;
+        b2body.createFixture(colisionador).setUserData("up");
 
     }
 

@@ -33,6 +33,7 @@ public class Box2DCreator {
 
             shape.setAsBox((rect.getWidth() / 2) / MainScreen.PPM, (rect.getHeight() / 2) / MainScreen.PPM);
             fdef.shape = shape;
+            fdef.filter.categoryBits = MainScreen.OBJECT_BIT;
             body.createFixture(fdef);
         }
 

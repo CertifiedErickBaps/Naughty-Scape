@@ -15,11 +15,13 @@ public class MainScreen implements Screen {
     public static final float ANCHO_JUEGO = 800;
     public static final float ALTO_JUEGO = 480;
     public static final float PPM = 100f;
-    public static final short DEFAULT_BIT = 1;
+    public static final short GROUND_BIT = 1;
     public static final short PLAYER_BIT = 2;
     public static final short ARMA_BIT = 4;
     public static final short COFRE_BIT = 8;
     public static final short DESTROY_BIT = 16;
+    public static final short OBJECT_BIT = 32;
+    public static final short ENEMY_BIT = 64;
 
     public static SpriteBatch batch;
     public static OrthographicCamera gameCam;
