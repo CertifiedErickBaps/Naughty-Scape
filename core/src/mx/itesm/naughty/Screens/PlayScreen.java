@@ -40,6 +40,7 @@ import mx.itesm.naughty.Box2DCreator;
 import mx.itesm.naughty.Controller;
 import mx.itesm.naughty.MainGame;
 import mx.itesm.naughty.Sprites.DeathGul;
+import mx.itesm.naughty.Sprites.Enemy;
 import mx.itesm.naughty.Sprites.Player;
 
 public class PlayScreen extends MainScreen {
@@ -52,13 +53,13 @@ public class PlayScreen extends MainScreen {
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
 
+    // Box2D creator
     private World world;
     private Box2DCreator box2DCreator;
     private Box2DDebugRenderer b2dr;
 
     // Sprite
     private Player player;
-    private DeathGul deathGul;
     //Sistema de particulas
     //private ParticleEffect sp;
 
@@ -93,8 +94,6 @@ public class PlayScreen extends MainScreen {
         music.setLooping(true);
         music.play();
 
-        deathGul = new DeathGul(this, 300 / MainScreen.PPM,170 / MainScreen.PPM);
-
 
     }
 
@@ -124,7 +123,10 @@ public class PlayScreen extends MainScreen {
         world.step(1/ 60f, 6, 2);
 
         player.update(dt);
-        deathGul.update(dt);
+        for(Enemy enemy: box2DCreator.getDeathGul()){
+            enemy.update(dt);
+        }
+
         hud.update(dt);
         gameCam.position.x = player.b2body.getPosition().x;
         gameCam.position.y = player.b2body.getPosition().y;
@@ -264,8 +266,10 @@ public class PlayScreen extends MainScreen {
         batch.setProjectionMatrix(gameCam.combined);
         batch.begin();
         player.draw(batch);
-        deathGul.draw(batch);
         //sp.draw(game.batch);
+        for(Enemy enemy: box2DCreator.getDeathGul()){
+            enemy.draw(batch);
+        }
         batch.end();
 
 

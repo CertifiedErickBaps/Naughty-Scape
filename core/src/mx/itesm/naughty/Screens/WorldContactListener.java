@@ -59,4 +59,9 @@ class WorldContactListener implements ContactListener {
     public void postSolve(Contact contact, ContactImpulse impulse) {
 
     }
+
+    // Crear bala en personaje
+    // Posiciones de x y y
+    // ajustes del personaje-arma posicion
+    // cambiar el sprite de
 }

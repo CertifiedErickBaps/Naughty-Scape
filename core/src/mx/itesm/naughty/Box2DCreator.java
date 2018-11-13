@@ -9,13 +9,17 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
+
 
 import mx.itesm.naughty.Screens.MainScreen;
 import mx.itesm.naughty.Screens.PlayScreen;
 import mx.itesm.naughty.Sprites.Arma;
 import mx.itesm.naughty.Sprites.Cofre;
+import mx.itesm.naughty.Sprites.DeathGul;
 
 public class Box2DCreator {
+    private Array<DeathGul> deathGul;
     public Box2DCreator(PlayScreen screen){
         World world = screen.getWorld();
         TiledMap map = screen.getMap();
@@ -47,6 +51,16 @@ public class Box2DCreator {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
             new Cofre(screen, rect);
         }
+
+        // Create deathguls
+        deathGul = new Array<DeathGul>();
+        for(MapObject object: map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+            deathGul.add(new DeathGul(screen, rect.getX() / MainScreen.PPM, rect.getY() / MainScreen.PPM));
+        }
     }
 
+    public Array<DeathGul> getDeathGul() {
+        return deathGul;
+    }
 }
