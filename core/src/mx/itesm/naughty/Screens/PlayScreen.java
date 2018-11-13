@@ -93,7 +93,7 @@ public class PlayScreen extends MainScreen {
         music.setLooping(true);
         music.play();
 
-        deathGul = new DeathGul(this, .32f, .32f);
+        deathGul = new DeathGul(this, 300 / MainScreen.PPM,170 / MainScreen.PPM);
 
 
     }
