@@ -1,4 +1,4 @@
-package mx.itesm.naughty.Sprites;
+package mx.itesm.naughty.Enemies;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;

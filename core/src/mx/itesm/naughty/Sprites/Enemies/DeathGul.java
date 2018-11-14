@@ -1,13 +1,11 @@
-package mx.itesm.naughty.Sprites;
+package mx.itesm.naughty.Enemies;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Array;
 
 import mx.itesm.naughty.Screens.MainScreen;
@@ -69,24 +67,6 @@ public class DeathGul extends Enemy {
         fdef.shape = shape;
         fdef.restitution = 0.9f;
         b2body.createFixture(fdef).setUserData(this);
-
-        /*
-
-
-        // Create head
-        PolygonShape head = new PolygonShape();
-        Vector2[] vertice = new Vector2[4];
-        vertice[0] = new Vector2(-15,18).scl(1 / MainScreen.PPM);
-        vertice[1] = new Vector2(15,18).scl(1 / MainScreen.PPM);
-        vertice[2] = new Vector2(-13,13).scl(1 / MainScreen.PPM);
-        vertice[3] = new Vector2(13,13).scl(1 / MainScreen.PPM);
-        head.set(vertice);
-
-        fdef.shape = head;
-
-        fdef.filter.categoryBits = MainScreen.ENEMY_HEAD_BIT;
-        b2body.createFixture(fdef).setUserData(this);
-         */
 
     }
 
