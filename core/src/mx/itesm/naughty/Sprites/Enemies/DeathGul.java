@@ -1,4 +1,4 @@
-package mx.itesm.naughty.Enemies;
+package mx.itesm.naughty.Sprites.Enemies;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;

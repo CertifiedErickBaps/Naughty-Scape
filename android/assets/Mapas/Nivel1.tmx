@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="40" height="90" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="54">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="40" height="90" tilewidth="32" tileheight="32" infinite="0" nextlayerid="12" nextobjectid="55">
  <tileset firstgid="1" name="Paredes" tilewidth="32" tileheight="32" tilecount="25" columns="5">
   <image source="Paredes.jpg" width="160" height="160"/>
   <tile id="0">
@@ -606,5 +606,6 @@
   <object id="51" x="194.5" y="447.5" width="31" height="33"/>
   <object id="52" x="194.5" y="639.5" width="31" height="33"/>
   <object id="53" x="674.5" y="959.5" width="31" height="33"/>
+  <object id="54" x="480" y="2590" width="30" height="30"/>
  </objectgroup>
 </map>

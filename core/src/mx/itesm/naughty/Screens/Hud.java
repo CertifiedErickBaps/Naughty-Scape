@@ -6,16 +6,16 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-
-import mx.itesm.naughty.Controller;
 
 import static mx.itesm.naughty.Screens.MainScreen.ALTO_JUEGO;
 import static mx.itesm.naughty.Screens.MainScreen.ANCHO_JUEGO;
@@ -43,8 +43,10 @@ public class Hud implements Disposable {
     private Button btnDown;
 
     // Botones
-    private Controller controller;
-    private Image pause;
+    private Button btnPlay;
+    private Button btnExit;
+    private Button btnSound;
+    private boolean pause;
 
     public Hud(SpriteBatch sb){
         worldTimer = 000;
@@ -60,12 +62,6 @@ public class Hud implements Disposable {
         scoreLabel = new Label(String.format("%06d", score), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         timeLabel = new Label("TIME", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         naughtyLabel = new Label("Jhony", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-
-        /*
-        controller = new Controller(0);
-        controller.setColor(1,1,1,0.7f);
-         */
-
 
         createButtons();
 
@@ -92,10 +88,6 @@ public class Hud implements Disposable {
         scoreLabel.setText(String.format("%06d", score));
     }
 
-    public Controller getController() {
-        return controller;
-    }
-
     @Override
     public void dispose() {
         stage.dispose();
@@ -107,6 +99,16 @@ public class Hud implements Disposable {
 
         // Botón pausa
         btnPausa = new Button("Botones/Pause.png", "Botones/PausaPres.png", ANCHO_JUEGO*0.80f, ALTO_JUEGO*0.83f);
+        btnPausa.getImageButton().addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                if(pause){
+                    createButtonsPause();
+                }
+            }
+        });
+
         // Boton B
         btnB = new Button("Botones/btnB.png", "Botones/BPres.png", 0.89f*ANCHO_JUEGO, 30);
 
@@ -130,6 +132,18 @@ public class Hud implements Disposable {
         stage.addActor(btnUp.getImageButton());
         stage.addActor(btnDown.getImageButton());
     }
+
+    private void createButtonsPause() {
+        btnPlay = new Button("Botones/Play.png", "Botones/PlayPres.png", ANCHO_JUEGO / 2, ALTO_JUEGO / 2);
+        btnPlay.getImageButton().addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                
+            }
+        });
+    }
+
 
     public ImageButton getBtnA() {
         return btnA.getImageButton();

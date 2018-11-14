@@ -6,7 +6,7 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
-import mx.itesm.naughty.Sprites.Enemy;
+import mx.itesm.naughty.Sprites.Enemies.Enemy;
 import mx.itesm.naughty.Sprites.InteractiveTileObject;
 
 class WorldContactListener implements ContactListener {
@@ -40,6 +40,10 @@ class WorldContactListener implements ContactListener {
                 else {
                     ((Enemy)fixB.getUserData()).revereVelocity(true, false);
                 }
+                break;
+            case MainScreen.ENEMY_BIT | MainScreen.ENEMY_BIT:
+                ((Enemy)fixA.getUserData()).revereVelocity(true, false);
+                ((Enemy)fixB.getUserData()).revereVelocity(true, false);
                 break;
         }
 

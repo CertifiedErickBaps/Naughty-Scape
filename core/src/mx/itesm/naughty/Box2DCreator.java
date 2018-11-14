@@ -16,7 +16,7 @@ import mx.itesm.naughty.Screens.MainScreen;
 import mx.itesm.naughty.Screens.PlayScreen;
 import mx.itesm.naughty.Sprites.Arma;
 import mx.itesm.naughty.Sprites.Cofre;
-import mx.itesm.naughty.Sprites.DeathGul;
+import mx.itesm.naughty.Sprites.Enemies.DeathGul;
 
 public class Box2DCreator {
     private Array<DeathGul> deathGul;

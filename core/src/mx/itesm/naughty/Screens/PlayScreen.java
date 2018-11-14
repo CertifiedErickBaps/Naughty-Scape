@@ -1,46 +1,25 @@
 package mx.itesm.naughty.Screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.ParticleEffect;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.physics.box2d.Contact;
-import com.badlogic.gdx.physics.box2d.ContactImpulse;
-import com.badlogic.gdx.physics.box2d.ContactListener;
-import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
 import mx.itesm.naughty.Box2DCreator;
-import mx.itesm.naughty.Controller;
 import mx.itesm.naughty.MainGame;
-import mx.itesm.naughty.Sprites.DeathGul;
-import mx.itesm.naughty.Sprites.Enemy;
+import mx.itesm.naughty.Sprites.Enemies.Enemy;
 import mx.itesm.naughty.Sprites.Player;
 
 public class PlayScreen extends MainScreen {
@@ -68,33 +47,6 @@ public class PlayScreen extends MainScreen {
 
     public PlayScreen(MainGame game){
         this.game = game;
-        estado = EstadoJuego.JUGANDO;
-        atlas = new TextureAtlas("naughtyScape.pack");
-
-        gameCam = new OrthographicCamera();
-        gamePort = new StretchViewport(ANCHO_JUEGO / PPM, ALTO_JUEGO / PPM, gameCam);
-        hud = new Hud(batch);
-        /*
-        hud.stage = new Stage(gamePort);    // Escalar con esta vista
-        hud = new Hud(batch);
-         */
-        gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
-
-        LoadMap();
-        world = new World(new Vector2(0,0), true);
-        b2dr = new Box2DDebugRenderer();
-
-        box2DCreator = new Box2DCreator(this);
-        player = new Player(this);
-
-
-        world.setContactListener(new WorldContactListener());
-
-        music = MainScreen.manager.get("Musica/nivel1.mp3", Music.class);
-        music.setLooping(true);
-        music.play();
-
-
     }
 
     public TextureAtlas getAtlas(){
@@ -119,12 +71,19 @@ public class PlayScreen extends MainScreen {
     }
     
     public void update(float dt){
-        handleInput(dt);
         world.step(1/ 60f, 6, 2);
-
+        handleInput(dt);
         player.update(dt);
         for(Enemy enemy: box2DCreator.getDeathGul()){
             enemy.update(dt);
+            /*
+            if(enemy.getX() < player.getX() + 0.5f){
+
+                enemy.b2body.setActive(true);
+            } */
+            if(enemy.getX() < player.getX() + 1f/ MainScreen.PPM) {
+                enemy.b2body.setActive(true);
+            }
         }
 
         hud.update(dt);
@@ -149,7 +108,6 @@ public class PlayScreen extends MainScreen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 super.touchUp(event, x, y, pointer, button);
                 player.b2body.setLinearVelocity(0,0);
-
             }
         });
 
@@ -249,6 +207,32 @@ public class PlayScreen extends MainScreen {
         sp.getEmitters().get(0).setPosition(0, MainGame.ALTO_JUEGO);
         sp.start();
         */
+
+        estado = EstadoJuego.JUGANDO;
+        atlas = new TextureAtlas("naughtyScape.pack");
+
+        gameCam = new OrthographicCamera();
+        gamePort = new StretchViewport(ANCHO_JUEGO / PPM, ALTO_JUEGO / PPM, gameCam);
+        hud = new Hud(batch);
+        /*
+        hud.stage = new Stage(gamePort);    // Escalar con esta vista
+        hud = new Hud(batch);
+         */
+        gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
+
+        LoadMap();
+        world = new World(new Vector2(0,0), true);
+        b2dr = new Box2DDebugRenderer();
+
+        box2DCreator = new Box2DCreator(this);
+        player = new Player(this);
+
+
+        world.setContactListener(new WorldContactListener());
+
+        music = MainScreen.manager.get("Musica/nivel1.mp3", Music.class);
+        music.setLooping(true);
+        music.play();
     }
 
 
@@ -314,7 +298,6 @@ public class PlayScreen extends MainScreen {
         hud.dispose();
         batch.dispose();
         game.dispose();
-
         //sp.dispose();
     }
 }
