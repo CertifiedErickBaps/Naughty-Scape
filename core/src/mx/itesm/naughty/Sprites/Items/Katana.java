@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 
 import mx.itesm.naughty.Screens.MainScreen;
 import mx.itesm.naughty.Screens.PlayScreen;
+import mx.itesm.naughty.Sprites.Player;
 
 public class Katana extends Item {
     public Katana(PlayScreen screen, float x, float y) {
@@ -23,6 +24,8 @@ public class Katana extends Item {
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
         shape.setRadius(15 / MainScreen.PPM);
+        fdef.filter.categoryBits = MainScreen.ITEM_BIT;
+        fdef.filter.maskBits = MainScreen.PLAYER_BIT | MainScreen.OBJECT_BIT | MainScreen.GROUND_BIT | MainScreen.ARMA_BIT | MainScreen.COFRE_BIT;
 
         fdef.shape = shape;
         fdef.restitution = 0.9f;
@@ -30,7 +33,7 @@ public class Katana extends Item {
     }
 
     @Override
-    public void use() {
+    public void use(Player player) {
         destroy();
     }
 

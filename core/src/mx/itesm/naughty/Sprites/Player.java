@@ -144,7 +144,8 @@ public class Player extends Sprite {
                 | MainScreen.ARMA_BIT
                 | MainScreen.COFRE_BIT
                 | MainScreen.ENEMY_BIT
-                | MainScreen.OBJECT_BIT;
+                | MainScreen.OBJECT_BIT
+                | MainScreen.ITEM_BIT;
 
 
         fdef.shape = shape;

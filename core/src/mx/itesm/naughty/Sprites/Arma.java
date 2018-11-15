@@ -1,6 +1,7 @@
 package mx.itesm.naughty.Sprites;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Rectangle;
@@ -15,8 +16,8 @@ public class Arma extends InteractiveTileObject {
 
     private static TiledMapTileSet tileSet;
 
-    public Arma(PlayScreen screen, Rectangle bounds) {
-        super(screen, bounds);
+    public Arma(PlayScreen screen, MapObject object) {
+        super(screen, object);
 
         fixture.setUserData(this);
         setCategoryFilter(MainScreen.ARMA_BIT);

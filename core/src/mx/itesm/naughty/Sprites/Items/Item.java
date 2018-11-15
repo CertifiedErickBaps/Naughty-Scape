@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import mx.itesm.naughty.Screens.MainScreen;
 import mx.itesm.naughty.Screens.PlayScreen;
+import mx.itesm.naughty.Sprites.Player;
 
 public abstract class Item extends Sprite {
     protected PlayScreen screen;
@@ -29,7 +30,7 @@ public abstract class Item extends Sprite {
 
     public abstract void defineItem();
 
-    public abstract void use();
+    public abstract void use(Player player);
 
     public void update(float dt){
         if(toDestroy && !destroyed){

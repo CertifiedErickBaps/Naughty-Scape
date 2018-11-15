@@ -8,6 +8,8 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 
 import mx.itesm.naughty.Sprites.Enemies.Enemy;
 import mx.itesm.naughty.Sprites.InteractiveTileObject;
+import mx.itesm.naughty.Sprites.Items.Item;
+import mx.itesm.naughty.Sprites.Player;
 
 class WorldContactListener implements ContactListener {
     @Override
@@ -44,6 +46,14 @@ class WorldContactListener implements ContactListener {
             case MainScreen.ENEMY_BIT | MainScreen.ENEMY_BIT:
                 ((Enemy)fixA.getUserData()).revereVelocity(true, false);
                 ((Enemy)fixB.getUserData()).revereVelocity(true, false);
+                break;
+            case MainScreen.ITEM_BIT | MainScreen.PLAYER_BIT:
+                if(fixA.getFilterData().categoryBits == MainScreen.ITEM_BIT){
+                    ((Item)fixA.getUserData()).use((Player) fixB.getUserData());
+                }
+                else {
+                    ((Item)fixB.getUserData()).use((Player) fixA.getUserData());
+                }
                 break;
         }
 

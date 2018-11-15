@@ -22,6 +22,7 @@ public class MainScreen implements Screen {
     public static final short DESTROY_BIT = 16;
     public static final short OBJECT_BIT = 32;
     public static final short ENEMY_BIT = 64;
+    public static final short ITEM_BIT = 128;
 
 
     public static SpriteBatch batch;
