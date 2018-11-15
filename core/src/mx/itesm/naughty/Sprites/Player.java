@@ -1,6 +1,5 @@
 package mx.itesm.naughty.Sprites;
 
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -17,22 +16,31 @@ import mx.itesm.naughty.Screens.MainScreen;
 import mx.itesm.naughty.Screens.PlayScreen;
 
 public class Player extends Sprite {
-    public enum State { UP, STANDING, RUNNINGLR, PUSHING, KATANA};
+    public enum State { UP, STANDINGUD, STANDINGLR, RUNNINGLR, PUSHING, KATANA};
     public State currentState;
     public State previousState;
     public World world;
     public Body b2body;
-    private TextureRegion jhonyStand;
-    private Animation jhonyRunRight;
-    private Animation jhonyRunUpDown;
-    private Animation jhonyPushUpDown;
-    private TextureRegion jhonyStandKatana;
-    private Animation jhonyRunRightKatana;
-    private Animation jhonyRunUpDownKatana;
-    private Animation jhonyPushKatana;
+    private TextureRegion jhonyStandUD;
+    private TextureRegion jhonyStandRL;
+    private TextureRegion jhonyStandKatanaUD;
+    private TextureRegion jhonyStandKatanaLR;
+
+    private Animation jhonyRunRL;
+    private Animation jhonyRunUD;
+    private Animation jhonyPushUD;
+    private Animation jhonyPushRL;
+    private Animation jhonyRunRLKatana;
+    private Animation jhonyRunUDKatana;
+    private Animation jhonyPushKatanaUD;
+    private Animation jhonyPushKatanaRL;
     private Animation jhonyChanging;
+
+
     private float stateTimer;
     private boolean runningRight;
+    private boolean isRunningRL;
+    private boolean isRunningUD;
     private boolean runningUp;
     private boolean pushing;
 
@@ -43,8 +51,8 @@ public class Player extends Sprite {
 
     public Player(PlayScreen screen){
         this.world = screen.getWorld();
-        currentState = State.STANDING;
-        previousState = State.STANDING;
+        currentState = State.STANDINGLR;
+        previousState = State.STANDINGLR;
         stateTimer = 0;
         runningRight = true;
         runningUp = true;
@@ -55,14 +63,14 @@ public class Player extends Sprite {
         for(int i = 0; i < 5; i++){
             frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_walkRight"), i * 89, 0, 90, 90));
         }
-        jhonyRunRight = new Animation(0.1f, frames);
+        jhonyRunRL = new Animation(0.1f, frames);
         frames.clear();
 
         // Animation katana right and down
         for(int i = 0; i < 5; i++){
             frames.add(new TextureRegion(screen.getAtlas().findRegion("jhony_caminado_katana_lado"), i * 90, 0, 90, 90));
         }
-        jhonyRunRightKatana = new Animation(0.1f, frames);
+        jhonyRunRLKatana = new Animation(0.1f, frames);
         frames.clear();
 
 
@@ -70,30 +78,32 @@ public class Player extends Sprite {
         for(int i = 1; i < 5; i++){
             frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_walkUpDown"), i * 90, 4, 90, 90));
         }
-        jhonyRunUpDown = new Animation(0.1f, frames);
+        jhonyRunUD = new Animation(0.1f, frames);
         frames.clear();
 
         //Animation walk up and down katana
         for(int i = 1; i < 5; i++){
             frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_walk_katana"), i * 89, 0, 90, 90));
         }
-        jhonyRunUpDownKatana = new Animation(0.1f, frames);
+        jhonyRunUDKatana = new Animation(0.1f, frames);
         frames.clear();
 
         //Animation pushing
         for(int i = 0; i < 3; i++){
             frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_golpesUpDown"), i * 90, 4, 90, 90));
         }
-        jhonyPushUpDown = new Animation(0.1f, frames);
-        //jhonyPushUpDown.setPlayMode(Animation.PlayMode.LOOP);
+        jhonyPushUD = new Animation(0.1f, frames);
+        //jhonyPushUD.setPlayMode(Animation.PlayMode.LOOP);
         frames.clear();
 
         //Animation pushing katana
         for(int i = 0; i < 3; i++){
             frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_katanaAttackUpDown"), i * 90, 0, 90, 90));
         }
-        jhonyPushKatana = new Animation(0.1f, frames);
+        jhonyPushKatanaUD = new Animation(0.1f, frames);
         frames.clear();
+
+
 
         //Animation changing
         frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_walk_katana"), 0, 0, 90, 90));
@@ -104,12 +114,14 @@ public class Player extends Sprite {
         frames.clear();
 
 
-        jhonyStand = new TextureRegion(screen.getAtlas().findRegion("Jhony_standingUpDown"), 0,5,90,90);
-        jhonyStandKatana = new TextureRegion(screen.getAtlas().findRegion("Jhony_walk_katana"), 0,0,90,90);
+        jhonyStandRL = new TextureRegion(screen.getAtlas().findRegion("jhony_standing_lado"), 0,5,90,90);
+        jhonyStandUD = new TextureRegion(screen.getAtlas().findRegion("Jhony_standingUpDown"), 0,5,90,90);
+        jhonyStandKatanaUD = new TextureRegion(screen.getAtlas().findRegion("Jhony_walk_katana"), 0,0,90,90);
+        jhonyStandKatanaLR = new TextureRegion(screen.getAtlas().findRegion("jhony_caminado_katana_lado"), 0,0,90,90);
 
         definePlayer();
         setBounds(0,0,90 / MainScreen.PPM,90 / MainScreen.PPM);
-        setRegion(jhonyStand);
+        setRegion(jhonyStandRL);
 
     }
 
@@ -128,17 +140,19 @@ public class Player extends Sprite {
                     runJhonyKatanaAnimation = false;
                 break;
             case RUNNINGLR:
-                region = jhonyIsKatana ? (TextureRegion) jhonyRunRightKatana.getKeyFrame(stateTimer, true): (TextureRegion) jhonyRunRight.getKeyFrame(stateTimer, true);
+                region = jhonyIsKatana ? (TextureRegion) jhonyRunRLKatana.getKeyFrame(stateTimer, true): (TextureRegion) jhonyRunRL.getKeyFrame(stateTimer, true);
                 break;
             case UP:
-                region = jhonyIsKatana ? (TextureRegion) jhonyRunUpDownKatana.getKeyFrame(stateTimer, true): (TextureRegion) jhonyRunUpDown.getKeyFrame(stateTimer, true);
+                region = jhonyIsKatana ? (TextureRegion) jhonyRunUDKatana.getKeyFrame(stateTimer, true): (TextureRegion) jhonyRunUD.getKeyFrame(stateTimer, true);
                 break;
             case PUSHING:
-                region = jhonyIsKatana ? (TextureRegion) jhonyPushKatana.getKeyFrame(stateTimer, true): (TextureRegion) jhonyPushUpDown.getKeyFrame(stateTimer, true);
+                region = jhonyIsKatana ? (TextureRegion) jhonyPushKatanaUD.getKeyFrame(stateTimer, true): (TextureRegion) jhonyPushUD.getKeyFrame(stateTimer, true);
                 break;
-            case STANDING:
+            case STANDINGLR:
+                region = jhonyIsKatana ? jhonyStandKatanaLR : jhonyStandRL;
+                break;
             default:
-                region = jhonyIsKatana ? jhonyStandKatana: jhonyStand;
+                region = jhonyIsKatana ? jhonyStandKatanaUD : jhonyStandUD;
                 break;
         }
 
@@ -176,10 +190,19 @@ public class Player extends Sprite {
     private State getState() {
         if(runJhonyKatanaAnimation) return State.KATANA;
 
-        else if(b2body.getLinearVelocity().y != 0) return State.UP;
-        else if(b2body.getLinearVelocity().x != 0) return State.RUNNINGLR;
+        else if(b2body.getLinearVelocity().y != 0) {
+            isRunningUD = true;
+            isRunningRL = false;
+            return State.UP;
+        }
+        else if(b2body.getLinearVelocity().x != 0) {
+            isRunningRL = true;
+            isRunningUD = false;
+            return State.RUNNINGLR;
+        }
         else if(pushing) return State.PUSHING;
-        else return State.STANDING;
+        else if(isRunningRL && !isRunningUD) return State.STANDINGLR;
+        else return State.STANDINGUD;
 
     }
 
