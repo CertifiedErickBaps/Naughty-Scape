@@ -24,7 +24,7 @@ public class Arma extends InteractiveTileObject {
 
     @Override
     public void onHeadHit() {
-        Gdx.app.log("Arma", "Collision");
+        //Gdx.app.log("Arma", "Collision");
         setCategoryFilter(MainScreen.DESTROY_BIT);
         // Elimina la vista del objeto
         getCell().setTile(null);

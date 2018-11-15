@@ -15,11 +15,18 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+
+import java.util.PriorityQueue;
+import java.util.concurrent.LinkedBlockingDeque;
 
 import mx.itesm.naughty.Box2DCreator;
 import mx.itesm.naughty.MainGame;
 import mx.itesm.naughty.Sprites.Enemies.Enemy;
+import mx.itesm.naughty.Sprites.Items.Item;
+import mx.itesm.naughty.Sprites.Items.ItemDef;
+import mx.itesm.naughty.Sprites.Items.Katana;
 import mx.itesm.naughty.Sprites.Player;
 
 public class PlayScreen extends MainScreen {
@@ -39,6 +46,8 @@ public class PlayScreen extends MainScreen {
 
     // Sprite
     private Player player;
+    private Array<Item> items;
+    private LinkedBlockingDeque<ItemDef> itemsToSpawn;
     //Sistema de particulas
     //private ParticleEffect sp;
 
@@ -73,18 +82,19 @@ public class PlayScreen extends MainScreen {
     public void update(float dt){
         world.step(1/ 60f, 6, 2);
         handleInput(dt);
+        handleSpawningItems();
         player.update(dt);
         for(Enemy enemy: box2DCreator.getDeathGul()){
             enemy.update(dt);
-            /*
-            if(enemy.getX() < player.getX() + 0.5f){
-
-                enemy.b2body.setActive(true);
-            } */
             if(enemy.getX() < player.getX() + 1f/ MainScreen.PPM) {
                 enemy.b2body.setActive(true);
             }
         }
+
+        for(Item item: items){
+            item.update(dt);
+        }
+
 
         hud.update(dt);
         gameCam.position.x = player.b2body.getPosition().x;
@@ -214,10 +224,7 @@ public class PlayScreen extends MainScreen {
         gameCam = new OrthographicCamera();
         gamePort = new StretchViewport(ANCHO_JUEGO / PPM, ALTO_JUEGO / PPM, gameCam);
         hud = new Hud(batch);
-        /*
-        hud.stage = new Stage(gamePort);    // Escalar con esta vista
-        hud = new Hud(batch);
-         */
+
         gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
         LoadMap();
@@ -232,10 +239,24 @@ public class PlayScreen extends MainScreen {
 
         music = MainScreen.manager.get("Musica/nivel1.mp3", Music.class);
         music.setLooping(true);
-        music.play();
+        //music.play();
+        items = new Array<Item>();
+        itemsToSpawn = new LinkedBlockingDeque<ItemDef>();
+
     }
 
+    public void spawnItem(ItemDef idef){
+        itemsToSpawn.add(idef);
+    }
 
+    public void handleSpawningItems(){
+        if(!itemsToSpawn.isEmpty()){
+            ItemDef idef = itemsToSpawn.poll();
+            if(idef.type == Katana.class){
+                items.add(new Katana(this, idef.position.x, idef.position.y));
+            }
+        }
+    }
     @Override
     public void render(float delta) {
         //sp.update(delta);
@@ -253,6 +274,10 @@ public class PlayScreen extends MainScreen {
         //sp.draw(game.batch);
         for(Enemy enemy: box2DCreator.getDeathGul()){
             enemy.draw(batch);
+        }
+
+        for(Item item: items){
+            item.draw(batch);
         }
         batch.end();
 
