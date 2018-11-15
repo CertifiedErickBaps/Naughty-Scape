@@ -35,6 +35,7 @@ public class Katana extends Item {
     @Override
     public void use(Player player) {
         destroy();
+        player.change();
     }
 
 
