@@ -16,7 +16,7 @@ import mx.itesm.naughty.Screens.MainScreen;
 import mx.itesm.naughty.Screens.PlayScreen;
 
 public class Player extends Sprite {
-    public enum State { UP, STANDINGUD, STANDINGLR, RUNNINGLR, PUSHING, KATANA};
+    public enum State { UP, STANDINGUD, STANDINGLR, RUNNINGLR, PUSHINGUD, PUSHINGLR, KATANA};
     public State currentState;
     public State previousState;
     public World world;
@@ -88,19 +88,33 @@ public class Player extends Sprite {
         jhonyRunUDKatana = new Animation(0.1f, frames);
         frames.clear();
 
-        //Animation pushing
+        //Animation pushingUD
         for(int i = 0; i < 3; i++){
             frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_golpesUpDown"), i * 90, 4, 90, 90));
         }
         jhonyPushUD = new Animation(0.1f, frames);
-        //jhonyPushUD.setPlayMode(Animation.PlayMode.LOOP);
         frames.clear();
 
-        //Animation pushing katana
+        //Animation pushingLR
+        for(int i = 0; i < 3; i++){
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("jhony_golpes_lado"), i * 90, 4, 90, 90));
+        }
+        jhonyPushRL = new Animation(0.1f, frames);
+        frames.clear();
+
+
+        //Animation pushingUD katana
         for(int i = 0; i < 3; i++){
             frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_katanaAttackUpDown"), i * 90, 0, 90, 90));
         }
         jhonyPushKatanaUD = new Animation(0.1f, frames);
+        frames.clear();
+
+        //Animation pushingUD katana
+        for(int i = 0; i < 3; i++){
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("jhony_ataque_katana_lado"), i * 90, 0, 90, 90));
+        }
+        jhonyPushKatanaRL = new Animation(0.1f, frames);
         frames.clear();
 
 
@@ -145,8 +159,11 @@ public class Player extends Sprite {
             case UP:
                 region = jhonyIsKatana ? (TextureRegion) jhonyRunUDKatana.getKeyFrame(stateTimer, true): (TextureRegion) jhonyRunUD.getKeyFrame(stateTimer, true);
                 break;
-            case PUSHING:
+            case PUSHINGUD:
                 region = jhonyIsKatana ? (TextureRegion) jhonyPushKatanaUD.getKeyFrame(stateTimer, true): (TextureRegion) jhonyPushUD.getKeyFrame(stateTimer, true);
+                break;
+            case PUSHINGLR:
+                region = jhonyIsKatana ? (TextureRegion) jhonyPushKatanaRL.getKeyFrame(stateTimer, true): (TextureRegion) jhonyPushRL.getKeyFrame(stateTimer, true);
                 break;
             case STANDINGLR:
                 region = jhonyIsKatana ? jhonyStandKatanaLR : jhonyStandRL;
@@ -200,7 +217,8 @@ public class Player extends Sprite {
             isRunningUD = false;
             return State.RUNNINGLR;
         }
-        else if(pushing) return State.PUSHING;
+        else if(pushing && isRunningUD) return State.PUSHINGUD;
+        else if(pushing && isRunningRL) return State.PUSHINGLR;
         else if(isRunningRL && !isRunningUD) return State.STANDINGLR;
         else return State.STANDINGUD;
 

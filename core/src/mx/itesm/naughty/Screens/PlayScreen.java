@@ -18,7 +18,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
-import java.util.PriorityQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 
 import mx.itesm.naughty.Box2DCreator;
