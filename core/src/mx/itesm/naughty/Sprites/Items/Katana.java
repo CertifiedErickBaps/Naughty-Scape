@@ -11,7 +11,7 @@ import mx.itesm.naughty.Sprites.Player;
 public class Katana extends Item {
     public Katana(PlayScreen screen, float x, float y) {
         super(screen, x, y);
-        setRegion(screen.getAtlas().findRegion("corazon"), 0, 0, 32, 32);
+        setRegion(screen.getAtlas().findRegion("Katana"), 0, 0, 32, 32);
     }
 
     @Override

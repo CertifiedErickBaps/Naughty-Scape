@@ -3,179 +3,214 @@ NaughtyScape.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-DeathGulAnimUpDownDispose
+DeathGulAnimDer
   rotate: false
-  xy: 1, 921
-  size: 635, 90
-  orig: 635, 90
-  offset: 0, 0
-  index: -1
-jhony_ataque_bate_lado
-  rotate: false
-  xy: 638, 921
-  size: 360, 90
-  orig: 360, 90
+  xy: 1, 989
+  size: 960, 32
+  orig: 960, 32
   offset: 0, 0
   index: -1
 jhony_caminado_bate_lado
   rotate: false
-  xy: 1, 829
+  xy: 1, 897
   size: 540, 90
   orig: 540, 90
-  offset: 0, 0
-  index: -1
-jhony_daño_lado
-  rotate: false
-  xy: 543, 829
-  size: 450, 90
-  orig: 450, 90
   offset: 0, 0
   index: -1
 jhony_caminado_katana_lado
   rotate: false
-  xy: 1, 737
+  xy: 1, 805
   size: 540, 90
   orig: 540, 90
-  offset: 0, 0
-  index: -1
-Jhony_golpeado
-  rotate: false
-  xy: 543, 737
-  size: 450, 90
-  orig: 450, 90
   offset: 0, 0
   index: -1
 orlando_caminando_bate
   rotate: false
-  xy: 1, 645
+  xy: 1, 713
   size: 540, 90
   orig: 540, 90
-  offset: 0, 0
-  index: -1
-jhony_ataque_katana_lado
-  rotate: false
-  xy: 543, 645
-  size: 360, 90
-  orig: 360, 90
-  offset: 0, 0
-  index: -1
-Jhony_standingUpDown
-  rotate: false
-  xy: 905, 645
-  size: 90, 90
-  orig: 90, 90
   offset: 0, 0
   index: -1
 orlando_caminando_bate_lado
   rotate: false
-  xy: 1, 553
+  xy: 1, 621
   size: 540, 90
   orig: 540, 90
-  offset: 0, 0
-  index: -1
-Jhony_bateAttackUpDown
-  rotate: false
-  xy: 543, 553
-  size: 360, 90
-  orig: 360, 90
-  offset: 0, 0
-  index: -1
-jhony_standing_lado
-  rotate: false
-  xy: 905, 553
-  size: 90, 90
-  orig: 90, 90
   offset: 0, 0
   index: -1
 orlando_caminando_frente
   rotate: false
-  xy: 1, 461
+  xy: 1, 529
   size: 540, 90
   orig: 540, 90
-  offset: 0, 0
-  index: -1
-Jhony_golpesUpDown
-  rotate: false
-  xy: 543, 461
-  size: 360, 90
-  orig: 360, 90
-  offset: 0, 0
-  index: -1
-orlando_standing
-  rotate: false
-  xy: 905, 461
-  size: 90, 90
-  orig: 90, 90
   offset: 0, 0
   index: -1
 orlando_caminando_katana
   rotate: false
-  xy: 1, 369
+  xy: 1, 437
   size: 540, 90
   orig: 540, 90
-  offset: 0, 0
-  index: -1
-jhony_golpes_lado
-  rotate: false
-  xy: 543, 369
-  size: 360, 90
-  orig: 360, 90
-  offset: 0, 0
-  index: -1
-orlando_standing_lado
-  rotate: false
-  xy: 905, 369
-  size: 90, 90
-  orig: 90, 90
   offset: 0, 0
   index: -1
 orlando_caminando_katana_lado
   rotate: false
-  xy: 1, 277
+  xy: 1, 345
   size: 540, 90
   orig: 540, 90
-  offset: 0, 0
-  index: -1
-Jhony_katanaAttackUpDown
-  rotate: false
-  xy: 543, 277
-  size: 360, 90
-  orig: 360, 90
-  offset: 0, 0
-  index: -1
-corazon
-  rotate: false
-  xy: 905, 335
-  size: 32, 32
-  orig: 32, 32
   offset: 0, 0
   index: -1
 orlando_caminando_lado
   rotate: false
-  xy: 1, 185
+  xy: 1, 253
   size: 540, 90
   orig: 540, 90
   offset: 0, 0
   index: -1
-AnimCorazon
-  rotate: false
-  xy: 543, 243
-  size: 352, 32
-  orig: 352, 32
-  offset: 0, 0
-  index: -1
 Jhony_walkLeft
   rotate: false
-  xy: 1, 93
+  xy: 1, 161
   size: 537, 90
   orig: 537, 90
   offset: 0, 0
   index: -1
 Jhony_walkRight
   rotate: false
-  xy: 1, 1
+  xy: 1, 69
   size: 537, 90
   orig: 537, 90
+  offset: 0, 0
+  index: -1
+Animacion Explosion
+  rotate: false
+  xy: 1, 3
+  size: 512, 64
+  orig: 512, 64
+  offset: 0, 0
+  index: -1
+jhony_daño_lado
+  rotate: false
+  xy: 543, 897
+  size: 450, 90
+  orig: 450, 90
+  offset: 0, 0
+  index: -1
+Jhony_golpeado
+  rotate: false
+  xy: 543, 805
+  size: 450, 90
+  orig: 450, 90
+  offset: 0, 0
+  index: -1
+jhony_ataque_bate_lado
+  rotate: false
+  xy: 543, 713
+  size: 360, 90
+  orig: 360, 90
+  offset: 0, 0
+  index: -1
+jhony_ataque_katana_lado
+  rotate: false
+  xy: 543, 621
+  size: 360, 90
+  orig: 360, 90
+  offset: 0, 0
+  index: -1
+Jhony_bateAttackUpDown
+  rotate: false
+  xy: 543, 529
+  size: 360, 90
+  orig: 360, 90
+  offset: 0, 0
+  index: -1
+Jhony_golpesUpDown
+  rotate: false
+  xy: 543, 437
+  size: 360, 90
+  orig: 360, 90
+  offset: 0, 0
+  index: -1
+jhony_golpes_lado
+  rotate: false
+  xy: 543, 345
+  size: 360, 90
+  orig: 360, 90
+  offset: 0, 0
+  index: -1
+Jhony_katanaAttackUpDown
+  rotate: false
+  xy: 543, 253
+  size: 360, 90
+  orig: 360, 90
+  offset: 0, 0
+  index: -1
+orlando_ataque_bate
+  rotate: false
+  xy: 540, 161
+  size: 360, 90
+  orig: 360, 90
+  offset: 0, 0
+  index: -1
+orlando_ataque_bate_lado
+  rotate: false
+  xy: 540, 69
+  size: 360, 90
+  orig: 360, 90
+  offset: 0, 0
+  index: -1
+AK-47
+  rotate: false
+  xy: 515, 35
+  size: 352, 32
+  orig: 352, 32
+  offset: 0, 0
+  index: -1
+AnimCorazon
+  rotate: false
+  xy: 515, 1
+  size: 352, 32
+  orig: 352, 32
+  offset: 0, 0
+  index: -1
+Jhony_standingUpDown
+  rotate: false
+  xy: 905, 713
+  size: 90, 90
+  orig: 90, 90
+  offset: 0, 0
+  index: -1
+jhony_standing_lado
+  rotate: false
+  xy: 905, 621
+  size: 90, 90
+  orig: 90, 90
+  offset: 0, 0
+  index: -1
+orlando_standing
+  rotate: false
+  xy: 905, 529
+  size: 90, 90
+  orig: 90, 90
+  offset: 0, 0
+  index: -1
+orlando_standing_lado
+  rotate: false
+  xy: 905, 437
+  size: 90, 90
+  orig: 90, 90
+  offset: 0, 0
+  index: -1
+chaleco
+  rotate: false
+  xy: 963, 989
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+corazon
+  rotate: false
+  xy: 905, 403
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
 
@@ -183,38 +218,80 @@ NaughtyScape2.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-DeathGulAnimDer
-  rotate: false
-  xy: 1, 369
-  size: 960, 32
-  orig: 960, 32
-  offset: 0, 0
-  index: -1
 Jhony_walkUpDown
   rotate: false
-  xy: 1, 277
+  xy: 1, 403
   size: 537, 90
   orig: 537, 90
   offset: 0, 0
   index: -1
 Jhony_walk_bate
   rotate: false
-  xy: 1, 185
+  xy: 1, 311
   size: 537, 90
   orig: 537, 90
   offset: 0, 0
   index: -1
 Jhony_walk_katana
   rotate: false
-  xy: 1, 93
+  xy: 1, 219
   size: 537, 90
   orig: 537, 90
   offset: 0, 0
   index: -1
 Jhony_weapon
   rotate: false
-  xy: 1, 1
+  xy: 1, 127
   size: 537, 90
   orig: 537, 90
+  offset: 0, 0
+  index: -1
+orlando_ataque_katana
+  rotate: false
+  xy: 540, 403
+  size: 360, 90
+  orig: 360, 90
+  offset: 0, 0
+  index: -1
+orlando_ataque_katana_lado
+  rotate: false
+  xy: 1, 35
+  size: 360, 90
+  orig: 360, 90
+  offset: 0, 0
+  index: -1
+Bate
+  rotate: false
+  xy: 540, 369
+  size: 352, 32
+  orig: 352, 32
+  offset: 0, 0
+  index: -1
+Granada
+  rotate: false
+  xy: 1, 1
+  size: 352, 32
+  orig: 352, 32
+  offset: 0, 0
+  index: -1
+Katana
+  rotate: false
+  xy: 540, 335
+  size: 352, 32
+  orig: 352, 32
+  offset: 0, 0
+  index: -1
+Lanzagranadas
+  rotate: false
+  xy: 540, 301
+  size: 352, 32
+  orig: 352, 32
+  offset: 0, 0
+  index: -1
+Pistola
+  rotate: false
+  xy: 540, 267
+  size: 352, 32
+  orig: 352, 32
   offset: 0, 0
   index: -1
