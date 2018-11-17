@@ -15,7 +15,6 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 import mx.itesm.naughty.MainGame;
-import mx.itesm.naughty.Screens.MainScreen;
 import mx.itesm.naughty.Screens.PlayScreen;
 
 
@@ -42,10 +41,10 @@ public abstract class InteractiveTileObject {
         PolygonShape shape = new PolygonShape();
 
         bdef.type = BodyDef.BodyType.StaticBody;
-        bdef.position.set((bounds.getX() + bounds.getWidth() / 2) / MainScreen.PPM , (bounds.getY() + bounds.getHeight() / 2) / MainScreen.PPM);
+        bdef.position.set((bounds.getX() + bounds.getWidth() / 2) / MainGame.PPM , (bounds.getY() + bounds.getHeight() / 2) / MainGame.PPM);
         body = world.createBody(bdef);
 
-        shape.setAsBox((bounds.getWidth() / 2) / MainScreen.PPM, (bounds.getHeight() / 2) / MainScreen.PPM);
+        shape.setAsBox((bounds.getWidth() / 2) / MainGame.PPM, (bounds.getHeight() / 2) / MainGame.PPM);
         fdef.shape = shape;
         fixture = body.createFixture(fdef);
     }
@@ -60,6 +59,6 @@ public abstract class InteractiveTileObject {
 
     public TiledMapTileLayer.Cell getCell(){
         TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(3);
-        return layer.getCell((int)(body.getPosition().x * MainScreen.PPM / 32), (int)(body.getPosition().y * MainScreen.PPM / 32));
+        return layer.getCell((int)(body.getPosition().x * MainGame.PPM / 32), (int)(body.getPosition().y * MainGame.PPM / 32));
     }
 }

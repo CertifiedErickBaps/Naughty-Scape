@@ -22,11 +22,16 @@ import java.util.concurrent.LinkedBlockingDeque;
 
 import mx.itesm.naughty.Box2DCreator;
 import mx.itesm.naughty.MainGame;
+import mx.itesm.naughty.Scenes.Hud;
 import mx.itesm.naughty.Sprites.Enemies.Enemy;
 import mx.itesm.naughty.Sprites.Items.Item;
 import mx.itesm.naughty.Sprites.Items.ItemDef;
 import mx.itesm.naughty.Sprites.Items.Katana;
 import mx.itesm.naughty.Sprites.Player;
+
+import static mx.itesm.naughty.MainGame.ALTO_JUEGO;
+import static mx.itesm.naughty.MainGame.ANCHO_JUEGO;
+import static mx.itesm.naughty.MainGame.PPM;
 
 public class PlayScreen extends MainScreen {
     public enum EstadoJuego {JUGANDO, PAUSADO}
@@ -80,12 +85,11 @@ public class PlayScreen extends MainScreen {
     
     public void update(float dt){
         world.step(1/ 60f, 6, 2);
-        handleInput(dt);
         handleSpawningItems();
         player.update(dt);
         for(Enemy enemy: box2DCreator.getDeathGul()){
             enemy.update(dt);
-            if(enemy.getX() < player.getX() + 1f/ MainScreen.PPM) {
+            if(enemy.getX() < player.getX() + 1f/ PPM) {
                 enemy.b2body.setActive(true);
             }
         }
@@ -94,96 +98,99 @@ public class PlayScreen extends MainScreen {
             item.update(dt);
         }
 
-
         hud.update(dt);
-        gameCam.position.x = player.b2body.getPosition().x;
-        gameCam.position.y = player.b2body.getPosition().y;
+        if(player.currentState != Player.State.DEAD){
+            handleInput(dt);
+            gameCam.position.x = player.b2body.getPosition().x;
+            gameCam.position.y = player.b2body.getPosition().y;
+        }
+
         gameCam.update();
         renderer.setView(gameCam);
     }
 
     private void handleInput(float dt) {
-        hud.getBtnUp().addListener(new ClickListener(){
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                if((hud.getBtnUp().isPressed()) && (player.b2body.getLinearVelocity().y <= 2.3f)){
-                    player.b2body.applyLinearImpulse(new Vector2(0, 0.3f), player.b2body.getWorldCenter(), true);
-                    player.redefineColision(new Vector2(-20/ MainScreen.PPM, 30 / MainScreen.PPM), new Vector2(20/ MainScreen.PPM, 30 / MainScreen.PPM));
+        if(player.currentState != Player.State.DEAD){
+            hud.getBtnUp().addListener(new ClickListener(){
+                @Override
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                    if((hud.getBtnUp().isPressed()) && (player.b2body.getLinearVelocity().y <= 2.3f)){
+                        player.b2body.applyLinearImpulse(new Vector2(0, 0.3f), player.b2body.getWorldCenter(), true);
+                        player.redefineColision(new Vector2(-20/ PPM, 30 / PPM), new Vector2(20/ PPM, 30 / PPM));
+                    }
+                    return super.touchDown(event, x, y, pointer, button);
                 }
-                return super.touchDown(event, x, y, pointer, button);
-            }
 
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                super.touchUp(event, x, y, pointer, button);
-                player.b2body.setLinearVelocity(0,0);
-            }
-        });
-
-        hud.getBtnDown().addListener(new ClickListener(){
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                if((hud.getBtnDown().isPressed()) && (player.b2body.getLinearVelocity().y >= -2.3f)){
-                    player.b2body.applyLinearImpulse(new Vector2(0, -0.3f), player.b2body.getWorldCenter(), true);
-                    player.redefineColision(new Vector2(-20/ MainScreen.PPM, -30 / MainScreen.PPM), new Vector2(20/ MainScreen.PPM, -30 / MainScreen.PPM));
+                @Override
+                public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                    super.touchUp(event, x, y, pointer, button);
+                    player.b2body.setLinearVelocity(0,0);
                 }
-                return super.touchDown(event, x, y, pointer, button);
-            }
-
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                super.touchUp(event, x, y, pointer, button);
-                player.b2body.setLinearVelocity(0,0);
-            }
-
-        });
-        hud.getBtnLeft().addListener(new ClickListener(){
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                if((hud.getBtnLeft().isPressed()) && (player.b2body.getLinearVelocity().x >= -2.3f)){
-                    player.b2body.applyLinearImpulse(new Vector2(-0.3f, 0f), player.b2body.getWorldCenter(), true);
-                    player.redefineColision(new Vector2(-30/ MainScreen.PPM, 30 / MainScreen.PPM), new Vector2(-30/ MainScreen.PPM, -30 / MainScreen.PPM));
+            });
+            hud.getBtnDown().addListener(new ClickListener(){
+                @Override
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                    if((hud.getBtnDown().isPressed()) && (player.b2body.getLinearVelocity().y >= -2.3f)){
+                        player.b2body.applyLinearImpulse(new Vector2(0, -0.3f), player.b2body.getWorldCenter(), true);
+                        player.redefineColision(new Vector2(-20/ PPM, -30 / PPM), new Vector2(20/ PPM, -30 / PPM));
+                    }
+                    return super.touchDown(event, x, y, pointer, button);
                 }
-                return super.touchDown(event, x, y, pointer, button);
-            }
 
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                super.touchUp(event, x, y, pointer, button);
-                player.b2body.setLinearVelocity(0,0);
-            }
-
-        });
-        hud.getBtnRight().addListener(new ClickListener(){
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                if((hud.getBtnRight().isPressed()) && (player.b2body.getLinearVelocity().x <= 2.3f)){
-                    player.b2body.applyLinearImpulse(new Vector2(0.3f, 0f), player.b2body.getWorldCenter(), true);
-                    player.redefineColision(new Vector2(30/ MainScreen.PPM, 30 / MainScreen.PPM), new Vector2(30/ MainScreen.PPM, -30 / MainScreen.PPM));
+                @Override
+                public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                    super.touchUp(event, x, y, pointer, button);
+                    player.b2body.setLinearVelocity(0,0);
                 }
-                return super.touchDown(event, x, y, pointer, button);
-            }
 
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                super.touchUp(event, x, y, pointer, button);
-                player.b2body.setLinearVelocity(0,0);
-            }
-        });
-        hud.getBtnA().addListener(new ClickListener(){
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                player.setPushing(true);
-                return super.touchDown(event, x, y, pointer, button);
-            }
+            });
+            hud.getBtnLeft().addListener(new ClickListener(){
+                @Override
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                    if((hud.getBtnLeft().isPressed()) && (player.b2body.getLinearVelocity().x >= -2.3f)){
+                        player.b2body.applyLinearImpulse(new Vector2(-0.3f, 0f), player.b2body.getWorldCenter(), true);
+                        player.redefineColision(new Vector2(-30/ PPM, 30 / PPM), new Vector2(-30/ PPM, -30 / PPM));
+                    }
+                    return super.touchDown(event, x, y, pointer, button);
+                }
 
-            @Override
-            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                super.touchUp(event, x, y, pointer, button);
-                player.setPushing(false);
-            }
-        });
+                @Override
+                public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                    super.touchUp(event, x, y, pointer, button);
+                    player.b2body.setLinearVelocity(0,0);
+                }
 
+            });
+            hud.getBtnRight().addListener(new ClickListener(){
+                @Override
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                    if((hud.getBtnRight().isPressed()) && (player.b2body.getLinearVelocity().x <= 2.3f)){
+                        player.b2body.applyLinearImpulse(new Vector2(0.3f, 0f), player.b2body.getWorldCenter(), true);
+                        player.redefineColision(new Vector2(30/ PPM, 30 / PPM), new Vector2(30/ PPM, -30 / PPM));
+                    }
+                    return super.touchDown(event, x, y, pointer, button);
+                }
+
+                @Override
+                public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                    super.touchUp(event, x, y, pointer, button);
+                    player.b2body.setLinearVelocity(0,0);
+                }
+            });
+            hud.getBtnA().addListener(new ClickListener(){
+                @Override
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                    player.setPushing(true);
+                    return super.touchDown(event, x, y, pointer, button);
+                }
+
+                @Override
+                public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                    super.touchUp(event, x, y, pointer, button);
+                    player.setPushing(false);
+                }
+            });
+        }
 
 
 
@@ -222,7 +229,7 @@ public class PlayScreen extends MainScreen {
 
         gameCam = new OrthographicCamera();
         gamePort = new StretchViewport(ANCHO_JUEGO / PPM, ALTO_JUEGO / PPM, gameCam);
-        hud = new Hud(batch);
+        hud = new Hud(MainGame.batch);
 
         gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
@@ -236,7 +243,7 @@ public class PlayScreen extends MainScreen {
 
         world.setContactListener(new WorldContactListener());
 
-        music = MainScreen.manager.get("Musica/nivel1.mp3", Music.class);
+        music = MainGame.manager.get("Musica/nivel1.mp3", Music.class);
         music.setLooping(true);
         //music.play();
         items = new Array<Item>();
@@ -256,6 +263,14 @@ public class PlayScreen extends MainScreen {
             }
         }
     }
+
+    public boolean gameOver(){
+        if(player.currentState == Player.State.DEAD && player.getStateTimer() > 3){
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public void render(float delta) {
         //sp.update(delta);
@@ -267,18 +282,18 @@ public class PlayScreen extends MainScreen {
         renderer.render();
         b2dr.render(world,gameCam.combined);
 
-        batch.setProjectionMatrix(gameCam.combined);
-        batch.begin();
-        player.draw(batch);
+        MainGame.batch.setProjectionMatrix(gameCam.combined);
+        MainGame.batch.begin();
+        player.draw(MainGame.batch);
         //sp.draw(game.batch);
         for(Enemy enemy: box2DCreator.getDeathGul()){
-            enemy.draw(batch);
+            enemy.draw(MainGame.batch);
         }
 
         for(Item item: items){
-            item.draw(batch);
+            item.draw(MainGame.batch);
         }
-        batch.end();
+        MainGame.batch.end();
 
 
         if(estado == EstadoJuego.PAUSADO){
@@ -286,9 +301,13 @@ public class PlayScreen extends MainScreen {
         }
 
         // Dibuja el hud
-        batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        MainGame.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
 
+        if(gameOver()){
+            game.setScreen(new GameOverScreen(game));
+            dispose();
+        }
 
     }
 
@@ -320,8 +339,8 @@ public class PlayScreen extends MainScreen {
         world.dispose();
         b2dr.dispose();
         hud.dispose();
-        batch.dispose();
-        game.dispose();
+        //MainGame.batch.dispose();
+        //game.dispose();
         //sp.dispose();
     }
 }

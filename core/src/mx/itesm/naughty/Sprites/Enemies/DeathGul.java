@@ -8,7 +8,7 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.utils.Array;
 
-import mx.itesm.naughty.Screens.MainScreen;
+import mx.itesm.naughty.MainGame;
 import mx.itesm.naughty.Screens.PlayScreen;
 
 public class DeathGul extends Enemy {
@@ -26,7 +26,7 @@ public class DeathGul extends Enemy {
             frames.add(new TextureRegion(screen.getAtlas().findRegion("DeathGulAnimDer"), i * 64, 0, 64, 32));
         walkAnimation = new Animation(0.4f, frames);
         stateTime = 0;
-        setBounds(getX(), getY(), 64 / MainScreen.PPM, 32 / MainScreen.PPM);
+        setBounds(getX(), getY(), 64 / MainGame.PPM, 32 / MainGame.PPM);
         setToDestroy = false;
         destroyed = false;
     }
@@ -56,14 +56,15 @@ public class DeathGul extends Enemy {
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(15 / MainScreen.PPM);
-        fdef.filter.categoryBits = MainScreen.ENEMY_BIT;
-        fdef.filter.maskBits = MainScreen.GROUND_BIT
-                | MainScreen.ARMA_BIT
-                | MainScreen.COFRE_BIT
-                | MainScreen.OBJECT_BIT
-                | MainScreen.ENEMY_BIT
-                | MainScreen.PLAYER_BIT;
+        shape.setRadius(15 / MainGame.PPM);
+        fdef.filter.categoryBits = MainGame.ENEMY_BIT;
+        fdef.filter.maskBits = MainGame.GROUND_BIT
+                | MainGame.ARMA_BIT
+                | MainGame.COFRE_BIT
+                | MainGame.OBJECT_BIT
+                | MainGame.ENEMY_BIT
+                | MainGame.PLAYER_BIT
+                | MainGame.PLAYER_HEAD_BIT;
         fdef.shape = shape;
         fdef.restitution = 0.9f;
         b2body.createFixture(fdef).setUserData(this);

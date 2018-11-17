@@ -1,7 +1,6 @@
 package mx.itesm.naughty.Screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -11,6 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import mx.itesm.naughty.MainGame;
+
+import static mx.itesm.naughty.MainGame.ALTO_PANTALLA;
+import static mx.itesm.naughty.MainGame.ANCHO_PANTALLA;
 
 class PantallaAcerca extends MainScreen {
     private final MainGame mainGame;
@@ -48,11 +50,11 @@ class PantallaAcerca extends MainScreen {
 
     @Override
     public void render(float delta) {
-        batch.setProjectionMatrix(gameCam.combined);
-        batch.begin();
-        batch.draw(textFondo,0,0);
-        info.mostrarMensaje(batch, "--CREADO POR--"+"\n"+"Eric Gomez (ISC)"+"\n"+"Erick Bautista (ISC)"+"\n"+"Jessica I. Alvarez (LAD)"+"\n"+"Sebastian Gomez (LAD)" ,ANCHO_PANTALLA*0.7f, ALTO_PANTALLA*0.90f);
-        batch.end();
+        MainGame.batch.setProjectionMatrix(gameCam.combined);
+        MainGame.batch.begin();
+        MainGame.batch.draw(textFondo,0,0);
+        info.mostrarMensaje(MainGame.batch, "--CREADO POR--"+"\n"+"Eric Gomez (ISC)"+"\n"+"Erick Bautista (ISC)"+"\n"+"Jessica I. Alvarez (LAD)"+"\n"+"Sebastian Gomez (LAD)" ,ANCHO_PANTALLA*0.7f, ALTO_PANTALLA*0.90f);
+        MainGame.batch.end();
         escenaAcerca.draw();
     }
 

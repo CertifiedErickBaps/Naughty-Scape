@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 
+import mx.itesm.naughty.MainGame;
 import mx.itesm.naughty.Screens.MainScreen;
 import mx.itesm.naughty.Screens.PlayScreen;
 import mx.itesm.naughty.Sprites.Player;
@@ -22,7 +23,7 @@ public abstract class Item extends Sprite {
         this.screen = screen;
         this.world = screen.getWorld();
         setPosition(x, y);
-        setBounds(getX(), getY(), 32 / MainScreen.PPM, 32 / MainScreen.PPM);
+        setBounds(getX(), getY(), 32 / MainGame.PPM, 32 / MainGame.PPM);
         defineItem();
         toDestroy = false;
         destroyed = false;

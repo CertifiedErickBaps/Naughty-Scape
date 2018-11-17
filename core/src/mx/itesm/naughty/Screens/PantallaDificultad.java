@@ -12,6 +12,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import mx.itesm.naughty.MainGame;
 
+import static mx.itesm.naughty.MainGame.ALTO_PANTALLA;
+import static mx.itesm.naughty.MainGame.ANCHO_PANTALLA;
+
 class PantallaDificultad extends MainScreen {
     private final MainGame mainGame;
     private Stage escenaDificultad;
@@ -84,10 +87,10 @@ class PantallaDificultad extends MainScreen {
 
     @Override
     public void render(float delta) {
-        batch.setProjectionMatrix(gameCam.combined);
-        batch.begin();
-        batch.draw(fondo,0,0);
-        batch.end();
+        MainGame.batch.setProjectionMatrix(gameCam.combined);
+        MainGame.batch.begin();
+        MainGame.batch.draw(fondo,0,0);
+        MainGame.batch.end();
         escenaDificultad.draw();
     }
 

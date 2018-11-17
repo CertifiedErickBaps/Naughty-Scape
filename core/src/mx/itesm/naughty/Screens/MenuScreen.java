@@ -13,6 +13,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import mx.itesm.naughty.MainGame;
 
+import static mx.itesm.naughty.MainGame.ALTO_PANTALLA;
+import static mx.itesm.naughty.MainGame.ANCHO_PANTALLA;
+
 public class MenuScreen extends MainScreen {
     private final MainGame mainGame;
     private Stage escenaMenu;
@@ -88,11 +91,11 @@ public class MenuScreen extends MainScreen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0.34f,0.43f,0.46f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        batch.setProjectionMatrix(gameCam.combined);
-        batch.begin();
-        batch.draw(fondo,0,0);
-        batch.draw(logo,logo.getX(),logo.getY());
-        batch.end();
+        MainGame.batch.setProjectionMatrix(gameCam.combined);
+        MainGame.batch.begin();
+        MainGame.batch.draw(fondo,0,0);
+        MainGame.batch.draw(logo,logo.getX(),logo.getY());
+        MainGame.batch.end();
         escenaMenu.draw();
     }
 

@@ -8,15 +8,17 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.EdgeShape;
+import com.badlogic.gdx.physics.box2d.Filter;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
-import mx.itesm.naughty.Screens.MainScreen;
+import mx.itesm.naughty.MainGame;
 import mx.itesm.naughty.Screens.PlayScreen;
 
 public class Player extends Sprite {
-    public enum State { UP, STANDINGUD, STANDINGLR, RUNNINGLR, PUSHINGUD, PUSHINGLR, KATANA};
+    public enum State { UP, STANDINGUD, STANDINGLR, RUNNINGLR, PUSHINGUD, PUSHINGLR, KATANA, DEAD};
     public State currentState;
     public State previousState;
     public World world;
@@ -35,6 +37,7 @@ public class Player extends Sprite {
     private Animation jhonyPushKatanaUD;
     private Animation jhonyPushKatanaRL;
     private Animation jhonyChanging;
+    private Animation jhonyDead;
 
 
     private float stateTimer;
@@ -46,6 +49,7 @@ public class Player extends Sprite {
 
     private boolean jhonyIsKatana;
     private boolean runJhonyKatanaAnimation;
+    private boolean playerIsDead;
 
 
 
@@ -59,9 +63,16 @@ public class Player extends Sprite {
 
         Array<TextureRegion> frames = new Array<TextureRegion>();
 
+        //Animation dead
+        for(int i = 0; i < 5; i++){
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_golpeado"), i * 89, 0, 90, 90));
+        }
+        jhonyDead = new Animation(0.1f, frames);
+        frames.clear();
+
         //Animation walk right and down
         for(int i = 0; i < 5; i++){
-            frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_walkRight"), i * 89, 0, 90, 90));
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_walkRight"), i * 90, 0, 90, 90));
         }
         jhonyRunRL = new Animation(0.1f, frames);
         frames.clear();
@@ -134,7 +145,7 @@ public class Player extends Sprite {
         jhonyStandKatanaLR = new TextureRegion(screen.getAtlas().findRegion("jhony_caminado_katana_lado"), 0,0,90,90);
 
         definePlayer();
-        setBounds(0,0,90 / MainScreen.PPM,90 / MainScreen.PPM);
+        setBounds(0,0,90 / MainGame.PPM,90 / MainGame.PPM);
         setRegion(jhonyStandRL);
 
     }
@@ -144,10 +155,21 @@ public class Player extends Sprite {
         setRegion(getFrame(dt));
     }
 
+    public boolean isDead(){
+        return playerIsDead;
+    }
+
+    public float getStateTimer(){
+        return stateTimer;
+    }
+
     private TextureRegion getFrame(float dt) {
         currentState = getState();
         TextureRegion region;
         switch (currentState){
+            case DEAD:
+                region = (TextureRegion) jhonyDead.getKeyFrame(stateTimer);
+                break;
             case KATANA:
                 region = (TextureRegion) jhonyChanging.getKeyFrame(stateTimer);
                 if(jhonyChanging.isAnimationFinished(stateTimer))
@@ -205,8 +227,8 @@ public class Player extends Sprite {
     }
 
     private State getState() {
-        if(runJhonyKatanaAnimation) return State.KATANA;
-
+        if(playerIsDead) return State.DEAD;
+        else if(runJhonyKatanaAnimation) return State.KATANA;
         else if(b2body.getLinearVelocity().y != 0) {
             isRunningUD = true;
             isRunningRL = false;
@@ -230,20 +252,20 @@ public class Player extends Sprite {
 
     private void definePlayer() {
         BodyDef bdef = new BodyDef();
-        bdef.position.set(170 / MainScreen.PPM,170 / MainScreen.PPM);
+        bdef.position.set(170 / MainGame.PPM,170 / MainGame.PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body = world.createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(25 / MainScreen.PPM);
-        fdef.filter.categoryBits = MainScreen.PLAYER_BIT;
-        fdef.filter.maskBits = MainScreen.GROUND_BIT
-                | MainScreen.ARMA_BIT
-                | MainScreen.COFRE_BIT
-                | MainScreen.ENEMY_BIT
-                | MainScreen.OBJECT_BIT
-                | MainScreen.ITEM_BIT;
+        shape.setRadius(25 / MainGame.PPM);
+        fdef.filter.categoryBits = MainGame.PLAYER_BIT;
+        fdef.filter.maskBits = MainGame.GROUND_BIT
+                | MainGame.ARMA_BIT
+                | MainGame.COFRE_BIT
+                | MainGame.ENEMY_BIT
+                | MainGame.OBJECT_BIT
+                | MainGame.ITEM_BIT;
 
 
         fdef.shape = shape;
@@ -255,10 +277,21 @@ public class Player extends Sprite {
         FixtureDef colisionador = new FixtureDef();
         EdgeShape up = new EdgeShape();
         up.set(vector1, vector2);
+        colisionador.filter.categoryBits = MainGame.PLAYER_HEAD_BIT;
         colisionador.shape = up;
         colisionador.isSensor = true;
         b2body.createFixture(colisionador).setUserData("up");
 
+
+    }
+
+    public void hit(){
+        playerIsDead = true;
+        Filter filter = new Filter();
+        filter.maskBits = MainGame.NOTHING_BIT;
+        for(Fixture fixture: b2body.getFixtureList())
+            fixture.setFilterData(filter);
+        b2body.setLinearVelocity(0, 0);
     }
 
 }

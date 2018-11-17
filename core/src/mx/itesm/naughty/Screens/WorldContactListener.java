@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
+import mx.itesm.naughty.MainGame;
 import mx.itesm.naughty.Sprites.Enemies.Enemy;
 import mx.itesm.naughty.Sprites.InteractiveTileObject;
 import mx.itesm.naughty.Sprites.Items.Item;
@@ -27,34 +28,44 @@ class WorldContactListener implements ContactListener {
             }
         }
         switch (cDef){
-            case MainScreen.ENEMY_BIT | MainScreen.PLAYER_BIT:
-                if(fixA.getFilterData().categoryBits == MainScreen.ENEMY_BIT){
+            case MainGame.ENEMY_BIT | MainGame.PLAYER_HEAD_BIT:
+                if(fixA.getFilterData().categoryBits == MainGame.ENEMY_BIT){
                     ((Enemy)fixA.getUserData()).hitOnHead();
                 }
                 else {
                     ((Enemy)fixB.getUserData()).hitOnHead();
                 }
                 break;
-            case MainScreen.ENEMY_BIT | MainScreen.OBJECT_BIT:
-                if(fixA.getFilterData().categoryBits == MainScreen.ENEMY_BIT){
+            case MainGame.PLAYER_BIT | MainGame.ENEMY_BIT:
+                if(fixA.getFilterData().categoryBits == MainGame.PLAYER_BIT){
+                    ((Player)fixA.getUserData()).hit();
+                }
+                else {
+                    ((Player)fixB.getUserData()).hit();
+                }
+                break;
+            case MainGame.ENEMY_BIT | MainGame.OBJECT_BIT:
+                if(fixA.getFilterData().categoryBits == MainGame.ENEMY_BIT){
                     ((Enemy)fixA.getUserData()).revereVelocity(true, false);
                 }
                 else {
                     ((Enemy)fixB.getUserData()).revereVelocity(true, false);
                 }
                 break;
-            case MainScreen.ENEMY_BIT | MainScreen.ENEMY_BIT:
+            case MainGame.ENEMY_BIT | MainGame.ENEMY_BIT:
                 ((Enemy)fixA.getUserData()).revereVelocity(true, false);
                 ((Enemy)fixB.getUserData()).revereVelocity(true, false);
                 break;
-            case MainScreen.ITEM_BIT | MainScreen.PLAYER_BIT:
-                if(fixA.getFilterData().categoryBits == MainScreen.ITEM_BIT){
+
+            case MainGame.ITEM_BIT | MainGame.PLAYER_BIT:
+                if(fixA.getFilterData().categoryBits == MainGame.ITEM_BIT){
                     ((Item)fixA.getUserData()).use((Player) fixB.getUserData());
                 }
                 else {
                     ((Item)fixB.getUserData()).use((Player) fixA.getUserData());
                 }
                 break;
+
         }
 
     }

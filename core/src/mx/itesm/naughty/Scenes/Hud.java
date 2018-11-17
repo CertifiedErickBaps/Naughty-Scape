@@ -1,14 +1,12 @@
-package mx.itesm.naughty.Screens;
+package mx.itesm.naughty.Scenes;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -17,8 +15,10 @@ import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import static mx.itesm.naughty.Screens.MainScreen.ALTO_JUEGO;
-import static mx.itesm.naughty.Screens.MainScreen.ANCHO_JUEGO;
+import mx.itesm.naughty.Screens.Button;
+
+import static mx.itesm.naughty.MainGame.ALTO_JUEGO;
+import static mx.itesm.naughty.MainGame.ANCHO_JUEGO;
 
 public class Hud implements Disposable {
     // Texto contadores
@@ -139,7 +139,7 @@ public class Hud implements Disposable {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                
+
             }
         });
     }

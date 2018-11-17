@@ -1,7 +1,6 @@
 package mx.itesm.naughty.Screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -11,6 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import mx.itesm.naughty.MainGame;
+
+import static mx.itesm.naughty.MainGame.ALTO_PANTALLA;
+import static mx.itesm.naughty.MainGame.ANCHO_PANTALLA;
 
 class PantallaAjustes extends MainScreen {
     private final MainGame mainGame;
@@ -88,12 +90,12 @@ class PantallaAjustes extends MainScreen {
 
     @Override
     public void render(float delta) {
-        batch.setProjectionMatrix(gameCam.combined);
-        batch.begin();
-        batch.draw(textFondo,0,0);
-        Sound_FX.mostrarMensaje(batch,"Sound FX",ANCHO_PANTALLA*0.40f,ALTO_PANTALLA*0.70f);
-        Music.mostrarMensaje(batch,"Music",ANCHO_PANTALLA*0.40f,ALTO_PANTALLA*0.40f);
-        batch.end();
+        MainGame.batch.setProjectionMatrix(gameCam.combined);
+        MainGame.batch.begin();
+        MainGame.batch.draw(textFondo,0,0);
+        Sound_FX.mostrarMensaje(MainGame.batch,"Sound FX",ANCHO_PANTALLA*0.40f,ALTO_PANTALLA*0.70f);
+        Music.mostrarMensaje(MainGame.batch,"Music",ANCHO_PANTALLA*0.40f,ALTO_PANTALLA*0.40f);
+        MainGame.batch.end();
         escenaAjustes.draw();
     }
 

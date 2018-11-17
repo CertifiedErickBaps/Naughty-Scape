@@ -4,6 +4,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 
+import mx.itesm.naughty.MainGame;
 import mx.itesm.naughty.Screens.MainScreen;
 import mx.itesm.naughty.Screens.PlayScreen;
 import mx.itesm.naughty.Sprites.Player;
@@ -23,9 +24,9 @@ public class Katana extends Item {
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(15 / MainScreen.PPM);
-        fdef.filter.categoryBits = MainScreen.ITEM_BIT;
-        fdef.filter.maskBits = MainScreen.PLAYER_BIT | MainScreen.OBJECT_BIT | MainScreen.GROUND_BIT | MainScreen.ARMA_BIT | MainScreen.COFRE_BIT;
+        shape.setRadius(15 / MainGame.PPM);
+        fdef.filter.categoryBits = MainGame.ITEM_BIT;
+        fdef.filter.maskBits = MainGame.PLAYER_BIT | MainGame.OBJECT_BIT | MainGame.GROUND_BIT | MainGame.ARMA_BIT | MainGame.COFRE_BIT;
 
         fdef.shape = shape;
         fdef.restitution = 0.9f;

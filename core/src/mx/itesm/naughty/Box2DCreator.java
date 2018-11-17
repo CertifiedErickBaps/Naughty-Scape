@@ -12,7 +12,6 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
 
-import mx.itesm.naughty.Screens.MainScreen;
 import mx.itesm.naughty.Screens.PlayScreen;
 import mx.itesm.naughty.Sprites.Arma;
 import mx.itesm.naughty.Sprites.Cofre;
@@ -32,12 +31,12 @@ public class Box2DCreator {
         for(MapObject object: map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
             bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set((rect.getX() + rect.getWidth() / 2) / MainScreen.PPM , (rect.getY() + rect.getHeight() / 2) / MainScreen.PPM);
+            bdef.position.set((rect.getX() + rect.getWidth() / 2) / MainGame.PPM , (rect.getY() + rect.getHeight() / 2) / MainGame.PPM);
             body = world.createBody(bdef);
 
-            shape.setAsBox((rect.getWidth() / 2) / MainScreen.PPM, (rect.getHeight() / 2) / MainScreen.PPM);
+            shape.setAsBox((rect.getWidth() / 2) / MainGame.PPM, (rect.getHeight() / 2) / MainGame.PPM);
             fdef.shape = shape;
-            fdef.filter.categoryBits = MainScreen.OBJECT_BIT;
+            fdef.filter.categoryBits = MainGame.OBJECT_BIT;
             body.createFixture(fdef);
         }
 
@@ -56,7 +55,7 @@ public class Box2DCreator {
         deathGul = new Array<DeathGul>();
         for(MapObject object: map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            deathGul.add(new DeathGul(screen, rect.getX() / MainScreen.PPM, rect.getY() / MainScreen.PPM));
+            deathGul.add(new DeathGul(screen, rect.getX() / MainGame.PPM, rect.getY() / MainGame.PPM));
         }
     }
 
