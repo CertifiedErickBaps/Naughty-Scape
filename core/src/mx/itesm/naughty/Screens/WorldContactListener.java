@@ -8,7 +8,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 
 import mx.itesm.naughty.MainGame;
 import mx.itesm.naughty.Sprites.Enemies.Enemy;
-import mx.itesm.naughty.Sprites.InteractiveTileObject;
+import mx.itesm.naughty.Sprites.TileObjects.InteractiveTileObject;
 import mx.itesm.naughty.Sprites.Items.Item;
 import mx.itesm.naughty.Sprites.Player;
 

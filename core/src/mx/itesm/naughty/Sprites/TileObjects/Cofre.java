@@ -1,4 +1,4 @@
-package mx.itesm.naughty.Sprites;
+package mx.itesm.naughty.Sprites.TileObjects;
 
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.maps.MapObject;
@@ -7,7 +7,6 @@ import com.badlogic.gdx.math.Vector2;
 
 import mx.itesm.naughty.MainGame;
 import mx.itesm.naughty.Scenes.Hud;
-import mx.itesm.naughty.Screens.MainScreen;
 import mx.itesm.naughty.Screens.PlayScreen;
 import mx.itesm.naughty.Sprites.Items.ItemDef;
 import mx.itesm.naughty.Sprites.Items.Katana;

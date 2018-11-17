@@ -13,8 +13,8 @@ import com.badlogic.gdx.utils.Array;
 
 
 import mx.itesm.naughty.Screens.PlayScreen;
-import mx.itesm.naughty.Sprites.Arma;
-import mx.itesm.naughty.Sprites.Cofre;
+import mx.itesm.naughty.Sprites.TileObjects.Arma;
+import mx.itesm.naughty.Sprites.TileObjects.Cofre;
 import mx.itesm.naughty.Sprites.Enemies.DeathGul;
 
 public class Box2DCreator {

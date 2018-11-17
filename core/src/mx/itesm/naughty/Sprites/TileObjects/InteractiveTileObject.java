@@ -1,4 +1,4 @@
-package mx.itesm.naughty.Sprites;
+package mx.itesm.naughty.Sprites.TileObjects;
 
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
