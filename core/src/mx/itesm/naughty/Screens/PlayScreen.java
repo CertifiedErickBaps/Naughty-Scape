@@ -42,6 +42,7 @@ public class PlayScreen extends MainScreen {
 
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
+    private float stateTimer;
 
     // Box2D creator
     private World world;
@@ -86,7 +87,7 @@ public class PlayScreen extends MainScreen {
     public void update(float dt){
         world.step(1/ 60f, 6, 2);
         handleSpawningItems();
-        player.update(dt);
+        player.update(dt,stateTimer);
         for(Enemy enemy: box2DCreator.getDeathGul()){
             enemy.update(dt);
             if(enemy.getX() < player.getX() + 1f/ PPM) {
@@ -100,7 +101,6 @@ public class PlayScreen extends MainScreen {
 
         hud.update(dt);
         if(player.currentState != Player.State.DEAD){
-            handleInput(dt);
             gameCam.position.x = player.b2body.getPosition().x;
             gameCam.position.y = player.b2body.getPosition().y;
         }
@@ -109,13 +109,13 @@ public class PlayScreen extends MainScreen {
         renderer.setView(gameCam);
     }
 
-    private void handleInput(float dt) {
+    private void handleInput() {
         if(player.currentState != Player.State.DEAD){
             hud.getBtnUp().addListener(new ClickListener(){
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                     if((hud.getBtnUp().isPressed()) && (player.b2body.getLinearVelocity().y <= 2.3f)){
-                        player.b2body.applyLinearImpulse(new Vector2(0, 0.3f), player.b2body.getWorldCenter(), true);
+                        player.b2body.applyLinearImpulse(new Vector2(0, 2.3f), player.b2body.getWorldCenter(), true);
                         player.redefineColision(new Vector2(-20/ PPM, 30 / PPM), new Vector2(20/ PPM, 30 / PPM));
                     }
                     return super.touchDown(event, x, y, pointer, button);
@@ -131,7 +131,7 @@ public class PlayScreen extends MainScreen {
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                     if((hud.getBtnDown().isPressed()) && (player.b2body.getLinearVelocity().y >= -2.3f)){
-                        player.b2body.applyLinearImpulse(new Vector2(0, -0.3f), player.b2body.getWorldCenter(), true);
+                        player.b2body.applyLinearImpulse(new Vector2(0, -2.3f), player.b2body.getWorldCenter(), true);
                         player.redefineColision(new Vector2(-20/ PPM, -30 / PPM), new Vector2(20/ PPM, -30 / PPM));
                     }
                     return super.touchDown(event, x, y, pointer, button);
@@ -148,7 +148,7 @@ public class PlayScreen extends MainScreen {
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                     if((hud.getBtnLeft().isPressed()) && (player.b2body.getLinearVelocity().x >= -2.3f)){
-                        player.b2body.applyLinearImpulse(new Vector2(-0.3f, 0f), player.b2body.getWorldCenter(), true);
+                        player.b2body.applyLinearImpulse(new Vector2(-2.3f, 0f), player.b2body.getWorldCenter(), true);
                         player.redefineColision(new Vector2(-30/ PPM, 30 / PPM), new Vector2(-30/ PPM, -30 / PPM));
                     }
                     return super.touchDown(event, x, y, pointer, button);
@@ -165,7 +165,7 @@ public class PlayScreen extends MainScreen {
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                     if((hud.getBtnRight().isPressed()) && (player.b2body.getLinearVelocity().x <= 2.3f)){
-                        player.b2body.applyLinearImpulse(new Vector2(0.3f, 0f), player.b2body.getWorldCenter(), true);
+                        player.b2body.applyLinearImpulse(new Vector2(2.3f, 0f), player.b2body.getWorldCenter(), true);
                         player.redefineColision(new Vector2(30/ PPM, 30 / PPM), new Vector2(30/ PPM, -30 / PPM));
                     }
                     return super.touchDown(event, x, y, pointer, button);
@@ -188,6 +188,18 @@ public class PlayScreen extends MainScreen {
                 public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                     super.touchUp(event, x, y, pointer, button);
                     player.setPushing(false);
+                }
+            });
+            hud.getBtnB().addListener(new ClickListener(){
+                @Override
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                    player.fire();
+                    return super.touchDown(event, x, y, pointer, button);
+                }
+
+                @Override
+                public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                    super.touchUp(event, x, y, pointer, button);
                 }
             });
         }
@@ -223,7 +235,7 @@ public class PlayScreen extends MainScreen {
         sp.getEmitters().get(0).setPosition(0, MainGame.ALTO_JUEGO);
         sp.start();
         */
-
+        stateTimer = 0;
         estado = EstadoJuego.JUGANDO;
         atlas = new TextureAtlas("naughtyScape.pack");
 
@@ -248,6 +260,9 @@ public class PlayScreen extends MainScreen {
         //music.play();
         items = new Array<Item>();
         itemsToSpawn = new LinkedBlockingDeque<ItemDef>();
+
+        handleInput();
+
 
     }
 
@@ -277,31 +292,29 @@ public class PlayScreen extends MainScreen {
 
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        update(delta);
+        //update(delta);
 
         renderer.render();
         b2dr.render(world,gameCam.combined);
 
         MainGame.batch.setProjectionMatrix(gameCam.combined);
         MainGame.batch.begin();
+        update(delta);
         player.draw(MainGame.batch);
         //sp.draw(game.batch);
         for(Enemy enemy: box2DCreator.getDeathGul()){
             enemy.draw(MainGame.batch);
         }
-
         for(Item item: items){
             item.draw(MainGame.batch);
         }
         MainGame.batch.end();
-
+        MainGame.batch.setProjectionMatrix(hud.stage.getCamera().combined);
 
         if(estado == EstadoJuego.PAUSADO){
             //
         }
 
-        // Dibuja el hud
-        MainGame.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
 
         if(gameOver()){
@@ -334,11 +347,12 @@ public class PlayScreen extends MainScreen {
     @Override
     public void dispose() {
         map.dispose();
-        hud.stage.dispose();
         renderer.dispose();
         world.dispose();
         b2dr.dispose();
         hud.dispose();
+
+        //hud.stage.dispose();
         //MainGame.batch.dispose();
         //game.dispose();
         //sp.dispose();

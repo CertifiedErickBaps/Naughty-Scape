@@ -1,6 +1,7 @@
 package mx.itesm.naughty.Sprites;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -16,9 +17,11 @@ import com.badlogic.gdx.utils.Array;
 
 import mx.itesm.naughty.MainGame;
 import mx.itesm.naughty.Screens.PlayScreen;
+import mx.itesm.naughty.Sprites.Items.Bala;
 
 public class Player extends Sprite {
-    public enum State { UP, STANDINGUD, STANDINGLR, RUNNINGLR, PUSHINGUD, PUSHINGLR, KATANA, DEAD};
+    public enum State { UP, STANDINGUD, STANDINGLR, RUNNINGLR, PUSHINGUD, PUSHINGLR, KATANA, DEAD}
+
     public State currentState;
     public State previousState;
     public World world;
@@ -51,16 +54,21 @@ public class Player extends Sprite {
     private boolean runJhonyKatanaAnimation;
     private boolean playerIsDead;
 
-
+    private Array<Bala> balas;
+    private PlayScreen screen;
 
     public Player(PlayScreen screen){
         this.world = screen.getWorld();
+        this.screen = screen;
         currentState = State.STANDINGLR;
         previousState = State.STANDINGLR;
         stateTimer = 0;
         runningRight = true;
         runningUp = true;
+        createAnimations();
+    }
 
+    public void createAnimations(){
         Array<TextureRegion> frames = new Array<TextureRegion>();
 
         //Animation dead
@@ -128,8 +136,6 @@ public class Player extends Sprite {
         jhonyPushKatanaRL = new Animation(0.1f, frames);
         frames.clear();
 
-
-
         //Animation changing
         frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_walk_katana"), 0, 0, 90, 90));
         frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_walkUpDown"), 0, 0, 90, 90));
@@ -137,7 +143,6 @@ public class Player extends Sprite {
         frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_walkUpDown"), 0, 0, 90, 90));
         jhonyChanging = new Animation(0.2f, frames);
         frames.clear();
-
 
         jhonyStandRL = new TextureRegion(screen.getAtlas().findRegion("jhony_standing_lado"), 0,5,90,90);
         jhonyStandUD = new TextureRegion(screen.getAtlas().findRegion("Jhony_standingUpDown"), 0,5,90,90);
@@ -148,11 +153,20 @@ public class Player extends Sprite {
         setBounds(0,0,90 / MainGame.PPM,90 / MainGame.PPM);
         setRegion(jhonyStandRL);
 
+        balas = new Array<Bala>();
     }
 
-    public void update(float dt){
+    public void update(float dt, float stateTimer){
         setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
+
         setRegion(getFrame(dt));
+
+        for(Bala bala: balas){
+            bala.update(dt, stateTimer);
+            if(bala.isDestroyed()){
+                balas.removeValue(bala, true);
+            }
+        }
     }
 
     public boolean isDead(){
@@ -164,7 +178,7 @@ public class Player extends Sprite {
     }
 
     private TextureRegion getFrame(float dt) {
-        currentState = getState();
+
         TextureRegion region;
         switch (currentState){
             case DEAD:
@@ -211,9 +225,8 @@ public class Player extends Sprite {
             region.flip(false, true);
             runningUp = false;
         }
-
+        currentState = getState();
         stateTimer = currentState == previousState ? stateTimer+dt: 0;
-
         previousState = currentState;
         return region;
 
@@ -292,6 +305,17 @@ public class Player extends Sprite {
         for(Fixture fixture: b2body.getFixtureList())
             fixture.setFilterData(filter);
         b2body.setLinearVelocity(0, 0);
+    }
+
+    public void fire(){
+        balas.add(new Bala(screen, b2body.getPosition().x, b2body.getPosition().y, runningRight ? true: false));
+    }
+
+    public void draw(Batch batch){
+        super.draw(batch);
+        for(Bala bala: balas){
+            bala.draw(batch);
+        }
     }
 
 }
