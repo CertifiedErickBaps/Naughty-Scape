@@ -8,10 +8,10 @@ import mx.itesm.naughty.MainGame;
 import mx.itesm.naughty.Screens.PlayScreen;
 import mx.itesm.naughty.Sprites.Player;
 
-public class Katana extends Item {
-    public Katana(PlayScreen screen, float x, float y) {
+public class Bate extends Item {
+    public Bate(PlayScreen screen, float x, float y) {
         super(screen, x, y);
-        setRegion(screen.getAtlas().findRegion("Katana"), 0, 0, 32, 32);
+        setRegion(screen.getAtlas().findRegion("Bate"), 0, 0, 32, 32);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class Katana extends Item {
     @Override
     public void use(Player player) {
         destroy();
-        player.changeKatana();
+        player.changeBate();
     }
 
 

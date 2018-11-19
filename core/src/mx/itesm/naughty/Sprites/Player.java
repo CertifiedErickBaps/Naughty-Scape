@@ -20,7 +20,7 @@ import mx.itesm.naughty.Screens.PlayScreen;
 import mx.itesm.naughty.Sprites.Items.Bala;
 
 public class Player extends Sprite {
-    public enum State { UP, STANDINGUD, STANDINGLR, RUNNINGLR, PUSHINGUD, PUSHINGLR, KATANA, DEAD}
+    public enum State { UP, STANDINGUD, STANDINGLR, RUNNINGLR, PUSHINGUD, PUSHINGLR, KATANA, BATE, DEAD}
 
     public State currentState;
     public State previousState;
@@ -30,6 +30,8 @@ public class Player extends Sprite {
     private TextureRegion jhonyStandRL;
     private TextureRegion jhonyStandKatanaUD;
     private TextureRegion jhonyStandKatanaLR;
+    private TextureRegion jhonyStandBateUD;
+    private TextureRegion jhonyStandBateLR;
 
     private Animation jhonyRunRL;
     private Animation jhonyRunUD;
@@ -37,8 +39,12 @@ public class Player extends Sprite {
     private Animation jhonyPushRL;
     private Animation jhonyRunRLKatana;
     private Animation jhonyRunUDKatana;
+    private Animation jhonyRunRLBate;
+    private Animation jhonyRunUDBate;
     private Animation jhonyPushKatanaUD;
     private Animation jhonyPushKatanaRL;
+    private Animation jhonyPushBateUD;
+    private Animation jhonyPushBateRL;
     private Animation jhonyChanging;
     private Animation jhonyDead;
 
@@ -50,7 +56,8 @@ public class Player extends Sprite {
     private boolean runningUp;
     private boolean pushing;
 
-    private boolean jhonyIsKatana;
+    private boolean jhonyIsWithKatana;
+    private boolean jhonyIsWithBate;
     private boolean runJhonyKatanaAnimation;
     private boolean playerIsDead;
 
@@ -92,6 +99,13 @@ public class Player extends Sprite {
         jhonyRunRLKatana = new Animation(0.1f, frames);
         frames.clear();
 
+        // Animation bate right and down
+        for(int i = 0; i < 5; i++){
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("jhony_caminado_bate_lado"), i * 90, 0, 90, 90));
+        }
+        jhonyRunRLBate = new Animation(0.1f, frames);
+        frames.clear();
+
 
         //Animation walk up and down
         for(int i = 1; i < 5; i++){
@@ -105,6 +119,13 @@ public class Player extends Sprite {
             frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_walk_katana"), i * 89, 0, 90, 90));
         }
         jhonyRunUDKatana = new Animation(0.1f, frames);
+        frames.clear();
+
+        //Animation walk up and down bate
+        for(int i = 1; i < 5; i++){
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_walk_bate"), i * 89, 0, 90, 90));
+        }
+        jhonyRunUDBate = new Animation(0.1f, frames);
         frames.clear();
 
         //Animation pushingUD
@@ -129,11 +150,26 @@ public class Player extends Sprite {
         jhonyPushKatanaUD = new Animation(0.1f, frames);
         frames.clear();
 
-        //Animation pushingUD katana
+        //Animation pushingUD bate
+        for(int i = 0; i < 3; i++){
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_bateAttackUpDown"), i * 90, 0, 90, 90));
+        }
+        jhonyPushBateUD = new Animation(0.1f, frames);
+        frames.clear();
+
+
+        //Animation pushingLR katana
         for(int i = 0; i < 3; i++){
             frames.add(new TextureRegion(screen.getAtlas().findRegion("jhony_ataque_katana_lado"), i * 90, 0, 90, 90));
         }
         jhonyPushKatanaRL = new Animation(0.1f, frames);
+        frames.clear();
+
+        //Animation pushingLR bate
+        for(int i = 0; i < 3; i++){
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("jhony_ataque_bate_lado"), i * 90, 0, 90, 90));
+        }
+        jhonyPushBateRL = new Animation(0.1f, frames);
         frames.clear();
 
         //Animation changing
@@ -146,8 +182,12 @@ public class Player extends Sprite {
 
         jhonyStandRL = new TextureRegion(screen.getAtlas().findRegion("jhony_standing_lado"), 0,5,90,90);
         jhonyStandUD = new TextureRegion(screen.getAtlas().findRegion("Jhony_standingUpDown"), 0,5,90,90);
+
         jhonyStandKatanaUD = new TextureRegion(screen.getAtlas().findRegion("Jhony_walk_katana"), 0,0,90,90);
         jhonyStandKatanaLR = new TextureRegion(screen.getAtlas().findRegion("jhony_caminado_katana_lado"), 0,0,90,90);
+
+        jhonyStandBateLR = new TextureRegion(screen.getAtlas().findRegion("jhony_caminado_bate_lado"), 0,0,90,90);
+        jhonyStandBateUD = new TextureRegion(screen.getAtlas().findRegion("Jhony_walk_bate"), 0,0,90,90);
 
         definePlayer();
         setBounds(0,0,90 / MainGame.PPM,90 / MainGame.PPM);
@@ -178,7 +218,6 @@ public class Player extends Sprite {
     }
 
     private TextureRegion getFrame(float dt) {
-
         TextureRegion region;
         switch (currentState){
             case DEAD:
@@ -190,22 +229,58 @@ public class Player extends Sprite {
                     runJhonyKatanaAnimation = false;
                 break;
             case RUNNINGLR:
-                region = jhonyIsKatana ? (TextureRegion) jhonyRunRLKatana.getKeyFrame(stateTimer, true): (TextureRegion) jhonyRunRL.getKeyFrame(stateTimer, true);
+                if(jhonyIsWithKatana){
+                    region = (TextureRegion) jhonyRunRLKatana.getKeyFrame(stateTimer, true);
+                } else if(jhonyIsWithBate){
+                    region = (TextureRegion) jhonyRunRLBate.getKeyFrame(stateTimer, true);
+                }else {
+                    region = (TextureRegion) jhonyRunRL.getKeyFrame(stateTimer, true);
+                }
                 break;
             case UP:
-                region = jhonyIsKatana ? (TextureRegion) jhonyRunUDKatana.getKeyFrame(stateTimer, true): (TextureRegion) jhonyRunUD.getKeyFrame(stateTimer, true);
+                if(jhonyIsWithKatana){
+                    region = (TextureRegion) jhonyRunUDKatana.getKeyFrame(stateTimer, true);
+                } else if(jhonyIsWithBate){
+                    region = (TextureRegion) jhonyRunUDBate.getKeyFrame(stateTimer, true);
+                }else {
+                    region = (TextureRegion) jhonyRunUD.getKeyFrame(stateTimer, true);
+                }
                 break;
             case PUSHINGUD:
-                region = jhonyIsKatana ? (TextureRegion) jhonyPushKatanaUD.getKeyFrame(stateTimer, true): (TextureRegion) jhonyPushUD.getKeyFrame(stateTimer, true);
+                if(jhonyIsWithKatana){
+                    region = (TextureRegion) jhonyPushKatanaUD.getKeyFrame(stateTimer, true);
+                } else if(jhonyIsWithBate){
+                    region = (TextureRegion) jhonyPushBateUD.getKeyFrame(stateTimer, true);
+                }else {
+                    region = (TextureRegion) jhonyPushUD.getKeyFrame(stateTimer, true);
+                }
                 break;
             case PUSHINGLR:
-                region = jhonyIsKatana ? (TextureRegion) jhonyPushKatanaRL.getKeyFrame(stateTimer, true): (TextureRegion) jhonyPushRL.getKeyFrame(stateTimer, true);
+                if(jhonyIsWithKatana){
+                    region = (TextureRegion) jhonyPushKatanaRL.getKeyFrame(stateTimer, true);
+                } else if(jhonyIsWithBate){
+                    region = (TextureRegion) jhonyPushBateRL.getKeyFrame(stateTimer, true);
+                }else {
+                    region = (TextureRegion) jhonyPushRL.getKeyFrame(stateTimer, true);
+                }
                 break;
             case STANDINGLR:
-                region = jhonyIsKatana ? jhonyStandKatanaLR : jhonyStandRL;
+                if(jhonyIsWithKatana){
+                    region = jhonyStandKatanaLR;
+                } else if(jhonyIsWithBate){
+                    region = jhonyStandBateLR;
+                }else {
+                    region = jhonyStandRL;
+                }
                 break;
             default:
-                region = jhonyIsKatana ? jhonyStandKatanaUD : jhonyStandUD;
+                if(jhonyIsWithKatana){
+                    region = jhonyStandKatanaUD;
+                } else if(jhonyIsWithBate){
+                    region = jhonyStandBateUD;
+                }else {
+                    region = jhonyStandUD;
+                }
                 break;
         }
 
@@ -232,9 +307,15 @@ public class Player extends Sprite {
 
     }
 
-    public void change(){
+    public void changeKatana(){
         runJhonyKatanaAnimation = true;
-        jhonyIsKatana = true;
+        jhonyIsWithKatana = true;
+        setBounds(getX(), getY(), getWidth(), getHeight());
+        //MainScreen.manager.get("Musica/chest.mp3", Music.class).play();
+    }
+
+    public void changeBate(){
+        jhonyIsWithBate = true;
         setBounds(getX(), getY(), getWidth(), getHeight());
         //MainScreen.manager.get("Musica/chest.mp3", Music.class).play();
     }
@@ -256,7 +337,6 @@ public class Player extends Sprite {
         else if(pushing && isRunningRL) return State.PUSHINGLR;
         else if(isRunningRL && !isRunningUD) return State.STANDINGLR;
         else return State.STANDINGUD;
-
     }
 
     public void setPushing(boolean pushing) {

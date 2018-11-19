@@ -24,6 +24,7 @@ import mx.itesm.naughty.Box2DCreator;
 import mx.itesm.naughty.MainGame;
 import mx.itesm.naughty.Scenes.Hud;
 import mx.itesm.naughty.Sprites.Enemies.Enemy;
+import mx.itesm.naughty.Sprites.Items.Bate;
 import mx.itesm.naughty.Sprites.Items.Item;
 import mx.itesm.naughty.Sprites.Items.ItemDef;
 import mx.itesm.naughty.Sprites.Items.Katana;
@@ -203,27 +204,6 @@ public class PlayScreen extends MainScreen {
                 }
             });
         }
-
-
-
-        /*
-        if(Gdx.input.isKeyJustPressed(Input.Keys.UP)){
-            player.b2body.applyLinearImpulse(new Vector2(0, 0.3f), player.b2body.getWorldCenter(), true);
-        }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)){
-            player.b2body.applyLinearImpulse(new Vector2(0, -0.3f), player.b2body.getWorldCenter(), true);
-        }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)){
-            player.b2body.applyLinearImpulse(new Vector2(0.3f, 0f), player.b2body.getWorldCenter(), true);
-        }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT)){
-            player.b2body.applyLinearImpulse(new Vector2(-0.3f, 0f), player.b2body.getWorldCenter(), true);
-        }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.D)){
-            player.b2body.setLinearVelocity(0,0);
-        }
-        */
-
     }
 
     @Override
@@ -275,6 +255,9 @@ public class PlayScreen extends MainScreen {
             ItemDef idef = itemsToSpawn.poll();
             if(idef.type == Katana.class){
                 items.add(new Katana(this, idef.position.x, idef.position.y));
+            }
+            else if(idef.type == Bate.class){
+                items.add(new Bate(this, idef.position.x, idef.position.y));
             }
         }
     }

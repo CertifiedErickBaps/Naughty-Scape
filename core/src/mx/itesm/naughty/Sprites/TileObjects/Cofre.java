@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import mx.itesm.naughty.MainGame;
 import mx.itesm.naughty.Scenes.Hud;
 import mx.itesm.naughty.Screens.PlayScreen;
+import mx.itesm.naughty.Sprites.Items.Bate;
 import mx.itesm.naughty.Sprites.Items.ItemDef;
 import mx.itesm.naughty.Sprites.Items.Katana;
 
@@ -30,6 +31,9 @@ public class Cofre extends InteractiveTileObject {
         } else {
             if(object.getProperties().containsKey("katana")){
                 screen.spawnItem(new ItemDef(new Vector2(body.getPosition().x + 32 / MainGame.PPM, body.getPosition().y), Katana.class));
+            }
+            else if(object.getProperties().containsKey("bate")){
+                screen.spawnItem(new ItemDef(new Vector2(body.getPosition().x + 32 / MainGame.PPM, body.getPosition().y), Bate.class));
             }
             MainGame.manager.get("Musica/chest.mp3", Music.class).play();
 
