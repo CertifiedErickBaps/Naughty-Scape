@@ -215,7 +215,6 @@ public class Player extends Sprite {
     public void update(float dt){
         setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
         setRegion(getFrame(dt));
-
         // Actualiza las balas y las elimina
         for(Bala bala: balas){
             bala.update(dt);

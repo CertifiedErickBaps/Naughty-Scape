@@ -10,7 +10,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07943e0b-be71-448b-a583-4a38198da3a3" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/core/src/mx/itesm/naughty/Sprites/TileObjects/Door.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileContent/annotation-processors.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileContent/annotation-processors.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileContent/fileContent.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" afterDir="false" />
@@ -20,27 +19,9 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/assets/Mapas/Nivel1.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/android/assets/Mapas/Nivel1.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/Box2DCreator.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/Box2DCreator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/MainGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/MainGame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/Sprites/Enemies/DeathGul.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/Sprites/Enemies/DeathGul.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/Sprites/Items/Bala.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/Sprites/Items/Bala.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/Sprites/Items/Bate.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/Sprites/Items/Bate.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/Sprites/Player$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/Sprites/Player$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/Sprites/Player$State.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/Sprites/Player$State.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/Sprites/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/Sprites/Player.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/screens/PlayScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/screens/PlayScreen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/screens/WinScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/screens/WinScreen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/screens/WorldContactListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/screens/WorldContactListener.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/mx/itesm/naughty/Box2DCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/mx/itesm/naughty/Box2DCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/mx/itesm/naughty/MainGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/mx/itesm/naughty/MainGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/mx/itesm/naughty/Screens/PlayScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/mx/itesm/naughty/Screens/PlayScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/mx/itesm/naughty/Screens/WinScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/mx/itesm/naughty/Screens/WinScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/mx/itesm/naughty/Screens/WorldContactListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/mx/itesm/naughty/Screens/WorldContactListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/mx/itesm/naughty/Sprites/Enemies/DeathGul.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/mx/itesm/naughty/Sprites/Enemies/DeathGul.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/mx/itesm/naughty/Sprites/Items/Bala.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/mx/itesm/naughty/Sprites/Items/Bala.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/mx/itesm/naughty/Sprites/Items/Bate.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/mx/itesm/naughty/Sprites/Items/Bate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/mx/itesm/naughty/Sprites/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/mx/itesm/naughty/Sprites/Player.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -64,30 +45,50 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PlayScreen.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/mx/itesm/naughty/Screens/PlayScreen.java">
+      <file leaf-file-name="Bala.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/mx/itesm/naughty/Sprites/Items/Bala.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="316" column="9" selection-start-line="316" selection-start-column="9" selection-end-line="316" selection-end-column="9" />
+            <state relative-caret-position="126">
+              <caret line="65" column="30" lean-forward="true" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#LoadMap#0;class#PlayScreen#0" />
-                <element signature="method#handleInput#0;class#PlayScreen#0" />
-                <element signature="method#handleSpawningItems#0;class#PlayScreen#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Player.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PlayScreen.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/core/src/mx/itesm/naughty/Screens/PlayScreen.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="244">
+              <caret line="251" column="22" selection-start-line="251" selection-start-column="22" selection-end-line="251" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#LoadMap#0;class#PlayScreen#0" />
+                <element signature="class#3671:4491" />
+                <element signature="class#4535:5362" />
+                <element signature="method#touchUp#0;class#4535:5362" />
+                <element signature="class#5406:6234" />
+                <element signature="method#touchDown#0;class#5406:6234" />
+                <element signature="class#6279:7103" />
+                <element signature="class#7144:7652" />
+                <element signature="class#7693:8149" />
+                <element signature="method#handleSpawningItems#0;class#PlayScreen#0" />
+                <element signature="method#gameOver#0;class#PlayScreen#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/mx/itesm/naughty/Sprites/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1019">
-              <caret line="351" column="46" selection-start-line="351" selection-start-column="46" selection-end-line="351" selection-end-column="46" />
+            <state relative-caret-position="234">
+              <caret line="216" column="32" selection-start-line="216" selection-start-column="32" selection-end-line="216" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2695#8277#0" />
-                <element signature="e#8283#8668#0" />
+                <element signature="e#8807#12808#0" />
               </folding>
             </state>
           </provider>
@@ -104,7 +105,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Processor</find>
       <find>Stage</find>
       <find>cont</find>
       <find>naughty</find>
@@ -134,6 +134,7 @@
       <find>playerISDead</find>
       <find>DEAD</find>
       <find>WIN</find>
+      <find>upda</find>
     </findStrings>
   </component>
   <component name="GenerateSignedApkSettings">
@@ -3640,8 +3641,8 @@
         <option value="$PROJECT_DIR$/core/src/mx/itesm/naughty/Box2DCreator.java" />
         <option value="$PROJECT_DIR$/core/src/mx/itesm/naughty/Screens/WorldContactListener.java" />
         <option value="$PROJECT_DIR$/core/src/mx/itesm/naughty/Screens/GameOverScreen.java" />
-        <option value="$PROJECT_DIR$/core/src/mx/itesm/naughty/Screens/PlayScreen.java" />
         <option value="$PROJECT_DIR$/core/src/mx/itesm/naughty/Sprites/Player.java" />
+        <option value="$PROJECT_DIR$/core/src/mx/itesm/naughty/Screens/PlayScreen.java" />
       </list>
     </option>
   </component>
@@ -3664,6 +3665,11 @@
             <path>
               <item name="NaughtyScape" type="1abcf292:AndroidViewProjectNode" />
               <item name="android" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="NaughtyScape" type="1abcf292:AndroidViewProjectNode" />
+              <item name="android" type="feadf853:AndroidModuleNode" />
+              <item name="assets" type="edd41e36:AndroidSourceTypeNode" />
             </path>
             <path>
               <item name="NaughtyScape" type="1abcf292:AndroidViewProjectNode" />
@@ -3933,9 +3939,9 @@
       <window_info id="Build Variants" order="1" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50226927" side_tool="true" weight="0.76623374" />
-      <window_info active="true" anchor="bottom" id="Run" order="8" sideWeight="0.4969743" visible="true" weight="0.2159091" />
+      <window_info active="true" anchor="bottom" id="Run" order="8" sideWeight="0.4969743" visible="true" weight="0.084415585" />
       <window_info anchor="bottom" id="Version Control" order="3" />
-      <window_info anchor="bottom" id="Terminal" order="2" sideWeight="0.4977307" weight="0.09090909" />
+      <window_info anchor="bottom" id="Terminal" order="2" sideWeight="0.4977307" weight="0.33441558" />
       <window_info anchor="bottom" id="Logcat" order="0" weight="0.32954547" />
       <window_info id="Captures" order="7" weight="0.25" />
       <window_info id="Capture Tool" order="3" />
@@ -3977,9 +3983,9 @@
       <window_info anchor="right" id="Assistant" order="8" weight="0.32980332" />
       <window_info anchor="bottom" id="Logcat" order="0" weight="0.32954547" />
       <window_info anchor="bottom" id="Version Control" order="3" />
-      <window_info anchor="bottom" id="Terminal" order="2" sideWeight="0.4977307" weight="0.09090909" />
+      <window_info anchor="bottom" id="Terminal" order="2" sideWeight="0.4977307" weight="0.33441558" />
       <window_info anchor="right" id="Gradle" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="4" visible="true" weight="0.17246597" />
+      <window_info content_ui="combo" id="Project" order="4" visible="true" weight="0.17246597" />
       <window_info anchor="bottom" id="Message" order="6" />
       <window_info anchor="bottom" id="TODO" order="12" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
@@ -4176,16 +4182,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/mx/itesm/naughty/Sprites/Items/Bala.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="56" column="33" selection-start-line="56" selection-start-column="33" selection-end-line="56" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/mx/itesm/naughty/Sprites/Items/Bate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="424">
@@ -4361,27 +4357,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/mx/itesm/naughty/Screens/PlayScreen.java">
+    <entry file="file://$PROJECT_DIR$/core/src/mx/itesm/naughty/Sprites/Items/Bala.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="316" column="9" selection-start-line="316" selection-start-column="9" selection-end-line="316" selection-end-column="9" />
+        <state relative-caret-position="126">
+          <caret line="65" column="30" lean-forward="true" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#LoadMap#0;class#PlayScreen#0" />
-            <element signature="method#handleInput#0;class#PlayScreen#0" />
-            <element signature="method#handleSpawningItems#0;class#PlayScreen#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/mx/itesm/naughty/Sprites/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1019">
-          <caret line="351" column="46" selection-start-line="351" selection-start-column="46" selection-end-line="351" selection-end-column="46" />
+        <state relative-caret-position="234">
+          <caret line="216" column="32" selection-start-line="216" selection-start-column="32" selection-end-line="216" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2695#8277#0" />
-            <element signature="e#8283#8668#0" />
+            <element signature="e#8807#12808#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/mx/itesm/naughty/Screens/PlayScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="251" column="22" selection-start-line="251" selection-start-column="22" selection-end-line="251" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#LoadMap#0;class#PlayScreen#0" />
+            <element signature="class#3671:4491" />
+            <element signature="class#4535:5362" />
+            <element signature="method#touchUp#0;class#4535:5362" />
+            <element signature="class#5406:6234" />
+            <element signature="method#touchDown#0;class#5406:6234" />
+            <element signature="class#6279:7103" />
+            <element signature="class#7144:7652" />
+            <element signature="class#7693:8149" />
+            <element signature="method#handleSpawningItems#0;class#PlayScreen#0" />
+            <element signature="method#gameOver#0;class#PlayScreen#0" />
           </folding>
         </state>
       </provider>
