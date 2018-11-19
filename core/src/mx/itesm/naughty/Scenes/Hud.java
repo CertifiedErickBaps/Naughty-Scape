@@ -124,6 +124,7 @@ public class Hud implements Disposable {
         // Boton down
         btnDown = new Button("Botones/btnDown.png", "Botones/btnDownPress.png", 85, 5);
 
+
         stage.addActor(btnA.getImageButton());
         stage.addActor(btnPausa.getImageButton());
         stage.addActor(btnB.getImageButton());

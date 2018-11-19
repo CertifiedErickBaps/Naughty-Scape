@@ -58,11 +58,11 @@ class WorldContactListener implements ContactListener {
                 break;
 
             case MainGame.ITEM_BIT | MainGame.PLAYER_BIT:
-                if(fixA.getFilterData().categoryBits == MainGame.ITEM_BIT){
-                    ((Item)fixA.getUserData()).use((Player) fixB.getUserData());
+                if(fixB.getFilterData().categoryBits == MainGame.ITEM_BIT){
+                    ((Item)fixB.getUserData()).use((Player) fixA.getUserData());
                 }
                 else {
-                    ((Item)fixB.getUserData()).use((Player) fixA.getUserData());
+                    ((Item)fixA.getUserData()).use((Player) fixB.getUserData());
                 }
                 break;
 

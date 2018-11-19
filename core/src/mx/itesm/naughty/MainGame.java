@@ -3,13 +3,9 @@ package mx.itesm.naughty;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
-import mx.itesm.naughty.Screens.MenuScreen;
-import mx.itesm.naughty.Screens.PlayScreen;
+import mx.itesm.naughty.Pantallas.MenuScreen;
 
 public class MainGame extends Game {
 	public static final float ANCHO_PANTALLA = 1280;

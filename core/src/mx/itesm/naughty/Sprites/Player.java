@@ -35,30 +35,37 @@ public class Player extends Sprite {
 
     private Animation jhonyRunRL;
     private Animation jhonyRunUD;
-    private Animation jhonyPushUD;
-    private Animation jhonyPushRL;
     private Animation jhonyRunRLKatana;
     private Animation jhonyRunUDKatana;
     private Animation jhonyRunRLBate;
     private Animation jhonyRunUDBate;
+
+    private Animation jhonyPushUD;
+    private Animation jhonyPushRL;
     private Animation jhonyPushKatanaUD;
     private Animation jhonyPushKatanaRL;
     private Animation jhonyPushBateUD;
     private Animation jhonyPushBateRL;
-    private Animation jhonyChanging;
+
+    private Animation jhonyChangingKatana;
+    private Animation jhonyChangingBate;
+
     private Animation jhonyDead;
 
 
     private float stateTimer;
     private boolean runningRight;
+    private boolean runningUp;
     private boolean isRunningRL;
     private boolean isRunningUD;
-    private boolean runningUp;
+
     private boolean pushing;
 
     private boolean jhonyIsWithKatana;
     private boolean jhonyIsWithBate;
     private boolean runJhonyKatanaAnimation;
+    private boolean runJhonyBateAnimation;
+
     private boolean playerIsDead;
 
     private Array<Bala> balas;
@@ -172,12 +179,20 @@ public class Player extends Sprite {
         jhonyPushBateRL = new Animation(0.1f, frames);
         frames.clear();
 
-        //Animation changing
+        //Animation changing katana
         frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_walk_katana"), 0, 0, 90, 90));
         frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_walkUpDown"), 0, 0, 90, 90));
         frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_walk_katana"), 0, 0, 90, 90));
         frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_walkUpDown"), 0, 0, 90, 90));
-        jhonyChanging = new Animation(0.2f, frames);
+        jhonyChangingKatana = new Animation(0.2f, frames);
+        frames.clear();
+
+        //Animation changing bate
+        frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_walk_bate"), 0, 0, 90, 90));
+        frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_walkUpDown"), 0, 0, 90, 90));
+        frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_walk_bate"), 0, 0, 90, 90));
+        frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_walkUpDown"), 0, 0, 90, 90));
+        jhonyChangingBate = new Animation(0.2f, frames);
         frames.clear();
 
         jhonyStandRL = new TextureRegion(screen.getAtlas().findRegion("jhony_standing_lado"), 0,5,90,90);
@@ -198,12 +213,11 @@ public class Player extends Sprite {
 
     public void update(float dt){
         setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
-
         setRegion(getFrame(dt));
 
-
+        // Actualiza las balas y las elimina
         for(Bala bala: balas){
-            bala.update(dt, stateTimer);
+            bala.update(dt);
             if(bala.isDestroyed()){
                 balas.removeValue(bala, true);
             }
@@ -225,9 +239,14 @@ public class Player extends Sprite {
                 region = (TextureRegion) jhonyDead.getKeyFrame(stateTimer);
                 break;
             case KATANA:
-                region = (TextureRegion) jhonyChanging.getKeyFrame(stateTimer);
-                if(jhonyChanging.isAnimationFinished(stateTimer))
+                region = (TextureRegion) jhonyChangingKatana.getKeyFrame(stateTimer);
+                if(jhonyChangingKatana.isAnimationFinished(stateTimer))
                     runJhonyKatanaAnimation = false;
+                break;
+            case BATE:
+                region = (TextureRegion) jhonyChangingBate.getKeyFrame(stateTimer);
+                if(jhonyChangingBate.isAnimationFinished(stateTimer))
+                    runJhonyBateAnimation = false;
                 break;
             case RUNNINGLR:
                 if(jhonyIsWithKatana){
@@ -311,11 +330,14 @@ public class Player extends Sprite {
     public void changeKatana(){
         runJhonyKatanaAnimation = true;
         jhonyIsWithKatana = true;
+        //jhonyIsWithBate = false;
         setBounds(getX(), getY(), getWidth(), getHeight());
         //MainScreen.manager.get("Musica/chest.mp3", Music.class).play();
     }
 
     public void changeBate(){
+        runJhonyBateAnimation = true;
+        //jhonyIsWithKatana = false;
         jhonyIsWithBate = true;
         setBounds(getX(), getY(), getWidth(), getHeight());
         //MainScreen.manager.get("Musica/chest.mp3", Music.class).play();
@@ -324,6 +346,7 @@ public class Player extends Sprite {
     private State getState() {
         if(playerIsDead) return State.DEAD;
         else if(runJhonyKatanaAnimation) return State.KATANA;
+        else if(runJhonyBateAnimation) return State.BATE;
         else if(b2body.getLinearVelocity().y != 0) {
             isRunningUD = true;
             isRunningRL = false;
@@ -360,11 +383,8 @@ public class Player extends Sprite {
                 | MainGame.ENEMY_BIT
                 | MainGame.OBJECT_BIT
                 | MainGame.ITEM_BIT;
-
-
         fdef.shape = shape;
         b2body.createFixture(fdef).setUserData(this);
-
     }
 
     public void redefineColision(Vector2 vector1, Vector2 vector2){
@@ -375,8 +395,6 @@ public class Player extends Sprite {
         colisionador.shape = up;
         colisionador.isSensor = true;
         b2body.createFixture(colisionador).setUserData("up");
-
-
     }
 
     public void hit(){

@@ -1,4 +1,4 @@
-package mx.itesm.naughty.Screens;
+package mx.itesm.naughty.Pantallas;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;

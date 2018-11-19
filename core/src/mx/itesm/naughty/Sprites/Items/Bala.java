@@ -19,7 +19,7 @@ public class Bala extends Sprite {
     World world;
     Array<TextureRegion> frames;
     Animation fireAnimation;
-    //float stateTime;
+    float stateTime;
     boolean destroyed;
     boolean setToDestroy;
     boolean fireRight;
@@ -62,7 +62,7 @@ public class Bala extends Sprite {
         b2body.setLinearVelocity(new Vector2(fireRight ? 2 : -2, 0));
     }
 
-    public void update(float dt, float stateTime){
+    public void update(float dt){
         stateTime += dt;
         setRegion((TextureRegion) fireAnimation.getKeyFrame(stateTime, true));
         setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
