@@ -88,7 +88,7 @@ public class PlayScreen extends MainScreen {
     public void update(float dt){
         world.step(1/ 60f, 6, 2);
         handleSpawningItems();
-        player.update(dt,stateTimer);
+        player.update(dt);
         for(Enemy enemy: box2DCreator.getDeathGul()){
             enemy.update(dt);
             if(enemy.getX() < player.getX() + 1f/ PPM) {

@@ -82,12 +82,12 @@ public class Player extends Sprite {
         for(int i = 0; i < 5; i++){
             frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_golpeado"), i * 89, 0, 90, 90));
         }
-        jhonyDead = new Animation(0.1f, frames);
+        jhonyDead = new Animation(0.2f, frames);
         frames.clear();
 
         //Animation walk right and down
         for(int i = 0; i < 5; i++){
-            frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_walkRight"), i * 90, 0, 90, 90));
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("Jhony_walkRight"), i * 89, 0, 90, 90));
         }
         jhonyRunRL = new Animation(0.1f, frames);
         frames.clear();
@@ -196,10 +196,11 @@ public class Player extends Sprite {
         balas = new Array<Bala>();
     }
 
-    public void update(float dt, float stateTimer){
+    public void update(float dt){
         setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
 
         setRegion(getFrame(dt));
+
 
         for(Bala bala: balas){
             bala.update(dt, stateTimer);
