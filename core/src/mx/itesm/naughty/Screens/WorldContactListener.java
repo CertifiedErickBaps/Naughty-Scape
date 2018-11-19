@@ -44,6 +44,14 @@ class WorldContactListener implements ContactListener {
                     ((Player)fixB.getUserData()).hit();
                 }
                 break;
+            case MainGame.PLAYER_BIT | MainGame.DOOR_BIT:
+                if(fixB.getFilterData().categoryBits == MainGame.PLAYER_BIT){
+                    ((Player)fixB.getUserData()).win();
+                }
+                else {
+                    ((Player)fixA.getUserData()).win();
+                }
+                break;
             case MainGame.ENEMY_BIT | MainGame.OBJECT_BIT:
                 if(fixA.getFilterData().categoryBits == MainGame.ENEMY_BIT){
                     ((Enemy)fixA.getUserData()).revereVelocity(true, false);
@@ -84,9 +92,4 @@ class WorldContactListener implements ContactListener {
     public void postSolve(Contact contact, ContactImpulse impulse) {
 
     }
-
-    // Crear bala en personaje
-    // Posiciones de x y y
-    // ajustes del personaje-arma posicion
-    // cambiar el sprite de
 }

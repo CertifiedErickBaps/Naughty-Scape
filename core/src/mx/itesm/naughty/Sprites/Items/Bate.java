@@ -26,7 +26,6 @@ public class Bate extends Item {
         shape.setRadius(15 / MainGame.PPM);
         fdef.filter.categoryBits = MainGame.ITEM_BIT;
         fdef.filter.maskBits = MainGame.PLAYER_BIT | MainGame.OBJECT_BIT | MainGame.GROUND_BIT | MainGame.ARMA_BIT | MainGame.COFRE_BIT;
-
         fdef.shape = shape;
         fdef.restitution = 0.9f;
         body.createFixture(fdef).setUserData(this);

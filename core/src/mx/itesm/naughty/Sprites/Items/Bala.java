@@ -53,7 +53,8 @@ public class Bala extends Sprite {
                 MainGame.COFRE_BIT |
                 MainGame.OBJECT_BIT |
                 MainGame.GROUND_BIT |
-                MainGame.ENEMY_BIT;
+                MainGame.ENEMY_BIT |
+                MainGame.DOOR_BIT;
 
         fdef.shape = shape;
         fdef.restitution = 1;

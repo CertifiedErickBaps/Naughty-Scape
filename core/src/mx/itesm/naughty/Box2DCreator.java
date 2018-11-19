@@ -16,6 +16,7 @@ import mx.itesm.naughty.Screens.PlayScreen;
 import mx.itesm.naughty.Sprites.TileObjects.Arma;
 import mx.itesm.naughty.Sprites.TileObjects.Cofre;
 import mx.itesm.naughty.Sprites.Enemies.DeathGul;
+import mx.itesm.naughty.Sprites.TileObjects.Door;
 
 public class Box2DCreator {
     private Array<DeathGul> deathGul;
@@ -49,6 +50,10 @@ public class Box2DCreator {
         for(MapObject object: map.getLayers().get(6).getObjects().getByType(RectangleMapObject.class)) {
             //Rectangle rect = ((RectangleMapObject) object).getRectangle();
             new Cofre(screen, object);
+        }
+
+        for(MapObject object: map.getLayers().get(8).getObjects().getByType(RectangleMapObject.class)){
+            new Door(screen, object);
         }
 
         // Create deathguls

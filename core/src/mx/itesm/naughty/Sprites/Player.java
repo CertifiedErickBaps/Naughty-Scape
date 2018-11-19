@@ -20,7 +20,7 @@ import mx.itesm.naughty.Screens.PlayScreen;
 import mx.itesm.naughty.Sprites.Items.Bala;
 
 public class Player extends Sprite {
-    public enum State { UP, STANDINGUD, STANDINGLR, RUNNINGLR, PUSHINGUD, PUSHINGLR, KATANA, BATE, DEAD}
+    public enum State { UP, STANDINGUD, STANDINGLR, RUNNINGLR, PUSHINGUD, PUSHINGLR, KATANA, BATE, DEAD, WIN}
 
     public State currentState;
     public State previousState;
@@ -67,6 +67,7 @@ public class Player extends Sprite {
     private boolean runJhonyBateAnimation;
 
     private boolean playerIsDead;
+    private boolean playerIsWin;
 
     private Array<Bala> balas;
     private PlayScreen screen;
@@ -238,6 +239,9 @@ public class Player extends Sprite {
             case DEAD:
                 region = (TextureRegion) jhonyDead.getKeyFrame(stateTimer);
                 break;
+            case WIN:
+                region = jhonyStandUD;
+                break;
             case KATANA:
                 region = (TextureRegion) jhonyChangingKatana.getKeyFrame(stateTimer);
                 if(jhonyChangingKatana.isAnimationFinished(stateTimer))
@@ -330,14 +334,14 @@ public class Player extends Sprite {
     public void changeKatana(){
         runJhonyKatanaAnimation = true;
         jhonyIsWithKatana = true;
-        //jhonyIsWithBate = false;
+        jhonyIsWithBate = false;
         setBounds(getX(), getY(), getWidth(), getHeight());
         //MainScreen.manager.get("Musica/chest.mp3", Music.class).play();
     }
 
     public void changeBate(){
         runJhonyBateAnimation = true;
-        //jhonyIsWithKatana = false;
+        jhonyIsWithKatana = false;
         jhonyIsWithBate = true;
         setBounds(getX(), getY(), getWidth(), getHeight());
         //MainScreen.manager.get("Musica/chest.mp3", Music.class).play();
@@ -345,6 +349,7 @@ public class Player extends Sprite {
 
     private State getState() {
         if(playerIsDead) return State.DEAD;
+        else if(playerIsWin) return State.WIN;
         else if(runJhonyKatanaAnimation) return State.KATANA;
         else if(runJhonyBateAnimation) return State.BATE;
         else if(b2body.getLinearVelocity().y != 0) {
@@ -382,7 +387,8 @@ public class Player extends Sprite {
                 | MainGame.COFRE_BIT
                 | MainGame.ENEMY_BIT
                 | MainGame.OBJECT_BIT
-                | MainGame.ITEM_BIT;
+                | MainGame.ITEM_BIT
+                | MainGame.DOOR_BIT;
         fdef.shape = shape;
         b2body.createFixture(fdef).setUserData(this);
     }
@@ -403,7 +409,15 @@ public class Player extends Sprite {
         filter.maskBits = MainGame.NOTHING_BIT;
         for(Fixture fixture: b2body.getFixtureList())
             fixture.setFilterData(filter);
-        b2body.setLinearVelocity(0, 0);
+        //b2body.setLinearVelocity(0, 0);
+    }
+
+    public void win(){
+        playerIsWin = true;
+        Filter filter = new Filter();
+        filter.maskBits = MainGame.NOTHING_BIT;
+        for(Fixture fixture: b2body.getFixtureList())
+            fixture.setFilterData(filter);
     }
 
     public void fire(){

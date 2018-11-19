@@ -271,6 +271,13 @@ public class PlayScreen extends MainScreen {
         return false;
     }
 
+    public boolean gameWin(){
+        if(player.currentState == Player.State.WIN && player.getStateTimer() > 3){
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public void render(float delta) {
         //sp.update(delta);
@@ -305,6 +312,8 @@ public class PlayScreen extends MainScreen {
         if(gameOver()){
             game.setScreen(new GameOverScreen(game));
             dispose();
+        } else if(gameWin()){
+            game.setScreen(new WinScreen(game));
         }
 
     }

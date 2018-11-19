@@ -64,7 +64,8 @@ public class DeathGul extends Enemy {
                 | MainGame.OBJECT_BIT
                 | MainGame.ENEMY_BIT
                 | MainGame.PLAYER_BIT
-                | MainGame.PLAYER_HEAD_BIT;
+                | MainGame.PLAYER_HEAD_BIT
+                | MainGame.DOOR_BIT;
         fdef.shape = shape;
         fdef.restitution = 0.9f;
         b2body.createFixture(fdef).setUserData(this);
