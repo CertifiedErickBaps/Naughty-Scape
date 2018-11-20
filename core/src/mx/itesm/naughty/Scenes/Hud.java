@@ -3,10 +3,13 @@ package mx.itesm.naughty.Scenes;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -19,6 +22,7 @@ import mx.itesm.naughty.Screens.Button;
 
 import static mx.itesm.naughty.MainGame.ALTO_JUEGO;
 import static mx.itesm.naughty.MainGame.ANCHO_JUEGO;
+import static mx.itesm.naughty.MainGame.PPM;
 
 public class Hud implements Disposable {
     // Texto contadores
@@ -46,7 +50,6 @@ public class Hud implements Disposable {
     private Button btnPlay;
     private Button btnExit;
     private Button btnSound;
-    private boolean pause;
 
     public Hud(SpriteBatch sb){
         worldTimer = 000;
@@ -95,22 +98,13 @@ public class Hud implements Disposable {
 
     public void createButtons(){
         // Boton A
-        btnA = new Button("Botones/btnA.png", "Botones/APres.png", 0.75f*ANCHO_JUEGO, 10);
+        btnA = new Button("Botones/btnA.png", "Botones/aPres.png", 0.75f*ANCHO_JUEGO, 10);
 
         // Botón pausa
-        btnPausa = new Button("Botones/Pause.png", "Botones/PausaPres.png", ANCHO_JUEGO*0.80f, ALTO_JUEGO*0.83f);
-        btnPausa.getImageButton().addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                if(pause){
-                    createButtonsPause();
-                }
-            }
-        });
+        btnPausa = new Button("Botones/pause.png", "Botones/pausaPres.png", ANCHO_JUEGO*0.80f, ALTO_JUEGO*0.83f);
 
         // Boton B
-        btnB = new Button("Botones/btnB.png", "Botones/BPres.png", 0.89f*ANCHO_JUEGO, 30);
+        btnB = new Button("Botones/btnB.png", "Botones/bPres.png", 0.89f*ANCHO_JUEGO, 30);
 
         // Boton right
         btnRight = new Button("Botones/btnRight.png", "Botones/btnRightPress.png", 150, 65);
@@ -134,8 +128,8 @@ public class Hud implements Disposable {
         stage.addActor(btnDown.getImageButton());
     }
 
-    private void createButtonsPause() {
-        btnPlay = new Button("Botones/Play.png", "Botones/PlayPres.png", ANCHO_JUEGO / 2, ALTO_JUEGO / 2);
+    public void createButtonsPause() {
+        btnPlay = new Button("Botones/play.png", "Botones/playPres.png", ANCHO_JUEGO*0.60f, ALTO_JUEGO*0.83f);
         btnPlay.getImageButton().addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -145,6 +139,10 @@ public class Hud implements Disposable {
         });
     }
 
+    public void createPause(){
+        // Crear rectángulo transparente
+        btnA.getImageButton().isDisabled();
+    }
 
     public ImageButton getBtnA() {
         return btnA.getImageButton();

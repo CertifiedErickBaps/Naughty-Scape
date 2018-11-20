@@ -40,9 +40,9 @@ public class MainGame extends Game {
 		batch = new SpriteBatch();
 		manager = new AssetManager();
 		manager.load("Musica/chest.mp3", Music.class);
-		manager.load("Musica/menuSound.mp3", Music.class);
-		manager.load("Musica/nivel1.mp3", Music.class);
-		manager.load("Musica/nivel2.mp3", Music.class);
+		manager.load("Musica/menu.mp3", Music.class);
+		manager.load("Musica/niveluno.mp3", Music.class);
+		manager.load("Musica/niveldos.mp3", Music.class);
 		manager.load("Musica/punch.mp3", Music.class);
 		manager.load("Musica/error.mp3", Music.class);
 		manager.finishLoading();

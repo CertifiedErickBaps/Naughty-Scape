@@ -6,6 +6,8 @@ import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -14,6 +16,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -61,6 +64,10 @@ public class PlayScreen extends MainScreen {
 
     //Sound effects
     private Music music;
+
+
+
+    private boolean pause;
 
     public PlayScreen(MainGame game){
         this.game = game;
@@ -203,6 +210,21 @@ public class PlayScreen extends MainScreen {
                     super.touchUp(event, x, y, pointer, button);
                 }
             });
+            hud.getBtnPausa().addListener(new ClickListener(){
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    super.clicked(event, x, y);
+                    if(hud.getBtnPausa().isChecked()){
+                        setPause(true);
+                        hud.getBtnPausa().setChecked(true);
+
+                    } else{
+                        setPause(false);
+                        hud.getBtnPausa().setChecked(false);
+
+                    }
+                }
+            });
         }
 
 
@@ -219,7 +241,7 @@ public class PlayScreen extends MainScreen {
         */
         stateTimer = 0;
         estado = EstadoJuego.JUGANDO;
-        atlas = new TextureAtlas("naughtyScape.pack");
+        atlas = new TextureAtlas("juegofinal.pack");
 
         gameCam = new OrthographicCamera();
         gamePort = new StretchViewport(ANCHO_JUEGO / PPM, ALTO_JUEGO / PPM, gameCam);
@@ -237,9 +259,9 @@ public class PlayScreen extends MainScreen {
 
         world.setContactListener(new WorldContactListener());
 
-        music = MainGame.manager.get("Musica/nivel1.mp3", Music.class);
+        music = MainGame.manager.get("Musica/niveluno.mp3", Music.class);
         music.setLooping(true);
-        //music.play();
+        music.play();
         items = new Array<Item>();
         itemsToSpawn = new LinkedBlockingDeque<ItemDef>();
 
@@ -280,41 +302,58 @@ public class PlayScreen extends MainScreen {
 
     @Override
     public void render(float delta) {
+        if(!pause){
+            Gdx.gl.glClearColor(0,0,0,1);
+            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+            //update(delta);
+
+            renderer.render();
+            b2dr.render(world,gameCam.combined);
+
+            MainGame.batch.setProjectionMatrix(gameCam.combined);
+            MainGame.batch.begin();
+            update(delta);
+            player.draw(MainGame.batch);
+            //sp.draw(game.batch);
+            for(Enemy enemy: box2DCreator.getDeathGul()){
+                enemy.draw(MainGame.batch);
+            }
+            for(Item item: items){
+                item.draw(MainGame.batch);
+            }
+            MainGame.batch.end();
+            MainGame.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+
+            if(estado == EstadoJuego.PAUSADO){
+                //
+            }
+            hud.stage.draw();
+
+            if(gameOver()){
+                game.setScreen(new GameOverScreen(game));
+                dispose();
+            } else if(gameWin()){
+                game.setScreen(new WinScreen(game));
+                dispose();
+            }
+        }
+
+        if(isPause()){
+            Gdx.app.log("Pausa" ,"esta en pausa");
+        } else {
+            Gdx.app.log("Pausa" ,"ya no");
+        }
         //sp.update(delta);
 
-        Gdx.gl.glClearColor(0,0,0,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        //update(delta);
 
-        renderer.render();
-        b2dr.render(world,gameCam.combined);
+    }
 
-        MainGame.batch.setProjectionMatrix(gameCam.combined);
-        MainGame.batch.begin();
-        update(delta);
-        player.draw(MainGame.batch);
-        //sp.draw(game.batch);
-        for(Enemy enemy: box2DCreator.getDeathGul()){
-            enemy.draw(MainGame.batch);
-        }
-        for(Item item: items){
-            item.draw(MainGame.batch);
-        }
-        MainGame.batch.end();
-        MainGame.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+    public boolean isPause() {
+        return pause;
+    }
 
-        if(estado == EstadoJuego.PAUSADO){
-            //
-        }
-        hud.stage.draw();
-
-        if(gameOver()){
-            game.setScreen(new GameOverScreen(game));
-            dispose();
-        } else if(gameWin()){
-            game.setScreen(new WinScreen(game));
-            dispose();
-        }
+    public void setPause(boolean pause) {
+        this.pause = pause;
     }
 
     @Override
@@ -324,7 +363,6 @@ public class PlayScreen extends MainScreen {
 
     @Override
     public void pause() {
-
     }
 
     @Override

@@ -64,6 +64,15 @@ public class Player extends Sprite {
     private boolean runningRight;
     private boolean runningUp;
     private boolean isRunningRL;
+
+    public boolean isRunningRL() {
+        return isRunningRL;
+    }
+
+    public boolean isRunningUD() {
+        return isRunningUD;
+    }
+
     private boolean isRunningUD;
 
     private boolean pushing;

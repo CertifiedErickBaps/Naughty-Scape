@@ -27,8 +27,8 @@ public class GameOverScreen extends MainScreen {
 
     private void crearEscena(){
         escenaAcerca=new Stage(gamePort);
-        TextureRegionDrawable trdRegresar_up=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/MenuBtn.png")));
-        TextureRegionDrawable trdRegresar_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/MenuBtnPres.png")));
+        TextureRegionDrawable trdRegresar_up=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/menuBtn.png")));
+        TextureRegionDrawable trdRegresar_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/menuBtnPres.png")));
         ImageButton btnReg=new ImageButton(trdRegresar_up,trdRegresar_down);
         btnReg.setPosition((MainGame.ANCHO_PANTALLA / 2 - btnReg.getWidth() / 2),(MainGame.ALTO_PANTALLA* 0.2f- btnReg.getHeight() / 2) );
         btnReg.addListener(new ClickListener(){
@@ -44,7 +44,7 @@ public class GameOverScreen extends MainScreen {
     @Override
     public void show() {
         crearEscena();
-        textFondo=new Texture("GameOver.jpg");
+        textFondo=new Texture("gameOver.jpg");
         Gdx.input.setInputProcessor(escenaAcerca);
     }
 

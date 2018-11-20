@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.Array;
 
 import mx.itesm.naughty.MainGame;
 import mx.itesm.naughty.Screens.PlayScreen;
+import mx.itesm.naughty.Sprites.Player;
 
 public class Bala extends Sprite {
     PlayScreen screen;
@@ -23,15 +24,19 @@ public class Bala extends Sprite {
     boolean destroyed;
     boolean setToDestroy;
     boolean fireRight;
+    boolean fireUp;
+
+    private Player player;
 
     Body b2body;
     public Bala(PlayScreen screen, float x, float y, boolean fireRight){
         this.fireRight = fireRight;
+        //this.fireUp = fireUp;
         this.screen = screen;
         this.world = screen.getWorld();
         frames = new Array<TextureRegion>();
 
-        frames.add(new TextureRegion(screen.getAtlas().findRegion("corazon"), 0,0,90,90));
+        frames.add(new TextureRegion(screen.getAtlas().findRegion("Bala"), 12,0,32,32));
         fireAnimation = new Animation(0.2f, frames);
         setRegion((TextureRegion) fireAnimation.getKeyFrame(0));
         setBounds(x, y, 6 / MainGame.PPM, 6 / MainGame.PPM);
@@ -41,6 +46,8 @@ public class Bala extends Sprite {
     public void defineFireBall(){
         BodyDef bdef = new BodyDef();
         bdef.position.set(fireRight ? getX() + 12 /MainGame.PPM : getX() - 12 /MainGame.PPM, getY());
+        //bdef.position.set(getX(), fireUp ? getY() + 12 / MainGame.PPM : getY() - 12 / MainGame.PPM);
+
         bdef.type = BodyDef.BodyType.DynamicBody;
         if(!world.isLocked())
             b2body = world.createBody(bdef);
@@ -60,7 +67,11 @@ public class Bala extends Sprite {
         fdef.restitution = 1;
         fdef.friction = 0;
         b2body.createFixture(fdef).setUserData(this);
+
         b2body.setLinearVelocity(new Vector2(fireRight ? 2 : -2, 0));
+        //b2body.setLinearVelocity(new Vector2(0, fireUp ? 2: -2));
+
+
     }
 
     public void update(float dt){
@@ -75,6 +86,8 @@ public class Bala extends Sprite {
             b2body.setLinearVelocity(b2body.getLinearVelocity().x, 2f);
         if((fireRight && b2body.getLinearVelocity().x < 0) || (!fireRight && b2body.getLinearVelocity().x > 0))
             setToDestroy();
+        //else if((fireUp && b2body.getLinearVelocity().y < 0) || (!fireUp && b2body.getLinearVelocity().y > 0))
+        //   setToDestroy();
     }
 
     public void setToDestroy(){
