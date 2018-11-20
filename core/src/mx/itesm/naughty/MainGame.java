@@ -5,7 +5,12 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import mx.itesm.naughty.Pantallas.LoadingScreen;
+import mx.itesm.naughty.Pantallas.MainScreen;
 import mx.itesm.naughty.Pantallas.MenuScreen;
+import mx.itesm.naughty.Screens.GameOverScreen;
+import mx.itesm.naughty.Screens.PlayScreen;
+import mx.itesm.naughty.Screens.WinScreen;
 
 public class MainGame extends Game {
 	public static final float ANCHO_PANTALLA = 1280;
@@ -28,6 +33,7 @@ public class MainGame extends Game {
 
 	public static SpriteBatch batch;
 	public static AssetManager manager;
+	public MainScreen menuScreen, pantallaAcerca, pantallaAjustes, pantallaDificultad, gameOverScreen, playScreen, winScreen;
 
 	@Override
 	public void create () {
@@ -40,7 +46,19 @@ public class MainGame extends Game {
 		manager.load("Musica/punch.mp3", Music.class);
 		manager.load("Musica/error.mp3", Music.class);
 		manager.finishLoading();
-		setScreen(new MenuScreen(this));
+		setScreen(new LoadingScreen(this));
+	}
+
+	public void finishLoading(){
+		menuScreen = new MenuScreen(this);
+		gameOverScreen = new GameOverScreen(this);
+		playScreen = new PlayScreen(this);
+		winScreen = new WinScreen(this);
+		setScreen(menuScreen);
+	}
+
+	public AssetManager getManager(){
+		return manager;
 	}
 
 	@Override

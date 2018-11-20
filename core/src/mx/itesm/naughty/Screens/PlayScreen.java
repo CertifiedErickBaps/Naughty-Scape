@@ -331,7 +331,7 @@ public class PlayScreen extends MainScreen {
 
     @Override
     public void hide() {
-
+        box2DCreator.detach();
     }
 
     @Override

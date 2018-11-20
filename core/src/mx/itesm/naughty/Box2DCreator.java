@@ -6,6 +6,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -20,13 +21,15 @@ import mx.itesm.naughty.Sprites.TileObjects.Door;
 
 public class Box2DCreator {
     private Array<DeathGul> deathGul;
+    private Body body;
+    private World world;
+    private Fixture fixture;
     public Box2DCreator(PlayScreen screen){
-        World world = screen.getWorld();
+        this.world = screen.getWorld();
         TiledMap map = screen.getMap();
         BodyDef bdef = new BodyDef();
         PolygonShape shape  = new PolygonShape();
         FixtureDef fdef = new FixtureDef();
-        Body body;
 
         // Create ground bodies/fixtures
         for(MapObject object: map.getLayers().get(4).getObjects().getByType(RectangleMapObject.class)) {
@@ -38,7 +41,9 @@ public class Box2DCreator {
             shape.setAsBox((rect.getWidth() / 2) / MainGame.PPM, (rect.getHeight() / 2) / MainGame.PPM);
             fdef.shape = shape;
             fdef.filter.categoryBits = MainGame.OBJECT_BIT;
-            body.createFixture(fdef);
+            fixture = body.createFixture(fdef);
+            //body.destroyFixture(fixture);
+            //world.destroyBody(body);
         }
 
         // Create armas bodies/fixtures
@@ -62,6 +67,11 @@ public class Box2DCreator {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
             deathGul.add(new DeathGul(screen, rect.getX() / MainGame.PPM, rect.getY() / MainGame.PPM));
         }
+    }
+
+    public void detach(){
+        body.destroyFixture(fixture);
+        world.destroyBody(body);
     }
 
     public Array<DeathGul> getDeathGul() {

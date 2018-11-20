@@ -14,11 +14,12 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import mx.itesm.naughty.MainGame;
+import mx.itesm.naughty.Pantallas.MainScreen;
 
 import static mx.itesm.naughty.MainGame.ALTO_PANTALLA;
 import static mx.itesm.naughty.MainGame.ANCHO_PANTALLA;
 
-public class WinScreen implements Screen {
+public class WinScreen extends MainScreen {
 
     private Viewport viewport;
     private Stage stage;
