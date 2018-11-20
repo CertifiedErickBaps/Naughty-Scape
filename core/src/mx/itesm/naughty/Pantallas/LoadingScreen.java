@@ -2,17 +2,9 @@ package mx.itesm.naughty.Pantallas;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 import mx.itesm.naughty.MainGame;
-
-import static mx.itesm.naughty.MainGame.ALTO_PANTALLA;
-import static mx.itesm.naughty.MainGame.ANCHO_PANTALLA;
 
 public class LoadingScreen extends MainScreen{
     private MainGame game;
