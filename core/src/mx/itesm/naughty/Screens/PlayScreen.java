@@ -188,7 +188,7 @@ public class PlayScreen extends MainScreen {
             hud.getBtnA().addListener(new ClickListener(){
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                    if(Player.State.PISTOLA == player.currentState){
+                    if(player.isJhonyIsWithPistola()){
                         player.fire();
                     } else {
                         player.setPushing(true);
@@ -205,7 +205,7 @@ public class PlayScreen extends MainScreen {
             hud.getBtnB().addListener(new ClickListener(){
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                    player.fire();
+                    player.changeDefault();
                     return super.touchDown(event, x, y, pointer, button);
                 }
 

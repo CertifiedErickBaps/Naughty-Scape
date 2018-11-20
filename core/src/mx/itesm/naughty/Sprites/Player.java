@@ -79,6 +79,8 @@ public class Player extends Sprite {
 
     private boolean jhonyIsWithKatana;
     private boolean jhonyIsWithBate;
+
+
     private boolean jhonyIsWithPistola;
     private boolean runJhonyKatanaAnimation;
     private boolean runJhonyBateAnimation;
@@ -89,6 +91,7 @@ public class Player extends Sprite {
 
     private Array<Bala> balas;
     private PlayScreen screen;
+
 
     public Player(PlayScreen screen){
         this.world = screen.getWorld();
@@ -403,6 +406,12 @@ public class Player extends Sprite {
 
     }
 
+    public void changeDefault(){
+        jhonyIsWithBate = false;
+        jhonyIsWithPistola = false;
+        jhonyIsWithKatana = false;
+    }
+
     public void changeKatana(){
         runJhonyKatanaAnimation = true;
         jhonyIsWithBate = false;
@@ -508,6 +517,10 @@ public class Player extends Sprite {
 
     public void fire(){
         balas.add(new Bala(screen, b2body.getPosition().x, b2body.getPosition().y, runningRight ? true: false));
+    }
+
+    public boolean isJhonyIsWithPistola() {
+        return jhonyIsWithPistola;
     }
 
     public void draw(Batch batch){
