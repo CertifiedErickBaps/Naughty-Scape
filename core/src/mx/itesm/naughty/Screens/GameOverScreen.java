@@ -46,6 +46,7 @@ public class GameOverScreen extends MainScreen {
         crearEscena();
         textFondo=new Texture("gameOver.jpg");
         Gdx.input.setInputProcessor(escenaAcerca);
+        Gdx.input.setCatchBackKey(true);
     }
 
     @Override
