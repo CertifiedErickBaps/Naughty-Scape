@@ -71,6 +71,7 @@ public class WinScreen extends MainScreen {
         crearEscena();
         textFondo=new Texture("youWin.jpg");
         Gdx.input.setInputProcessor(escenaAcerca);
+        Gdx.input.setCatchBackKey(true);
     }
 
     @Override
