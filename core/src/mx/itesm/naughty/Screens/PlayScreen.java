@@ -188,7 +188,7 @@ public class PlayScreen extends MainScreen {
             hud.getBtnA().addListener(new ClickListener(){
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                    if(player.isJhonyIsWithPistola()){
+                    if(Player.State.PISTOLA == player.currentState){
                         player.fire();
                     } else {
                         player.setPushing(true);
@@ -205,7 +205,7 @@ public class PlayScreen extends MainScreen {
             hud.getBtnB().addListener(new ClickListener(){
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                    player.changeDefault();
+                    player.fire();
                     return super.touchDown(event, x, y, pointer, button);
                 }
 
@@ -268,7 +268,7 @@ public class PlayScreen extends MainScreen {
         music.play();
         items = new Array<Item>();
         itemsToSpawn = new LinkedBlockingDeque<ItemDef>();
-
+        Gdx.input.setCatchBackKey(true);
         handleInput();
     }
 

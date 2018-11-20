@@ -36,14 +36,6 @@ class WorldContactListener implements ContactListener {
                     ((Enemy)fixB.getUserData()).hitOnHead();
                 }
                 break;
-            case MainGame.ENEMY_BIT | MainGame.BALA_BIT:
-                if(fixA.getFilterData().categoryBits == MainGame.ENEMY_BIT){
-                    ((Enemy)fixA.getUserData()).hitOnHead();
-                }
-                else {
-                    ((Enemy)fixB.getUserData()).hitOnHead();
-                }
-                break;
             case MainGame.PLAYER_BIT | MainGame.ENEMY_BIT:
                 if(fixA.getFilterData().categoryBits == MainGame.PLAYER_BIT){
                     ((Player)fixA.getUserData()).hit();

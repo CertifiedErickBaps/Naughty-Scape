@@ -19,7 +19,6 @@ public class LoadingScreen extends MainScreen{
         super.show();
         tiempo = 0;
         texturaReloj = new Texture("reloj.png");
-        Gdx.input.setCatchBackKey(true);
     }
 
     @Override
