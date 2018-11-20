@@ -40,8 +40,8 @@ public class WinScreen extends MainScreen {
         escenaAcerca=new Stage(gamePort);
         TextureRegionDrawable trdRegresar_up=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/menuBtn.png")));
         TextureRegionDrawable trdRegresar_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/menuBtnPres.png")));
-        TextureRegionDrawable trdRContinuar=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/playBtn.png")));
-        TextureRegionDrawable trdContinuar_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/playPres.png")));
+        TextureRegionDrawable trdRContinuar=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/continuar.png")));
+        TextureRegionDrawable trdContinuar_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/continuarPres.png")));
 
         ImageButton btnReg=new ImageButton(trdRegresar_up,trdRegresar_down);
         btnReg.setPosition((MainGame.ANCHO_PANTALLA / 2 - btnReg.getWidth() / 2),(MainGame.ALTO_PANTALLA* 0.2f- btnReg.getHeight() / 2) );
