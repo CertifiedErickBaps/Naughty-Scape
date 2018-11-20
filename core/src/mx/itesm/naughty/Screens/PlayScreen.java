@@ -29,6 +29,7 @@ import mx.itesm.naughty.Sprites.Items.Bate;
 import mx.itesm.naughty.Sprites.Items.Item;
 import mx.itesm.naughty.Sprites.Items.ItemDef;
 import mx.itesm.naughty.Sprites.Items.Katana;
+import mx.itesm.naughty.Sprites.Items.Pistola;
 import mx.itesm.naughty.Sprites.Player;
 
 import static mx.itesm.naughty.MainGame.ALTO_JUEGO;
@@ -96,7 +97,7 @@ public class PlayScreen extends MainScreen {
         hud.update(dt);
         for(Enemy enemy: box2DCreator.getDeathGul()){
             enemy.update(dt);
-            if(enemy.getX() < player.getX() + 12f/ PPM && enemy.getY() < player.getY() + 12f/ PPM) {
+            if(enemy.getX() < player.getX() + 700f/ PPM && enemy.getY() < player.getY() + 700f/ PPM) {
                 enemy.b2body.setActive(true);
             }
         }
@@ -257,19 +258,21 @@ public class PlayScreen extends MainScreen {
             }
             else if(idef.type == Katana.class){
                 items.add(new Katana(this, idef.position.x, idef.position.y));
+            } else if(idef.type == Pistola.class){
+                items.add(new Pistola(this, idef.position.x, idef.position.y));
             }
         }
     }
 
     public boolean gameOver(){
-        if(player.currentState == Player.State.DEAD && player.getStateTimer() > 3){
+        if(player.currentState == Player.State.DEAD && player.getStateTimer() > 1f){
             return true;
         }
         return false;
     }
 
     public boolean gameWin(){
-        if(player.currentState == Player.State.WIN && player.getStateTimer() > 3){
+        if(player.currentState == Player.State.WIN && player.getStateTimer() > 1f){
             return true;
         }
         return false;

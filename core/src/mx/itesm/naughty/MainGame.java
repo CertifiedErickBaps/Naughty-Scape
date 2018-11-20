@@ -33,7 +33,7 @@ public class MainGame extends Game {
 
 	public static SpriteBatch batch;
 	public static AssetManager manager;
-	public MainScreen menuScreen, pantallaAcerca, pantallaAjustes, pantallaDificultad, gameOverScreen, playScreen, winScreen;
+	public MainScreen menuScreen, gameOverScreen, playScreen, winScreen;
 
 	@Override
 	public void create () {

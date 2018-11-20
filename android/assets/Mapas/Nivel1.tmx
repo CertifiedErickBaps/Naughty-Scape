@@ -598,7 +598,7 @@
     <property name="katana" value=""/>
    </properties>
   </object>
-  <object id="55" x="706.667" y="959.333" width="34.6667" height="33.3333">
+  <object id="55" x="700.667" y="959.333" width="34.6667" height="33.3333">
    <properties>
     <property name="ak-47" value=""/>
    </properties>

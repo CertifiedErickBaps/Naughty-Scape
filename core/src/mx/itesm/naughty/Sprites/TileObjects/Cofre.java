@@ -11,6 +11,7 @@ import mx.itesm.naughty.Screens.PlayScreen;
 import mx.itesm.naughty.Sprites.Items.Bate;
 import mx.itesm.naughty.Sprites.Items.ItemDef;
 import mx.itesm.naughty.Sprites.Items.Katana;
+import mx.itesm.naughty.Sprites.Items.Pistola;
 
 
 public class Cofre extends InteractiveTileObject {
@@ -35,6 +36,10 @@ public class Cofre extends InteractiveTileObject {
             else if(object.getProperties().containsKey("bate")){
                 screen.spawnItem(new ItemDef(new Vector2(body.getPosition().x + 32 / MainGame.PPM, body.getPosition().y), Bate.class));
             }
+            else if(object.getProperties().containsKey("pistola")){
+                screen.spawnItem(new ItemDef(new Vector2(body.getPosition().x + 32 / MainGame.PPM, body.getPosition().y), Pistola.class));
+            }
+
             MainGame.manager.get("Musica/chest.mp3", Music.class).play();
 
         }
