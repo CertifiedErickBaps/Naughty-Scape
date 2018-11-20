@@ -86,6 +86,7 @@ class PantallaAjustes extends MainScreen {
         Sound_FX=new Texto();
         Music=new Texto();
         Gdx.input.setInputProcessor(escenaAjustes);
+        Gdx.input.setCatchBackKey(true);
     }
 
     @Override

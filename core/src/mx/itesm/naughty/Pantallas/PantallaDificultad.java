@@ -83,6 +83,7 @@ class PantallaDificultad extends MainScreen {
         crearEscena();
         fondo=new Texture("dificultad_fondo.jpg");
         Gdx.input.setInputProcessor(escenaDificultad);
+        Gdx.input.setCatchBackKey(true);
     }
 
     @Override
