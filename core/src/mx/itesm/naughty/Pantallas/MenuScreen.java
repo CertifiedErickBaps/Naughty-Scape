@@ -33,6 +33,7 @@ public class MenuScreen extends MainScreen {
         logo =new Sprite(new Texture("logo.png"));
         logo.setPosition((ANCHO_PANTALLA/2-logo.getWidth()/2), (0.65f*ALTO_PANTALLA-logo.getHeight()/2));
         Gdx.input.setInputProcessor(escenaMenu);
+        Gdx.input.setCatchBackKey(false);
     }
 
     private void crearEscena() {

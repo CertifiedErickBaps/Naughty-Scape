@@ -46,6 +46,7 @@ class PantallaAcerca extends MainScreen {
         textFondo=new Texture("acerca_fondo.jpg");
         info=new Texto();
         Gdx.input.setInputProcessor(escenaAcerca);
+        Gdx.input.setCatchBackKey(true);
     }
 
     @Override
