@@ -26,16 +26,16 @@ public class WinScreen extends MainScreen {
 
     private void crearEscena(){
         escenaWin =new Stage(gamePort);
-        TextureRegionDrawable trdRegresar_up=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/menuBtn.png")));
-        TextureRegionDrawable trdRegresar_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/menuBtnPres.png")));
+        TextureRegionDrawable trdSalir=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/salirBtn.png")));
+        TextureRegionDrawable trdSalir_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/salirBtnPres.png")));
 
         TextureRegionDrawable trdRContinuar=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/continuarBtn.png")));
         TextureRegionDrawable trdContinuar_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/continuarBtnPres.png")));
 
 
-        ImageButton btnReg=new ImageButton(trdRegresar_up,trdRegresar_down);
-        btnReg.setPosition((MainGame.ANCHO_PANTALLA / 2 - btnReg.getWidth() / 2),(MainGame.ALTO_PANTALLA* 0.2f- btnReg.getHeight() / 2) );
-        btnReg.addListener(new ClickListener(){
+        ImageButton btnSalir=new ImageButton(trdSalir,trdSalir_down);
+        btnSalir.setPosition((MainGame.ANCHO_PANTALLA * 0.8f - btnSalir.getWidth() / 2),(MainGame.ALTO_PANTALLA* 0.2f- btnSalir.getHeight() / 2) );
+        btnSalir.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
@@ -43,9 +43,9 @@ public class WinScreen extends MainScreen {
             }
         });
 
-        ImageButton btnPlay=new ImageButton(trdRContinuar,trdContinuar_down);
-        btnPlay.setPosition((MainGame.ANCHO_PANTALLA / 2 - btnPlay.getWidth() / 2),(MainGame.ALTO_PANTALLA* 0.5f- btnPlay.getHeight() / 2) );
-        btnPlay.addListener(new ClickListener(){
+        ImageButton btnContinuar=new ImageButton(trdRContinuar,trdContinuar_down);
+        btnContinuar.setPosition((MainGame.ANCHO_PANTALLA * 0.5f - btnContinuar.getWidth() / 2),(MainGame.ALTO_PANTALLA* 0.2f- btnSalir.getHeight() / 2) );
+        btnContinuar.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
@@ -53,8 +53,8 @@ public class WinScreen extends MainScreen {
             }
         });
 
-        escenaWin.addActor(btnPlay);
-        escenaWin.addActor(btnReg);
+        escenaWin.addActor(btnContinuar);
+        escenaWin.addActor(btnSalir);
 
     }
     @Override

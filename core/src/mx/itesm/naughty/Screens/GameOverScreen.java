@@ -29,8 +29,21 @@ public class GameOverScreen extends MainScreen {
         escenaAcerca=new Stage(gamePort);
         TextureRegionDrawable trdRegresar_up=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/menuBtn.png")));
         TextureRegionDrawable trdRegresar_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/menuBtnPres.png")));
+
+        TextureRegionDrawable trdAgain=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/tryAgainBtn.png")));
+        TextureRegionDrawable trdAgain_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/tryAgainBtnPres.png")));
+
+        ImageButton btnPlay=new ImageButton(trdAgain,trdAgain_down);
+        btnPlay.setPosition((MainGame.ANCHO_PANTALLA * 0.4f - btnPlay.getWidth() / 2),(MainGame.ALTO_PANTALLA* 0.2f- btnPlay.getHeight() / 2) );
+        btnPlay.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                mainGame.setScreen(new PlayScreen(mainGame));
+            }
+        });
         ImageButton btnReg=new ImageButton(trdRegresar_up,trdRegresar_down);
-        btnReg.setPosition((MainGame.ANCHO_PANTALLA / 2 - btnReg.getWidth() / 2),(MainGame.ALTO_PANTALLA* 0.2f- btnReg.getHeight() / 2) );
+        btnReg.setPosition((MainGame.ANCHO_PANTALLA * 0.8f - btnReg.getWidth() / 2),(MainGame.ALTO_PANTALLA* 0.2f- btnReg.getHeight() / 2) );
         btnReg.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -39,6 +52,7 @@ public class GameOverScreen extends MainScreen {
             }
         });
         escenaAcerca.addActor(btnReg);
+        escenaAcerca.addActor(btnPlay);
 
     }
     @Override

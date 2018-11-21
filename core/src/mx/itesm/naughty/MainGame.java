@@ -54,7 +54,7 @@ public class MainGame extends Game {
 		gameOverScreen = new GameOverScreen(this);
 		playScreen = new PlayScreen(this);
 		winScreen = new WinScreen(this);
-		setScreen(menuScreen);
+		setScreen(winScreen);
 	}
 
 	public AssetManager getManager(){
