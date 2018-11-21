@@ -1,5 +1,6 @@
 package mx.itesm.naughty.Sprites;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -19,6 +20,8 @@ import mx.itesm.naughty.MainGame;
 import mx.itesm.naughty.Screens.PlayScreen;
 import mx.itesm.naughty.Sprites.Items.Bala;
 
+import static mx.itesm.naughty.MainGame.PPM;
+
 public class Player extends Sprite {
     public enum State { UP, STANDINGUD, STANDINGLR, RUNNINGLR, PUSHINGUD, PUSHINGLR, KATANA, BATE, PISTOLA, DEAD, WIN}
 
@@ -26,6 +29,7 @@ public class Player extends Sprite {
     public State previousState;
     public World world;
     public Body b2body;
+
     private TextureRegion jhonyStandUD;
     private TextureRegion jhonyStandRL;
     private TextureRegion jhonyStandKatanaUD;
@@ -35,6 +39,7 @@ public class Player extends Sprite {
     private TextureRegion jhonyStandPistolaLR;
     private TextureRegion jhonyStandPistolaUD;
 
+    private Fixture fixture;
     private Animation jhonyRunRL;
     private Animation jhonyRunUD;
     private Animation jhonyRunRLKatana;
@@ -265,7 +270,7 @@ public class Player extends Sprite {
         jhonyStandPistolaLR = new TextureRegion(screen.getAtlas().findRegion("jhony_caminando_pistola_lado"), 0,0,90,90);
 
         definePlayer();
-        setBounds(0,0,90 / MainGame.PPM,90 / MainGame.PPM);
+        setBounds(0,0,90 / PPM,90 / PPM);
         setRegion(jhonyStandRL);
 
         balas = new Array<Bala>();
@@ -281,6 +286,56 @@ public class Player extends Sprite {
                 balas.removeValue(bala, true);
             }
         }
+
+        if(currentState == State.PUSHINGUD){
+            if(runningUp){
+                if(jhonyPushUD.getKeyFrameIndex(stateTimer) == 0){
+                    redefineColision(new Vector2(-15/ PPM, 30 / PPM), new Vector2(15/ PPM, 30 / PPM));
+                }else if(jhonyPushUD.getKeyFrameIndex(stateTimer) == 1){
+
+                    b2body.destroyFixture(b2body.getFixtureList().get(1));
+                    redefineColision(new Vector2(-15/ PPM, 50 / PPM), new Vector2(15/ PPM, 50 / PPM));
+                }else if(jhonyPushUD.getKeyFrameIndex(stateTimer) == 2){
+                    for(int i = 1; i < b2body.getFixtureList().size; i++)
+                        b2body.destroyFixture(b2body.getFixtureList().get(i));
+                }
+            } else if(!runningUp){
+                if(jhonyPushUD.getKeyFrameIndex(stateTimer) == 0){
+                    redefineColision(new Vector2(-15/ PPM, -30 / PPM), new Vector2(15/ PPM, -30 / PPM));
+                }else if(jhonyPushUD.getKeyFrameIndex(stateTimer) == 1){
+
+                    b2body.destroyFixture(b2body.getFixtureList().get(1));
+                    redefineColision(new Vector2(-15/ PPM, -50 / PPM), new Vector2(15/ PPM, -50 / PPM));
+                }else if(jhonyPushUD.getKeyFrameIndex(stateTimer) == 2){
+                    for(int i = 1; i < b2body.getFixtureList().size; i++)
+                        b2body.destroyFixture(b2body.getFixtureList().get(i));
+                }
+            }
+        } else if(currentState == State.PUSHINGLR){
+            if(runningRight){
+                if(jhonyPushRL.getKeyFrameIndex(stateTimer) == 0){
+                    redefineColision(new Vector2(30/ PPM, 15 / PPM), new Vector2(30/ PPM, -15 / PPM));
+                }else if(jhonyPushRL.getKeyFrameIndex(stateTimer) == 1){
+                    b2body.destroyFixture(b2body.getFixtureList().get(1));
+                    redefineColision(new Vector2(50/ PPM, 15 / PPM), new Vector2(50/ PPM, -15 / PPM));
+                } if(jhonyPushRL.getKeyFrameIndex(stateTimer) == 2){
+                    for(int i = 1; i < b2body.getFixtureList().size; i++)
+                        b2body.destroyFixture(b2body.getFixtureList().get(i));
+                }
+            } else if(!runningRight){
+                if(jhonyPushRL.getKeyFrameIndex(stateTimer) == 0){
+                    redefineColision(new Vector2(-30/ PPM, 15 / PPM), new Vector2(-30/ PPM, -15 / PPM));
+                }else if(jhonyPushRL.getKeyFrameIndex(stateTimer) == 1){
+
+                    b2body.destroyFixture(b2body.getFixtureList().get(1));
+                    redefineColision(new Vector2(-50/ PPM, 15 / PPM), new Vector2(-50/ PPM, -15 / PPM));
+                }if(jhonyPushRL.getKeyFrameIndex(stateTimer) == 2){
+                    for(int i = 1; i < b2body.getFixtureList().size; i++)
+                        b2body.destroyFixture(b2body.getFixtureList().get(i));
+                }
+            }
+        }
+
     }
 
     public boolean isDead(){
@@ -469,13 +524,13 @@ public class Player extends Sprite {
 
     private void definePlayer() {
         BodyDef bdef = new BodyDef();
-        bdef.position.set(170 / MainGame.PPM,170 / MainGame.PPM);
+        bdef.position.set(170 / PPM,170 / PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body = world.createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(25 / MainGame.PPM);
+        shape.setRadius(25 / PPM);
         fdef.filter.categoryBits = MainGame.PLAYER_BIT;
         fdef.filter.maskBits = MainGame.GROUND_BIT
                 | MainGame.ARMA_BIT
@@ -495,7 +550,8 @@ public class Player extends Sprite {
         colisionador.filter.categoryBits = MainGame.PLAYER_HEAD_BIT;
         colisionador.shape = up;
         colisionador.isSensor = true;
-        b2body.createFixture(colisionador).setUserData("up");
+        fixture = b2body.createFixture(colisionador);
+        fixture.setUserData("up");
     }
 
     public void hit(){

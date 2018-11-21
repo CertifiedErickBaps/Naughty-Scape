@@ -6,8 +6,6 @@ import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -16,7 +14,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -124,7 +121,7 @@ public class PlayScreen extends MainScreen {
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                     if((hud.getBtnUp().isPressed()) && (player.b2body.getLinearVelocity().y <= 2.3f)){
                         player.b2body.applyLinearImpulse(new Vector2(0, 2.3f), player.b2body.getWorldCenter(), true);
-                        player.redefineColision(new Vector2(-20/ PPM, 30 / PPM), new Vector2(20/ PPM, 30 / PPM));
+                        //player.redefineColision(new Vector2(-20/ PPM, 30 / PPM), new Vector2(20/ PPM, 30 / PPM));
                     }
                     return super.touchDown(event, x, y, pointer, button);
                 }
@@ -140,7 +137,7 @@ public class PlayScreen extends MainScreen {
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                     if((hud.getBtnDown().isPressed()) && (player.b2body.getLinearVelocity().y >= -2.3f)){
                         player.b2body.applyLinearImpulse(new Vector2(0, -2.3f), player.b2body.getWorldCenter(), true);
-                        player.redefineColision(new Vector2(-20/ PPM, -30 / PPM), new Vector2(20/ PPM, -30 / PPM));
+                        //player.redefineColision(new Vector2(-20/ PPM, -30 / PPM), new Vector2(20/ PPM, -30 / PPM));
                     }
                     return super.touchDown(event, x, y, pointer, button);
                 }
@@ -157,7 +154,7 @@ public class PlayScreen extends MainScreen {
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                     if((hud.getBtnLeft().isPressed()) && (player.b2body.getLinearVelocity().x >= -2.3f)){
                         player.b2body.applyLinearImpulse(new Vector2(-2.3f, 0f), player.b2body.getWorldCenter(), true);
-                        player.redefineColision(new Vector2(-30/ PPM, 30 / PPM), new Vector2(-30/ PPM, -30 / PPM));
+                        //player.redefineColision(new Vector2(-30/ PPM, 30 / PPM), new Vector2(-30/ PPM, -30 / PPM));
                     }
                     return super.touchDown(event, x, y, pointer, button);
                 }
@@ -174,7 +171,7 @@ public class PlayScreen extends MainScreen {
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                     if((hud.getBtnRight().isPressed()) && (player.b2body.getLinearVelocity().x <= 2.3f)){
                         player.b2body.applyLinearImpulse(new Vector2(2.3f, 0f), player.b2body.getWorldCenter(), true);
-                        player.redefineColision(new Vector2(30/ PPM, 30 / PPM), new Vector2(30/ PPM, -30 / PPM));
+                        //redefineColision(new Vector2(30/ PPM, 30 / PPM), new Vector2(30/ PPM, -30 / PPM));
                     }
                     return super.touchDown(event, x, y, pointer, button);
                 }
@@ -342,13 +339,16 @@ public class PlayScreen extends MainScreen {
             }
         }
 
+        /*
+
+
         if(isPause()){
             Gdx.app.log("Pausa" ,"esta en pausa");
         } else {
             Gdx.app.log("Pausa" ,"ya no");
         }
         //sp.update(delta);
-
+        */
 
     }
 
@@ -376,7 +376,7 @@ public class PlayScreen extends MainScreen {
 
     @Override
     public void hide() {
-        box2DCreator.detach();
+
     }
 
     @Override
