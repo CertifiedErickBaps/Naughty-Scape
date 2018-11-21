@@ -12,19 +12,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
-
 import mx.itesm.naughty.MainGame;
 import mx.itesm.naughty.Pantallas.MainScreen;
 import mx.itesm.naughty.Pantallas.MenuScreen;
 
-import static mx.itesm.naughty.MainGame.ALTO_PANTALLA;
-import static mx.itesm.naughty.MainGame.ANCHO_PANTALLA;
 
 public class WinScreen extends MainScreen {
 
