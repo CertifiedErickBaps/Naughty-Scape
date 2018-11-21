@@ -1,13 +1,8 @@
 package mx.itesm.naughty.Screens;
 
-import com.badlogic.gdx.Game;
+
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -22,7 +17,7 @@ import mx.itesm.naughty.Pantallas.MenuScreen;
 public class WinScreen extends MainScreen {
 
     private final MainGame mainGame;
-    private Stage escenaAcerca;
+    private Stage escenaWin;
     private Texture textFondo;
 
     public WinScreen(MainGame mainGame) {
@@ -30,11 +25,13 @@ public class WinScreen extends MainScreen {
     }
 
     private void crearEscena(){
-        escenaAcerca=new Stage(gamePort);
+        escenaWin =new Stage(gamePort);
         TextureRegionDrawable trdRegresar_up=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/menuBtn.png")));
         TextureRegionDrawable trdRegresar_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/menuBtnPres.png")));
-        TextureRegionDrawable trdRContinuar=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/continuar.png")));
-        TextureRegionDrawable trdContinuar_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/continuarPres.png")));
+
+        TextureRegionDrawable trdRContinuar=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/continuarBtn.png")));
+        TextureRegionDrawable trdContinuar_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/continuarBtnPres.png")));
+
 
         ImageButton btnReg=new ImageButton(trdRegresar_up,trdRegresar_down);
         btnReg.setPosition((MainGame.ANCHO_PANTALLA / 2 - btnReg.getWidth() / 2),(MainGame.ALTO_PANTALLA* 0.2f- btnReg.getHeight() / 2) );
@@ -55,15 +52,16 @@ public class WinScreen extends MainScreen {
                 mainGame.setScreen(new PlayScreen(mainGame));
             }
         });
-        escenaAcerca.addActor(btnReg);
-        escenaAcerca.addActor(btnPlay);
+
+        escenaWin.addActor(btnPlay);
+        escenaWin.addActor(btnReg);
 
     }
     @Override
     public void show() {
         crearEscena();
-        textFondo=new Texture("youWin.jpg");
-        Gdx.input.setInputProcessor(escenaAcerca);
+        textFondo=new Texture("youwin.jpg");
+        Gdx.input.setInputProcessor(escenaWin);
         Gdx.input.setCatchBackKey(true);
     }
 
@@ -73,7 +71,7 @@ public class WinScreen extends MainScreen {
         MainGame.batch.begin();
         MainGame.batch.draw(textFondo,0,0);
         MainGame.batch.end();
-        escenaAcerca.draw();
+        escenaWin.draw();
     }
 
     @Override
@@ -98,6 +96,6 @@ public class WinScreen extends MainScreen {
 
     @Override
     public void dispose() {
-        escenaAcerca.dispose();
+        escenaWin.dispose();
     }
 }

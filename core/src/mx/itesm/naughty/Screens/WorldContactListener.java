@@ -19,6 +19,7 @@ class WorldContactListener implements ContactListener {
         Fixture fixB = contact.getFixtureB();
 
         int cDef = fixA.getFilterData().categoryBits | fixB.getFilterData().categoryBits;
+        /*
         if(fixA.getUserData() == "up" || fixB.getUserData() == "up"){
             Fixture up = fixA.getUserData() == "up" ? fixA : fixB;
             Fixture object = up == fixA ? fixB : fixA;
@@ -27,7 +28,16 @@ class WorldContactListener implements ContactListener {
                 ((InteractiveTileObject) object.getUserData()).onHeadHit();
             }
         }
+         */
         switch (cDef){
+            case MainGame.PLAYER_BIT | MainGame.COFRE_BIT:
+                if(fixA.getFilterData().categoryBits == MainGame.PLAYER_BIT){
+                    ((InteractiveTileObject) fixB.getUserData()).onHeadHit();
+                } else {
+                    ((InteractiveTileObject) fixA.getUserData()).onHeadHit();
+                }
+                break;
+
             case MainGame.ENEMY_BIT | MainGame.BALA_BIT:
             case MainGame.ENEMY_BIT | MainGame.PLAYER_HEAD_BIT:
                 if(fixA.getFilterData().categoryBits == MainGame.ENEMY_BIT){

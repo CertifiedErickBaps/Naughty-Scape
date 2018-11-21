@@ -551,7 +551,7 @@ public class Player extends Sprite {
         colisionador.shape = up;
         colisionador.isSensor = true;
         fixture = b2body.createFixture(colisionador);
-        fixture.setUserData("up");
+        fixture.setUserData(this);
     }
 
     public void hit(){
