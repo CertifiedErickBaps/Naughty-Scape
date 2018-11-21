@@ -24,13 +24,10 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/assets/MapaNE.tmx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/assets/Mapas/MapaNE.tmx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/assets/Mapas/MapaNivel1.tmx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/assets/Mapas/Test.tmx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/Mapas/Nivel1.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/android/assets/Mapas/Nivel1.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/Mapas/Nivel2.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/android/assets/Mapas/Nivel2.tmx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/MainGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/MainGame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/mx/itesm/naughty/MainGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/mx/itesm/naughty/MainGame.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -85,8 +82,8 @@
       <file leaf-file-name="MainGame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/mx/itesm/naughty/MainGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="56" column="28" selection-start-line="56" selection-start-column="28" selection-end-line="56" selection-end-column="28" />
+            <state relative-caret-position="208">
+              <caret line="57" column="5" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -4396,8 +4393,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/mx/itesm/naughty/MainGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="56" column="28" selection-start-line="56" selection-start-column="28" selection-end-line="56" selection-end-column="28" />
+        <state relative-caret-position="208">
+          <caret line="57" column="5" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
         </state>
       </provider>
     </entry>
