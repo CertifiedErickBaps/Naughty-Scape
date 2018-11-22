@@ -33,6 +33,7 @@ import mx.itesm.naughty.Sprites.Items.Pistola;
 import mx.itesm.naughty.Sprites.Player;
 
 import static mx.itesm.naughty.MainGame.ALTO_JUEGO;
+import static mx.itesm.naughty.MainGame.ALTO_PANTALLA;
 import static mx.itesm.naughty.MainGame.ANCHO_JUEGO;
 import static mx.itesm.naughty.MainGame.PPM;
 
@@ -95,10 +96,16 @@ public class PlayScreen extends MainScreen {
         world.step(1/ 60f, 6, 2);
         player.update(dt);
         if(player.currentState != Player.State.DEAD){
-            gameCam.position.x = player.b2body.getPosition().x;
-            gameCam.position.y = player.b2body.getPosition().y;
+
+            if (player.b2body.getPosition().x >= (ANCHO_JUEGO / 2 / PPM) && player.b2body.getPosition().x <= ((ANCHO_JUEGO + 70)/ PPM))
+                gameCam.position.x = player.b2body.getPosition().x;
+            if (player.b2body.getPosition().y >= (ALTO_JUEGO / 2 / PPM)
+                    && player.b2body.getPosition().y <= ((2650) / PPM))
+                gameCam.position.y = player.b2body.getPosition().y;
         }
         hud.update(dt);
+
+
         for(Enemy enemy: box2DCreator.getDeathGul()){
             enemy.update(dt);
             if(enemy.getX() < player.getX() + 700f/ PPM && enemy.getY() < player.getY() + 700f/ PPM) {

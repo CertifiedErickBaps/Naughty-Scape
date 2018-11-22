@@ -26,8 +26,97 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/assets/Mapas/Nivel1.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/android/assets/Mapas/Nivel1.tmx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/assets/Mapas/Nivel2.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/android/assets/Mapas/Nivel2.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/MainGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/MainGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/Botones/Salir.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/Botones/SalirPres.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/Botones/TryAgain.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/Botones/TryAgainPres.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/MapaNE.tmx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/Mapas/MapaNE.tmx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/Mapas/MapaNivel1.tmx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/Mapas/Nivel1.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/assets/debug/Mapas/Nivel1.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/assets/debug/Mapas/Test.tmx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/build-info/debug/build-info.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/build-info/debug/build-info.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental-verifier/debug/mx/itesm/naughty/screens/GameOverScreen$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental-verifier/debug/mx/itesm/naughty/screens/GameOverScreen$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental-verifier/debug/mx/itesm/naughty/screens/GameOverScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental-verifier/debug/mx/itesm/naughty/screens/GameOverScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental-verifier/debug/mx/itesm/naughty/screens/PlayScreen$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental-verifier/debug/mx/itesm/naughty/screens/PlayScreen$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental-verifier/debug/mx/itesm/naughty/screens/PlayScreen$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental-verifier/debug/mx/itesm/naughty/screens/PlayScreen$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental-verifier/debug/mx/itesm/naughty/screens/PlayScreen$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental-verifier/debug/mx/itesm/naughty/screens/PlayScreen$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental-verifier/debug/mx/itesm/naughty/screens/PlayScreen$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental-verifier/debug/mx/itesm/naughty/screens/PlayScreen$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental-verifier/debug/mx/itesm/naughty/screens/PlayScreen$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental-verifier/debug/mx/itesm/naughty/screens/PlayScreen$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental-verifier/debug/mx/itesm/naughty/screens/PlayScreen$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental-verifier/debug/mx/itesm/naughty/screens/PlayScreen$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental-verifier/debug/mx/itesm/naughty/screens/PlayScreen$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental-verifier/debug/mx/itesm/naughty/screens/PlayScreen$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental-verifier/debug/mx/itesm/naughty/screens/PlayScreen$EstadoJuego.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental-verifier/debug/mx/itesm/naughty/screens/PlayScreen$EstadoJuego.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental-verifier/debug/mx/itesm/naughty/screens/PlayScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental-verifier/debug/mx/itesm/naughty/screens/PlayScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental-verifier/debug/mx/itesm/naughty/screens/WinScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental-verifier/debug/mx/itesm/naughty/screens/WinScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/2Zx8HJ+sgjUBvH3NnsNG1yNgDYs=" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental/debug-mergeJavaRes/zip-cache/2Zx8HJ+sgjUBvH3NnsNG1yNgDYs=" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/debug-mergeJniLibs/zip-cache/2Zx8HJ+sgjUBvH3NnsNG1yNgDYs=" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental/debug-mergeJniLibs/zip-cache/2Zx8HJ+sgjUBvH3NnsNG1yNgDYs=" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/ir_slices/debug/package_slice_8/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental/ir_slices/debug/package_slice_8/dex-renamer-state.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/mergeDebugAssets/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental/mergeDebugAssets/merger.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/incremental/packageDebug/tmp/debug/file-input-save-data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/incremental/packageDebug/tmp/debug/file-input-save-data.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/instant-run-apk/debug/android-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/instant-run-apk/debug/android-debug.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/split-apk/debug/slices/slice_8.apk" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/split-apk/debug/slices/slice_8.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/dexBuilder/debug/53/mx/itesm/naughty/Screens/GameOverScreen$1.dex" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/dexBuilder/debug/53/mx/itesm/naughty/Screens/GameOverScreen$1.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/dexBuilder/debug/53/mx/itesm/naughty/Screens/GameOverScreen.dex" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/dexBuilder/debug/53/mx/itesm/naughty/Screens/GameOverScreen.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/dexBuilder/debug/53/mx/itesm/naughty/Screens/PlayScreen$1.dex" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/dexBuilder/debug/53/mx/itesm/naughty/Screens/PlayScreen$1.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/dexBuilder/debug/53/mx/itesm/naughty/Screens/PlayScreen$2.dex" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/dexBuilder/debug/53/mx/itesm/naughty/Screens/PlayScreen$2.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/dexBuilder/debug/53/mx/itesm/naughty/Screens/PlayScreen$3.dex" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/dexBuilder/debug/53/mx/itesm/naughty/Screens/PlayScreen$3.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/dexBuilder/debug/53/mx/itesm/naughty/Screens/PlayScreen$4.dex" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/dexBuilder/debug/53/mx/itesm/naughty/Screens/PlayScreen$4.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/dexBuilder/debug/53/mx/itesm/naughty/Screens/PlayScreen$5.dex" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/dexBuilder/debug/53/mx/itesm/naughty/Screens/PlayScreen$5.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/dexBuilder/debug/53/mx/itesm/naughty/Screens/PlayScreen$6.dex" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/dexBuilder/debug/53/mx/itesm/naughty/Screens/PlayScreen$6.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/dexBuilder/debug/53/mx/itesm/naughty/Screens/PlayScreen$7.dex" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/dexBuilder/debug/53/mx/itesm/naughty/Screens/PlayScreen$7.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/dexBuilder/debug/53/mx/itesm/naughty/Screens/PlayScreen$EstadoJuego.dex" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/dexBuilder/debug/53/mx/itesm/naughty/Screens/PlayScreen$EstadoJuego.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/dexBuilder/debug/53/mx/itesm/naughty/Screens/PlayScreen.dex" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/dexBuilder/debug/53/mx/itesm/naughty/Screens/PlayScreen.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/dexBuilder/debug/53/mx/itesm/naughty/Screens/WinScreen.dex" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/dexBuilder/debug/53/mx/itesm/naughty/Screens/WinScreen.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/dexMerger/debug/39/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/dexMerger/debug/39/classes.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/extractJars/debug/0/mx/itesm/naughty/screens/GameOverScreen$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/extractJars/debug/0/mx/itesm/naughty/screens/GameOverScreen$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/extractJars/debug/0/mx/itesm/naughty/screens/GameOverScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/extractJars/debug/0/mx/itesm/naughty/screens/GameOverScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/extractJars/debug/0/mx/itesm/naughty/screens/PlayScreen$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/extractJars/debug/0/mx/itesm/naughty/screens/PlayScreen$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/extractJars/debug/0/mx/itesm/naughty/screens/PlayScreen$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/extractJars/debug/0/mx/itesm/naughty/screens/PlayScreen$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/extractJars/debug/0/mx/itesm/naughty/screens/PlayScreen$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/extractJars/debug/0/mx/itesm/naughty/screens/PlayScreen$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/extractJars/debug/0/mx/itesm/naughty/screens/PlayScreen$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/extractJars/debug/0/mx/itesm/naughty/screens/PlayScreen$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/extractJars/debug/0/mx/itesm/naughty/screens/PlayScreen$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/extractJars/debug/0/mx/itesm/naughty/screens/PlayScreen$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/extractJars/debug/0/mx/itesm/naughty/screens/PlayScreen$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/extractJars/debug/0/mx/itesm/naughty/screens/PlayScreen$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/extractJars/debug/0/mx/itesm/naughty/screens/PlayScreen$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/extractJars/debug/0/mx/itesm/naughty/screens/PlayScreen$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/extractJars/debug/0/mx/itesm/naughty/screens/PlayScreen$EstadoJuego.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/extractJars/debug/0/mx/itesm/naughty/screens/PlayScreen$EstadoJuego.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/extractJars/debug/0/mx/itesm/naughty/screens/PlayScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/extractJars/debug/0/mx/itesm/naughty/screens/PlayScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/extractJars/debug/0/mx/itesm/naughty/screens/WinScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/extractJars/debug/0/mx/itesm/naughty/screens/WinScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRun/debug/0/mx/itesm/naughty/screens/GameOverScreen$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRun/debug/0/mx/itesm/naughty/screens/GameOverScreen$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRun/debug/0/mx/itesm/naughty/screens/GameOverScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRun/debug/0/mx/itesm/naughty/screens/GameOverScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRun/debug/0/mx/itesm/naughty/screens/PlayScreen$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRun/debug/0/mx/itesm/naughty/screens/PlayScreen$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRun/debug/0/mx/itesm/naughty/screens/PlayScreen$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRun/debug/0/mx/itesm/naughty/screens/PlayScreen$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRun/debug/0/mx/itesm/naughty/screens/PlayScreen$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRun/debug/0/mx/itesm/naughty/screens/PlayScreen$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRun/debug/0/mx/itesm/naughty/screens/PlayScreen$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRun/debug/0/mx/itesm/naughty/screens/PlayScreen$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRun/debug/0/mx/itesm/naughty/screens/PlayScreen$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRun/debug/0/mx/itesm/naughty/screens/PlayScreen$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRun/debug/0/mx/itesm/naughty/screens/PlayScreen$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRun/debug/0/mx/itesm/naughty/screens/PlayScreen$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRun/debug/0/mx/itesm/naughty/screens/PlayScreen$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRun/debug/0/mx/itesm/naughty/screens/PlayScreen$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRun/debug/0/mx/itesm/naughty/screens/PlayScreen$EstadoJuego.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRun/debug/0/mx/itesm/naughty/screens/PlayScreen$EstadoJuego.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRun/debug/0/mx/itesm/naughty/screens/PlayScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRun/debug/0/mx/itesm/naughty/screens/PlayScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRun/debug/0/mx/itesm/naughty/screens/WinScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRun/debug/0/mx/itesm/naughty/screens/WinScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/buildId.txt" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/buildId.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/mx/itesm/naughty/screens/GameOverScreen$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/mx/itesm/naughty/screens/GameOverScreen$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/mx/itesm/naughty/screens/GameOverScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/mx/itesm/naughty/screens/GameOverScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/mx/itesm/naughty/screens/PlayScreen$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/mx/itesm/naughty/screens/PlayScreen$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/mx/itesm/naughty/screens/PlayScreen$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/mx/itesm/naughty/screens/PlayScreen$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/mx/itesm/naughty/screens/PlayScreen$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/mx/itesm/naughty/screens/PlayScreen$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/mx/itesm/naughty/screens/PlayScreen$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/mx/itesm/naughty/screens/PlayScreen$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/mx/itesm/naughty/screens/PlayScreen$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/mx/itesm/naughty/screens/PlayScreen$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/mx/itesm/naughty/screens/PlayScreen$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/mx/itesm/naughty/screens/PlayScreen$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/mx/itesm/naughty/screens/PlayScreen$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/mx/itesm/naughty/screens/PlayScreen$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/mx/itesm/naughty/screens/PlayScreen$EstadoJuego.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/mx/itesm/naughty/screens/PlayScreen$EstadoJuego.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/mx/itesm/naughty/screens/PlayScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/mx/itesm/naughty/screens/PlayScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/mx/itesm/naughty/screens/WinScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/android/build/intermediates/transforms/instantRunSlicer/debug/8/mx/itesm/naughty/screens/WinScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/screens/PlayScreen$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/screens/PlayScreen$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/screens/PlayScreen$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/screens/PlayScreen$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/screens/PlayScreen$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/screens/PlayScreen$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/screens/PlayScreen$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/screens/PlayScreen$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/screens/PlayScreen$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/screens/PlayScreen$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/screens/PlayScreen$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/screens/PlayScreen$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/screens/PlayScreen$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/screens/PlayScreen$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/screens/PlayScreen$EstadoJuego.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/screens/PlayScreen$EstadoJuego.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/screens/PlayScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/mx/itesm/naughty/screens/PlayScreen.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/mx/itesm/naughty/Screens/PlayScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/mx/itesm/naughty/Screens/PlayScreen.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -50,10 +139,30 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="PlayScreen.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/core/src/mx/itesm/naughty/Screens/PlayScreen.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="292">
+              <caret line="107" selection-start-line="107" selection-end-line="107" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#LoadMap#0;class#PlayScreen#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Nivel1.tmx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/android/assets/Mapas/Nivel1.tmx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state />
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/mx/itesm/naughty/Sprites/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-31">
+            <state relative-caret-position="446">
               <caret line="553" column="32" selection-start-line="553" selection-start-column="32" selection-end-line="553" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -79,10 +188,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainGame.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainGame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/mx/itesm/naughty/MainGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
+            <state relative-caret-position="170">
               <caret line="57" column="5" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
             </state>
           </provider>
@@ -108,8 +217,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>playerISDead</find>
-      <find>DEAD</find>
       <find>WIN</find>
       <find>MenuScreen</find>
       <find>gameCam</find>
@@ -138,6 +245,8 @@
       <find>head</find>
       <find>Pau</find>
       <find>cofre</find>
+      <find>render</find>
+      <find>update</find>
     </findStrings>
   </component>
   <component name="GenerateSignedApkSettings">
@@ -3647,13 +3756,13 @@
         <option value="$PROJECT_DIR$/core/src/mx/itesm/naughty/Sprites/Enemies/Enemy.java" />
         <option value="$PROJECT_DIR$/core/src/mx/itesm/naughty/Sprites/Enemies/DeathGul.java" />
         <option value="$PROJECT_DIR$/core/src/mx/itesm/naughty/Pantallas/PantallaDificultad.java" />
-        <option value="$PROJECT_DIR$/core/src/mx/itesm/naughty/Screens/PlayScreen.java" />
         <option value="$PROJECT_DIR$/core/src/mx/itesm/naughty/Sprites/TileObjects/Cofre.java" />
         <option value="$PROJECT_DIR$/core/src/mx/itesm/naughty/Sprites/Player.java" />
         <option value="$PROJECT_DIR$/core/src/mx/itesm/naughty/Screens/WorldContactListener.java" />
         <option value="$PROJECT_DIR$/core/src/mx/itesm/naughty/Screens/GameOverScreen.java" />
         <option value="$PROJECT_DIR$/core/src/mx/itesm/naughty/Screens/WinScreen.java" />
         <option value="$PROJECT_DIR$/core/src/mx/itesm/naughty/MainGame.java" />
+        <option value="$PROJECT_DIR$/core/src/mx/itesm/naughty/Screens/PlayScreen.java" />
       </list>
     </option>
   </component>
@@ -3671,6 +3780,21 @@
       <pane id="AndroidView">
         <subPane>
           <expand>
+            <path>
+              <item name="NaughtyScape" type="1abcf292:AndroidViewProjectNode" />
+              <item name="android" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="NaughtyScape" type="1abcf292:AndroidViewProjectNode" />
+              <item name="android" type="feadf853:AndroidModuleNode" />
+              <item name="assets" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="NaughtyScape" type="1abcf292:AndroidViewProjectNode" />
+              <item name="android" type="feadf853:AndroidModuleNode" />
+              <item name="assets" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="Mapas" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
             <path>
               <item name="NaughtyScape" type="1abcf292:AndroidViewProjectNode" />
               <item name="core" type="e9137016:NonAndroidModuleNode" />
@@ -3802,7 +3926,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.DesktopLauncher">
+  <component name="RunManager" selected="Android App.android">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -3942,7 +4066,7 @@
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.5045386" side_tool="true" weight="0.53409094" />
       <window_info anchor="bottom" id="Version Control" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="8" sideWeight="0.49546143" visible="true" weight="0.14285715" />
+      <window_info active="true" anchor="bottom" id="Run" order="8" sideWeight="0.49546143" visible="true" weight="0.09415584" />
       <window_info anchor="bottom" id="Terminal" order="2" sideWeight="0.4969743" weight="0.16233766" />
       <window_info anchor="bottom" id="Logcat" order="0" weight="0.32954547" />
       <window_info id="Captures" order="7" weight="0.25" />
@@ -4007,11 +4131,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/android/assets/Mapas/8e4932b4-b26f-4e67-a8db-65e1030f4f36.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/mx/itesm/naughty/Pantallas/Texto.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -4250,19 +4369,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/mx/itesm/naughty/Screens/PlayScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="232" lean-forward="true" selection-start-line="232" selection-end-line="232" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#LoadMap#0;class#PlayScreen#0" />
-            <element signature="e#8751#9260#0" expanded="true" />
-            <element signature="e#9259#9260#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/mx/itesm/naughty/Sprites/TileObjects/Door.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
@@ -4366,7 +4472,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/mx/itesm/naughty/Sprites/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-31">
+        <state relative-caret-position="446">
           <caret line="553" column="32" selection-start-line="553" selection-start-column="32" selection-end-line="553" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -4393,8 +4499,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/mx/itesm/naughty/MainGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
+        <state relative-caret-position="170">
           <caret line="57" column="5" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/android/assets/Mapas/Nivel1.tmx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/mx/itesm/naughty/Screens/PlayScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="107" selection-start-line="107" selection-end-line="107" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#LoadMap#0;class#PlayScreen#0" />
+          </folding>
         </state>
       </provider>
     </entry>
