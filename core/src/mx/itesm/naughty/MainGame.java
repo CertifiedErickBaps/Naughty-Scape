@@ -54,7 +54,7 @@ public class MainGame extends Game {
 		manager.load("Musica/punch.mp3", Music.class);
 		manager.load("Musica/error.mp3", Music.class);
 		manager.finishLoading();
-		setScreen(new MenuScreen(this));
+		setScreen(new LoadingScreen(this));
 	}
 
 	public void finishLoading(){

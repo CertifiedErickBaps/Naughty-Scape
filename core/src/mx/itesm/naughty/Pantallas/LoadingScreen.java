@@ -18,7 +18,7 @@ public class LoadingScreen extends MainScreen{
     public void show() {
         super.show();
         tiempo = 0;
-        texturaReloj = new Texture("reloj.png");
+        texturaReloj = new Texture("loadingTxt.png");
         Gdx.input.setCatchBackKey(true);
     }
 
@@ -36,7 +36,7 @@ public class LoadingScreen extends MainScreen{
         // Actualiza
         tiempo += Gdx.graphics.getDeltaTime();  // Acumula tiempo
         if (game.getManager().update()) {
-            if (tiempo >= 0.5f) {
+            if (tiempo >= 1f) {
                 game.finishLoading();
             }
         }

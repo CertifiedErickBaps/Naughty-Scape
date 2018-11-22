@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Nov 21 22:07:31 CST 2018
+#Wed Nov 21 22:46:50 CST 2018
 2.path=Personajes/Jhony_walkRight.png
 14.set=ASSET
 107.baseType=DIRECTORY

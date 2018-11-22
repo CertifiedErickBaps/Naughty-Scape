@@ -101,7 +101,7 @@ jhony_caminado_bate_lado
   orig: 540, 90
   offset: 0, 0
   index: -1
-jhony_daño_lado
+jhony_dano_lado
   rotate: false
   xy: 543, 461
   size: 450, 90
@@ -157,7 +157,7 @@ jiovany_caminando
   orig: 540, 90
   offset: 0, 0
   index: -1
-orlando_daño
+orlando_dano
   rotate: false
   xy: 543, 93
   size: 450, 90
@@ -171,7 +171,7 @@ jiovany_caminando_bate
   orig: 540, 90
   offset: 0, 0
   index: -1
-orlando_daño_lado
+orlando_dano_lado
   rotate: false
   xy: 543, 1
   size: 450, 90
