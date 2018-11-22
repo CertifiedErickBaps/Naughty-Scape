@@ -18,7 +18,6 @@ class PantallaAcerca extends MainScreen {
     private final MainGame mainGame;
     private Stage escenaAcerca;
     private Texture textFondo;
-    private Texto info;
 
     public PantallaAcerca(MainGame mainGame) {
         this.mainGame=mainGame;
@@ -44,7 +43,6 @@ class PantallaAcerca extends MainScreen {
     public void show() {
         crearEscena();
         textFondo=new Texture("acerca_fondo.jpg");
-        info=new Texto();
         Gdx.input.setInputProcessor(escenaAcerca);
         Gdx.input.setCatchBackKey(true);
     }
@@ -54,7 +52,6 @@ class PantallaAcerca extends MainScreen {
         MainGame.batch.setProjectionMatrix(gameCam.combined);
         MainGame.batch.begin();
         MainGame.batch.draw(textFondo,0,0);
-        info.mostrarMensaje(MainGame.batch, "--CREADO POR--"+"\n"+"Eric Gomez (ISC)"+"\n"+"Erick Bautista (ISC)"+"\n"+"Jessica I. Alvarez (LAD)"+"\n"+"Sebastian Gomez (LAD)" ,ANCHO_PANTALLA*0.7f, ALTO_PANTALLA*0.90f);
         MainGame.batch.end();
         escenaAcerca.draw();
     }
