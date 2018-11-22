@@ -306,8 +306,6 @@ public class PlayScreen extends MainScreen {
 
     }
 
-
-
     @Override
     public void show() {
         /*
@@ -406,8 +404,8 @@ public class PlayScreen extends MainScreen {
         }
             MainGame.batch.setProjectionMatrix(hud.stage.getCamera().combined);
 
-            if(estado == EstadoJuego.PAUSADO){
-                //
+            if(player.currentState == Player.State.DEAD){
+                hud.stage.getActors().removeValue(hud.getCorazon(), true);
             }
             hud.stage.draw();
 
@@ -465,6 +463,7 @@ public class PlayScreen extends MainScreen {
         world.dispose();
         b2dr.dispose();
         hud.dispose();
+        music.dispose();
         //sp.dispose();
     }
 }

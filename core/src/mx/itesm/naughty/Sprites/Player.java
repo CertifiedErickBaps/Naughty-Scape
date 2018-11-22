@@ -511,6 +511,7 @@ public class Player extends Sprite {
         TextureRegion region;
         switch (currentState){
             case DEAD:
+
                 region = (TextureRegion) playerDead.getKeyFrame(stateTimer);
                 break;
             case WIN:

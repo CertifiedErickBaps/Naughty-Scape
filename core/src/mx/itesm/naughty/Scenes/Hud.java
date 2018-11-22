@@ -3,28 +3,25 @@ package mx.itesm.naughty.Scenes;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-
-import mx.itesm.naughty.MainGame;
-import mx.itesm.naughty.Pantallas.MenuScreen;
 import mx.itesm.naughty.Screens.Button;
-import mx.itesm.naughty.Screens.PlayScreen;
+
 
 import static mx.itesm.naughty.MainGame.ALTO_JUEGO;
-import static mx.itesm.naughty.MainGame.ALTO_PANTALLA;
+
 import static mx.itesm.naughty.MainGame.ANCHO_JUEGO;
 import static mx.itesm.naughty.MainGame.PPM;
 
@@ -55,11 +52,8 @@ public class Hud implements Disposable {
     private Button btnExit;
     private Button btnSound;
 
-    public Image getLetters() {
-        return letras;
-    }
-
     private Image letras;
+    private Image corazon;
 
     public Hud(SpriteBatch sb){
         worldTimer = 000;
@@ -129,6 +123,8 @@ public class Hud implements Disposable {
         // Boton down
         btnDown = new Button("Botones/btnDown.png", "Botones/btnDownPress.png", 85, 5);
 
+        corazon = new Image(new Texture("Personajes/corazon.png"));
+        corazon.setPosition(ANCHO_JUEGO*0.10f , ALTO_JUEGO*0.9f);
 
         stage.addActor(btnA.getImageButton());
         stage.addActor(btnPausa.getImageButton());
@@ -137,6 +133,7 @@ public class Hud implements Disposable {
         stage.addActor(btnLeft.getImageButton());
         stage.addActor(btnUp.getImageButton());
         stage.addActor(btnDown.getImageButton());
+        stage.addActor(corazon);
 
     }
 
@@ -201,6 +198,14 @@ public class Hud implements Disposable {
     }
     public ImageButton getBtnSound(){
         return btnSound.getImageButton();
+    }
+
+    public Image getLetters() {
+        return letras;
+    }
+
+    public Image getCorazon() {
+        return corazon;
     }
 
 }
