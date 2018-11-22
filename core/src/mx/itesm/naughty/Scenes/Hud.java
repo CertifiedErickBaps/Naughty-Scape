@@ -18,9 +18,13 @@ import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import mx.itesm.naughty.MainGame;
+import mx.itesm.naughty.Pantallas.MenuScreen;
 import mx.itesm.naughty.Screens.Button;
+import mx.itesm.naughty.Screens.PlayScreen;
 
 import static mx.itesm.naughty.MainGame.ALTO_JUEGO;
+import static mx.itesm.naughty.MainGame.ALTO_PANTALLA;
 import static mx.itesm.naughty.MainGame.ANCHO_JUEGO;
 import static mx.itesm.naughty.MainGame.PPM;
 
@@ -50,6 +54,12 @@ public class Hud implements Disposable {
     private Button btnPlay;
     private Button btnExit;
     private Button btnSound;
+
+    public Image getLetters() {
+        return letras;
+    }
+
+    private Image letras;
 
     public Hud(SpriteBatch sb){
         worldTimer = 000;
@@ -97,6 +107,7 @@ public class Hud implements Disposable {
     }
 
     public void createButtons(){
+        createButtonsPaused();
         // Boton A
         btnA = new Button("Botones/btnA.png", "Botones/aPres.png", 0.75f*ANCHO_JUEGO, 10);
 
@@ -126,23 +137,30 @@ public class Hud implements Disposable {
         stage.addActor(btnLeft.getImageButton());
         stage.addActor(btnUp.getImageButton());
         stage.addActor(btnDown.getImageButton());
+
     }
 
-    public void createButtonsPause() {
-        btnPlay = new Button("Botones/play.png", "Botones/playPres.png", ANCHO_JUEGO*0.60f, ALTO_JUEGO*0.83f);
-        btnPlay.getImageButton().addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-
-            }
-        });
+    public void createButtonsPaused() {
+        letras = new Image(new Texture("pausaImage.png"));
+        letras.setPosition(ANCHO_JUEGO*0.15f , ALTO_JUEGO*0.7f);
+        btnPlay = new Button("Botones/continuarBtn.png","Botones/continuarBtnPres.png",(ANCHO_JUEGO / PPM) + 200, (ALTO_JUEGO / PPM) +150);
+        btnExit = new Button("Botones/salirBtn.png", "Botones/salirBtnPres.png", (ANCHO_JUEGO / PPM)+500, (ALTO_JUEGO/PPM) + 150);
     }
 
-    public void createPause(){
-        // Crear rectángulo transparente
-        btnA.getImageButton().isDisabled();
+    public boolean isCreatedPauseButtonsCreated() {
+        if(stage.getActors().contains(btnExit.getImageButton(), true)){
+            return true;
+        }
+        return false;
     }
+
+
+    public void addActors(){
+        stage.addActor(letras);
+        stage.addActor(btnPlay.getImageButton());
+        stage.addActor(btnExit.getImageButton());
+    }
+
 
     public ImageButton getBtnA() {
         return btnA.getImageButton();
@@ -170,6 +188,14 @@ public class Hud implements Disposable {
 
     public ImageButton getBtnDown() {
         return btnDown.getImageButton();
+    }
+
+    public ImageButton getBtnPlay() {
+        return btnPlay.getImageButton();
+    }
+
+    public ImageButton getBtnExit(){
+        return btnExit.getImageButton();
     }
 
 }

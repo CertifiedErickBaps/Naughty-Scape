@@ -300,14 +300,14 @@ public class Player extends Sprite {
 
             // Animation pistola right and down
             for(int i = 0; i < 5; i++){
-                frames.add(new TextureRegion(screen.getAtlas().findRegion("orlando_caminando_bate_lado"), i * 90, 0, 90, 90));
+                frames.add(new TextureRegion(screen.getAtlas().findRegion("orlando_caminando_pistola_lado"), i * 90, 0, 90, 90));
             }
             playerRunRLPistola = new Animation(0.1f, frames);
             frames.clear();
 
             //Animation walk up and down
             for(int i = 1; i < 5; i++){
-                frames.add(new TextureRegion(screen.getAtlas().findRegion("orlando_caminando_frente"), i * 90, 4, 90, 90));
+                frames.add(new TextureRegion(screen.getAtlas().findRegion("orlando_caminando_frente"), i * 90, 0, 90, 90));
             }
             playerRunUD = new Animation(0.1f, frames);
             frames.clear();
@@ -321,28 +321,28 @@ public class Player extends Sprite {
 
             //Animation walk up and down bate
             for(int i = 1; i < 5; i++){
-                frames.add(new TextureRegion(screen.getAtlas().findRegion("orlando_caminando_bate"), i * 89, 0, 90, 90));
+                frames.add(new TextureRegion(screen.getAtlas().findRegion("orlando_caminando_bate"), i * 90, 0, 90, 90));
             }
             playerRunUDBate = new Animation(0.1f, frames);
             frames.clear();
 
             //Animation walk up and down pistola
             for(int i = 1; i < 5; i++){
-                frames.add(new TextureRegion(screen.getAtlas().findRegion("orlando_caminando_bate"), i * 89, 0, 90, 90));
+                frames.add(new TextureRegion(screen.getAtlas().findRegion("orlando_caminando_pistola"), i * 89, 0, 90, 90));
             }
             playerRunUDPistola = new Animation(0.1f, frames);
             frames.clear();
 
             //Animation pushingUD
             for(int i = 0; i < 3; i++){
-                frames.add(new TextureRegion(screen.getAtlas().findRegion("orlando_caminando_frente"), i * 90, 4, 90, 90));
+                frames.add(new TextureRegion(screen.getAtlas().findRegion("orlando_golpes"), i * 90, 4, 90, 90));
             }
             playerPushUD = new Animation(0.1f, frames);
             frames.clear();
 
             //Animation pushingLR
             for(int i = 0; i < 3; i++){
-                frames.add(new TextureRegion(screen.getAtlas().findRegion("orlando_caminando_lado"), i * 90, 4, 90, 90));
+                frames.add(new TextureRegion(screen.getAtlas().findRegion("orlando_golpes_lado"), i * 90, 4, 90, 90));
             }
             playerPushRL = new Animation(0.1f, frames);
             frames.clear();
@@ -364,7 +364,7 @@ public class Player extends Sprite {
 
             //Animation pushingUD bate
             for(int i = 0; i < 3; i++){
-                frames.add(new TextureRegion(screen.getAtlas().findRegion("orlando_ataque_bate"), i * 90, 0, 90, 90));
+                frames.add(new TextureRegion(screen.getAtlas().findRegion("orlando_ataque_pistola"), i * 90, 0, 90, 90));
             }
             playerPushPistolaUD = new Animation(0.1f, frames);
             frames.clear();
@@ -386,7 +386,7 @@ public class Player extends Sprite {
 
             //Animation pushingLR bate
             for(int i = 0; i < 3; i++){
-                frames.add(new TextureRegion(screen.getAtlas().findRegion("orlando_ataque_bate_lado"), i * 90, 0, 90, 90));
+                frames.add(new TextureRegion(screen.getAtlas().findRegion("orlando_ataque_pistola_lado"), i * 90, 0, 90, 90));
             }
             playerPushPistolaRL = new Animation(0.1f, frames);
             frames.clear();
@@ -408,9 +408,9 @@ public class Player extends Sprite {
             frames.clear();
 
             //Animation changing bate
-            frames.add(new TextureRegion(screen.getAtlas().findRegion("orlando_caminando_bate"), 0, 0, 90, 90));
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("orlando_caminando_pistola"), 0, 0, 90, 90));
             frames.add(new TextureRegion(screen.getAtlas().findRegion("orlando_caminando_frente"), 0, 0, 90, 90));
-            frames.add(new TextureRegion(screen.getAtlas().findRegion("orlando_caminando_bate"), 0, 0, 90, 90));
+            frames.add(new TextureRegion(screen.getAtlas().findRegion("orlando_caminando_pistola"), 0, 0, 90, 90));
             frames.add(new TextureRegion(screen.getAtlas().findRegion("orlando_caminando_frente"), 0, 0, 90, 90));
             playerChangingPistola = new Animation(0.2f, frames);
             frames.clear();
@@ -424,8 +424,8 @@ public class Player extends Sprite {
             playerStandBateLR = new TextureRegion(screen.getAtlas().findRegion("orlando_caminando_bate_lado"), 0,0,90,90);
             playerStandBateUD = new TextureRegion(screen.getAtlas().findRegion("orlando_caminando_bate"), 0,0,90,90);
 
-            playerStandPistolaUD = new TextureRegion(screen.getAtlas().findRegion("orlando_caminando_bate"), 0,0,90,90);
-            playerStandPistolaLR = new TextureRegion(screen.getAtlas().findRegion("orlando_caminando_bate_lado"), 0,0,90,90);
+            playerStandPistolaUD = new TextureRegion(screen.getAtlas().findRegion("orlando_caminando_pistola"), 0,0,90,90);
+            playerStandPistolaLR = new TextureRegion(screen.getAtlas().findRegion("orlando_caminando_pistola_lado"), 0,0,90,90);
         }
 
 

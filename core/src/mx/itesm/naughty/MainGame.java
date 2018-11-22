@@ -72,6 +72,7 @@ public class MainGame extends Game {
 	public String getJhony() {
 		return isJhony;
 	}
+
 	@Override
 	public void dispose() {
 		super.dispose();
