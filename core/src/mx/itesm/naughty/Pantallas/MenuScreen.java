@@ -49,20 +49,24 @@ public class MenuScreen extends MainScreen {
 
         //Botones normales
         TextureRegionDrawable trdP = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/playBtn.png")));
+        TextureRegionDrawable trdPausa = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/helpBtn.png")));
         TextureRegionDrawable trdAj = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/btnAjustes.png")));
         TextureRegionDrawable trdA = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/acerca.png")));
         //Botones suprimidos
         TextureRegionDrawable trdPs = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/playPres.png")));
+        TextureRegionDrawable trdPausaPress = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/helpBtnPres.png")));
         TextureRegionDrawable trdAjs = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/AjustesPres.png")));
         TextureRegionDrawable trdAs = new TextureRegionDrawable(new TextureRegion(new Texture("Botones/acercaPres.png")));
 
         ImageButton btnPlay = new ImageButton(trdP, trdPs);
         ImageButton btnAjuste = new ImageButton(trdAj, trdAjs);
         ImageButton btnAcerca = new ImageButton(trdA, trdAs);
+        ImageButton btnAyuda = new ImageButton(trdPausa, trdPausaPress);
         //Posicion
         btnPlay.setPosition(ANCHO_PANTALLA/2-btnPlay.getWidth()/2, 0.10f*ALTO_PANTALLA-btnPlay.getHeight()/2);
         btnAjuste.setPosition(0.10f*ANCHO_PANTALLA-btnAjuste.getWidth()/2, 0.10f*ALTO_PANTALLA-btnAjuste.getHeight()/2);
         btnAcerca.setPosition(0.86f*ANCHO_PANTALLA-btnAcerca.getWidth()/2, 0.10f*ALTO_PANTALLA-btnAcerca.getHeight()/2);
+        btnAyuda.setPosition(0.10f*ANCHO_PANTALLA-btnAyuda.getWidth()/2, 0.30f*ALTO_PANTALLA-btnAyuda.getHeight()/2);
 
 
 
@@ -91,9 +95,18 @@ public class MenuScreen extends MainScreen {
                 mainGame.setScreen( new PantallaAjustes(mainGame));
             }
         });
+
+        btnAyuda.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                mainGame.setScreen(new PantallaHelp(mainGame));
+            }
+        });
         escenaMenu.addActor(btnPlay);
         escenaMenu.addActor(btnAjuste);
         escenaMenu.addActor(btnAcerca);
+        escenaMenu.addActor(btnAyuda);
 
     }
 

@@ -465,16 +465,32 @@
   </object>
  </objectgroup>
  <objectgroup id="7" name="DeathGul">
-  <object id="38" x="864" y="1600" width="32" height="32"/>
-  <object id="39" x="1056" y="1920" width="32" height="32"/>
-  <object id="40" x="128" y="2304" width="32" height="32"/>
+  <object id="38" x="864" y="1600" width="32" height="32">
+   <properties>
+    <property name="deathgul2" value=""/>
+   </properties>
+  </object>
+  <object id="39" x="1056" y="1920" width="32" height="32">
+   <properties>
+    <property name="deathgul2" value=""/>
+   </properties>
+  </object>
+  <object id="40" x="128" y="2304" width="32" height="32">
+   <properties>
+    <property name="deathgul2" value=""/>
+   </properties>
+  </object>
   <object id="42" x="336" y="2384" width="32" height="32"/>
   <object id="44" x="560" y="2384" width="32" height="32"/>
   <object id="45" x="1024" y="2528" width="32" height="32"/>
   <object id="46" x="1024" y="2688" width="32" height="32"/>
   <object id="47" x="384" y="1320" width="32" height="32"/>
   <object id="48" x="400" y="1128" width="32" height="32"/>
-  <object id="49" x="400" y="920" width="32" height="32"/>
+  <object id="49" x="400" y="920" width="32" height="32">
+   <properties>
+    <property name="deathgul2" value=""/>
+   </properties>
+  </object>
   <object id="51" x="232" y="640" width="32" height="32"/>
   <object id="52" x="608" y="648" width="32" height="32"/>
   <object id="53" x="768" y="520" width="32" height="32"/>
@@ -484,13 +500,25 @@
   <object id="57" x="240" y="200" width="32" height="32"/>
   <object id="58" x="1120" y="952" width="32" height="32"/>
   <object id="59" x="1008" y="1176" width="32" height="32"/>
-  <object id="60" x="336" y="1440" width="32" height="32"/>
+  <object id="60" x="336" y="1440" width="32" height="32">
+   <properties>
+    <property name="deathgul2" value=""/>
+   </properties>
+  </object>
   <object id="61" x="216" y="1224" width="32" height="32"/>
-  <object id="62" x="808" y="1320" width="32" height="32"/>
+  <object id="62" x="808" y="1320" width="32" height="32">
+   <properties>
+    <property name="deathgul2" value=""/>
+   </properties>
+  </object>
   <object id="63" x="720" y="928" width="32" height="32"/>
   <object id="64" x="920" y="640" width="32" height="32"/>
   <object id="65" x="440" y="392" width="32" height="32"/>
-  <object id="66" x="584" y="208" width="32" height="32"/>
+  <object id="66" x="584" y="208" width="32" height="32">
+   <properties>
+    <property name="deathgul2" value=""/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="9" name="Puerta">
   <object id="37" x="608" y="64" width="64"/>

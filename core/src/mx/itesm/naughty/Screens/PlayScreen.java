@@ -134,6 +134,13 @@ public class PlayScreen extends MainScreen {
             }
         }
 
+        for(Enemy enemy: box2DCreator.getDeathGul2()){
+            enemy.update(dt);
+            if(enemy.getX() < player.getX() + 700f/ PPM && enemy.getY() < player.getY() + 700f/ PPM) {
+                enemy.b2body.setActive(true);
+            }
+        }
+
         for(Item item: items){
             item.update(dt);
         }
@@ -279,7 +286,7 @@ public class PlayScreen extends MainScreen {
         world = new World(new Vector2(0,0), true);
         b2dr = new Box2DDebugRenderer();
         //Ocultar fixtures
-        b2dr.setDrawBodies(false);
+        //b2dr.setDrawBodies(false);
 
         //Color de fixture
         //b2dr.SHAPE_STATIC.set(0, 0, 0, 0);
@@ -351,6 +358,9 @@ public class PlayScreen extends MainScreen {
         player.draw(game.batch);
         //sp.draw(game.batch);
         for(Enemy enemy: box2DCreator.getDeathGul()){
+            enemy.draw(game.batch);
+        }
+        for(Enemy enemy: box2DCreator.getDeathGul2()){
             enemy.draw(game.batch);
         }
         for(Item item: items){

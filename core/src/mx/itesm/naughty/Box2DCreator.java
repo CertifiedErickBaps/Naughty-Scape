@@ -14,13 +14,16 @@ import com.badlogic.gdx.utils.Array;
 
 
 import mx.itesm.naughty.Screens.PlayScreen;
+import mx.itesm.naughty.Sprites.Enemies.GulUp;
 import mx.itesm.naughty.Sprites.TileObjects.Arma;
 import mx.itesm.naughty.Sprites.TileObjects.Cofre;
 import mx.itesm.naughty.Sprites.Enemies.DeathGul;
 import mx.itesm.naughty.Sprites.TileObjects.Door;
+import sun.tools.jar.Main;
 
 public class Box2DCreator {
     private Array<DeathGul> deathGul;
+    private Array<GulUp> deathGul2;
     private Body body;
     private World world;
     private Fixture fixture;
@@ -63,9 +66,14 @@ public class Box2DCreator {
 
         // Create deathguls
         deathGul = new Array<DeathGul>();
+        deathGul2 = new Array<GulUp>();
         for(MapObject object: map.getLayers().get(7).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            deathGul.add(new DeathGul(screen, rect.getX() / MainGame.PPM, rect.getY() / MainGame.PPM));
+            if(object.getProperties().containsKey("deathgul2")) {
+                deathGul2.add(new GulUp(screen, rect.getX() / MainGame.PPM, rect.getY() / MainGame.PPM));
+            } else {
+                deathGul.add(new DeathGul(screen, rect.getX() / MainGame.PPM, rect.getY() / MainGame.PPM));
+            }
         }
     }
 
@@ -76,5 +84,8 @@ public class Box2DCreator {
 
     public Array<DeathGul> getDeathGul() {
         return deathGul;
+    }
+    public Array<GulUp> getDeathGul2() {
+        return deathGul2;
     }
 }

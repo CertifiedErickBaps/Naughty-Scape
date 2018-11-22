@@ -645,7 +645,11 @@
   <object id="50" x="192.5" y="317.5" width="31" height="33"/>
   <object id="51" x="194.5" y="447.5" width="31" height="33"/>
   <object id="52" x="194.5" y="639.5" width="31" height="33"/>
-  <object id="54" x="480" y="2590" width="30" height="30"/>
+  <object id="54" x="480" y="2590" width="30" height="30">
+   <properties>
+    <property name="deathgul2" value=""/>
+   </properties>
+  </object>
   <object id="57" x="512" y="1696" width="33.3333" height="32"/>
  </objectgroup>
  <objectgroup id="12" name="Puerta">

@@ -27,7 +27,7 @@ public class DeathGul extends Enemy {
             frames.add(new TextureRegion(screen.getAtlas().findRegion("DeathGulAnimDer"), i * 64, 0, 64, 32));
         walkAnimation = new Animation(0.2f, frames);
         stateTime = 0;
-        setBounds(getX(), getY(), 64 / MainGame.PPM, 32 / MainGame.PPM);
+        setBounds(getX(), getY(), 80 / MainGame.PPM, 48 / MainGame.PPM);
         setToDestroy = false;
         destroyed = false;
     }
