@@ -31,11 +31,14 @@ public class MainGame extends Game {
 	public static final short BALA_BIT = 512;
 	public static final short DOOR_BIT = 1024;
 
-	public static SpriteBatch batch;
+	public SpriteBatch batch;
 	public static AssetManager manager;
+
 	public MainScreen menuScreen, gameOverScreen, playScreen, winScreen;
 
+
 	private String isJhony;
+
 
 	private int level;
 	public MainGame( int level, String isJhony){

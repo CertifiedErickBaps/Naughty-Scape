@@ -1,6 +1,7 @@
 package mx.itesm.naughty.Pantallas;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -10,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import mx.itesm.naughty.MainGame;
+import mx.itesm.naughty.Screens.PlayScreen;
 
 import static mx.itesm.naughty.MainGame.ALTO_PANTALLA;
 import static mx.itesm.naughty.MainGame.ANCHO_PANTALLA;
@@ -20,6 +22,7 @@ class PantallaAjustes extends MainScreen {
     private Texture textFondo;
     private Texto Sound_FX;
     private Texto Music;
+    private com.badlogic.gdx.audio.Music music;
 
     public PantallaAjustes(MainGame mainGame) {
         this.mainGame=mainGame;
@@ -31,7 +34,6 @@ class PantallaAjustes extends MainScreen {
         TextureRegionDrawable trdRegresar_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/BackPres.png")));
         TextureRegionDrawable trdCasiilla_up=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/check.png")));
         TextureRegionDrawable trdCasilla_down=new TextureRegionDrawable(new TextureRegion(new Texture("Botones/check_s.png")));
-
 
         ImageButton btnReg = new ImageButton(trdRegresar_up,trdRegresar_down);
 
@@ -45,8 +47,10 @@ class PantallaAjustes extends MainScreen {
                 super.clicked(event, x, y);
                 if(btnCheck1.isChecked()){
                     btnCheck1.setChecked(true);
+
                 } else{
                     btnCheck1.setChecked(false);
+
                 }
             }
         });
@@ -91,12 +95,12 @@ class PantallaAjustes extends MainScreen {
 
     @Override
     public void render(float delta) {
-        MainGame.batch.setProjectionMatrix(gameCam.combined);
-        MainGame.batch.begin();
-        MainGame.batch.draw(textFondo,0,0);
-        Sound_FX.mostrarMensaje(MainGame.batch,"Sound FX",ANCHO_PANTALLA*0.40f,ALTO_PANTALLA*0.70f);
-        Music.mostrarMensaje(MainGame.batch,"Music",ANCHO_PANTALLA*0.40f,ALTO_PANTALLA*0.40f);
-        MainGame.batch.end();
+        mainGame.batch.setProjectionMatrix(gameCam.combined);
+        mainGame.batch.begin();
+        mainGame.batch.draw(textFondo,0,0);
+        Sound_FX.mostrarMensaje(mainGame.batch,"Sound FX",ANCHO_PANTALLA*0.40f,ALTO_PANTALLA*0.70f);
+        Music.mostrarMensaje(mainGame.batch,"Music",ANCHO_PANTALLA*0.40f,ALTO_PANTALLA*0.40f);
+        mainGame.batch.end();
         escenaAjustes.draw();
     }
 

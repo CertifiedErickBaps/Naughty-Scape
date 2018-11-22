@@ -40,6 +40,11 @@ import static mx.itesm.naughty.MainGame.PPM;
 public class PlayScreen extends MainScreen {
     public enum EstadoJuego {JUGANDO, PAUSADO}
     private EstadoJuego estado;
+
+    public MainGame getGame() {
+        return game;
+    }
+
     private MainGame game;
     private TextureAtlas atlas;
 
@@ -64,7 +69,7 @@ public class PlayScreen extends MainScreen {
     private LinkedBlockingDeque<ItemDef> itemsToSpawn;
 
 
-
+    public boolean updateObjets;
     private String isJhony;
     //Sistema de particulas
     //private ParticleEffect sp;
@@ -82,6 +87,7 @@ public class PlayScreen extends MainScreen {
         this.level = level;
         this.isJhony = isJhony;
         this.music = getMusic();
+        updateObjets = true;
     }
 
     public TextureAtlas getAtlas(){
@@ -239,65 +245,6 @@ public class PlayScreen extends MainScreen {
                     super.touchUp(event, x, y, pointer, button);
                 }
             });
-
-            hud.getBtnPausa().addListener(new ClickListener(){
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    super.clicked(event, x, y);
-                    if(hud.getBtnPausa().isChecked()){
-                        if(!getHud().isCreatedPauseButtonsCreated()){
-                            hud.addActors();
-                            setPause(true);
-                        } else {
-                            setPause(false);
-                        }
-                        hud.getBtnPausa().setChecked(true);
-
-                    } else{
-                        setPause(false);
-                        hud.getBtnPausa().setChecked(false);
-                    }
-
-
-                }
-            });
-
-            hud.getBtnPlay().addListener(new ClickListener() {
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    super.clicked(event, x, y);
-                    hud.stage.getActors().removeValue(hud.getBtnPlay(), true);
-                    hud.stage.getActors().removeValue(hud.getBtnExit(), true);
-                    hud.stage.getActors().removeValue(hud.getLetters(), true);
-                    hud.stage.getActors().removeValue(hud.getBtnSound(), true);
-
-                    setPause(false);
-
-                }
-            });
-
-            hud.getBtnExit().addListener(new ClickListener() {
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    super.clicked(event, x, y);
-                    music.stop();
-                    game.setScreen(new MenuScreen(game));
-                }
-            });
-
-            hud.getBtnSound().addListener(new ClickListener(){
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    super.clicked(event, x, y);
-                    if(hud.getBtnSound().isChecked()){
-                        hud.getBtnSound().setChecked(true);
-                        music.stop();
-                    } else{
-                        hud.getBtnSound().setChecked(false);
-                        music.play();
-                    }
-                }
-            });
         }
 
 
@@ -322,7 +269,7 @@ public class PlayScreen extends MainScreen {
 
         gameCam = new OrthographicCamera();
         gamePort = new StretchViewport(ANCHO_JUEGO / PPM, ALTO_JUEGO / PPM, gameCam);
-        hud = new Hud(MainGame.batch);
+        hud = new Hud(this);
 
         gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
@@ -379,45 +326,46 @@ public class PlayScreen extends MainScreen {
 
     @Override
     public void render(float delta) {
-
-        if(!pause) {
-            Gdx.gl.glClearColor(0, 0, 0, 1);
-            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-            //update(delta);
-
-            renderer.render();
-            b2dr.render(world, gameCam.combined);
-
-            MainGame.batch.setProjectionMatrix(gameCam.combined);
-
-            MainGame.batch.begin();
+        if(updateObjets){
             update(delta);
-            player.draw(MainGame.batch);
-            //sp.draw(game.batch);
-            for(Enemy enemy: box2DCreator.getDeathGul()){
-                enemy.draw(MainGame.batch);
-            }
-            for(Item item: items){
-                item.draw(MainGame.batch);
-            }
-            MainGame.batch.end();
         }
-            MainGame.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        //update(delta);
 
-            if(player.currentState == Player.State.DEAD){
-                hud.stage.getActors().removeValue(hud.getCorazon(), true);
-            }
-            hud.stage.draw();
+        renderer.render();
+        b2dr.render(world, gameCam.combined);
 
-            if(gameOver()){
-                game.setScreen(new GameOverScreen(game));
-                music.stop();
-                dispose();
-            } else if(gameWin()){
-                music.stop();
-                game.setScreen(new WinScreen(game));
-                dispose();
-            }
+        game.batch.setProjectionMatrix(gameCam.combined);
+        //game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+
+        game.batch.begin();
+
+        player.draw(game.batch);
+        //sp.draw(game.batch);
+        for(Enemy enemy: box2DCreator.getDeathGul()){
+            enemy.draw(game.batch);
+        }
+        for(Item item: items){
+            item.draw(game.batch);
+        }
+        game.batch.end();
+        hud.stage.draw();
+
+        if(gameOver()){
+            game.setScreen(new GameOverScreen(game));
+            dispose();
+        } else if(gameWin()){
+            game.setScreen(new WinScreen(game));
+            dispose();
+        }
+
+        if(player.currentState == Player.State.DEAD){
+            hud.stage.getActors().removeValue(hud.getCorazon(), true);
+        }
+
+
+
 
     }
 
@@ -445,7 +393,12 @@ public class PlayScreen extends MainScreen {
 
     @Override
     public void pause() {
-
+        if(getHud().isFirstPause()){
+            updateObjets = false;
+            getHud().createButtonsPaused();
+            getHud().addActors();
+            getHud().setFirstPause(false);
+        }
     }
 
     @Override
@@ -455,7 +408,6 @@ public class PlayScreen extends MainScreen {
 
     @Override
     public void hide() {
-
     }
 
     @Override

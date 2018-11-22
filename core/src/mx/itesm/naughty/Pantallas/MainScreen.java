@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import mx.itesm.naughty.Screens.PlayScreen;
+
 import static mx.itesm.naughty.MainGame.ALTO_PANTALLA;
 import static mx.itesm.naughty.MainGame.ANCHO_PANTALLA;
 

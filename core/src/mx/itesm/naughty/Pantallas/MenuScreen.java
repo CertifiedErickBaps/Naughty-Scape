@@ -23,7 +23,6 @@ public class MenuScreen extends MainScreen {
     private Sprite logo;
     private Texture fondo;
 
-
     private Music music;
 
     public MenuScreen(MainGame mainGame){
@@ -102,11 +101,11 @@ public class MenuScreen extends MainScreen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0.34f,0.43f,0.46f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        MainGame.batch.setProjectionMatrix(gameCam.combined);
-        MainGame.batch.begin();
-        MainGame.batch.draw(fondo,0,0);
-        MainGame.batch.draw(logo,logo.getX(),logo.getY());
-        MainGame.batch.end();
+        mainGame.batch.setProjectionMatrix(gameCam.combined);
+        mainGame.batch.begin();
+        mainGame.batch.draw(fondo,0,0);
+        mainGame.batch.draw(logo,logo.getX(),logo.getY());
+        mainGame.batch.end();
         escenaMenu.draw();
     }
 

@@ -65,10 +65,10 @@ public class GameOverScreen extends MainScreen {
 
     @Override
     public void render(float delta) {
-        MainGame.batch.setProjectionMatrix(gameCam.combined);
-        MainGame.batch.begin();
-        MainGame.batch.draw(textFondo,0,0);
-        MainGame.batch.end();
+        mainGame.batch.setProjectionMatrix(gameCam.combined);
+        mainGame.batch.begin();
+        mainGame.batch.draw(textFondo,0,0);
+        mainGame.batch.end();
         escenaAcerca.draw();
     }
 

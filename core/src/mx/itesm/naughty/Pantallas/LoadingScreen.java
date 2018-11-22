@@ -1,5 +1,6 @@
 package mx.itesm.naughty.Pantallas;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -28,11 +29,11 @@ public class LoadingScreen extends MainScreen{
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        MainGame.batch.setProjectionMatrix(MainScreen.gameCam.combined);
-        MainGame.batch.begin();
-        MainGame.batch.draw(texturaReloj, MainGame.ANCHO_PANTALLA / 2 - texturaReloj.getWidth() / 2,
+        game.batch.setProjectionMatrix(MainScreen.gameCam.combined);
+        game.batch.begin();
+        game.batch.draw(texturaReloj, MainGame.ANCHO_PANTALLA / 2 - texturaReloj.getWidth() / 2,
                 MainGame.ALTO_PANTALLA / 2 - texturaReloj.getHeight() / 2);
-        MainGame.batch.end();
+        game.batch.end();
         // Actualiza
         tiempo += Gdx.graphics.getDeltaTime();  // Acumula tiempo
         if (game.getManager().update()) {

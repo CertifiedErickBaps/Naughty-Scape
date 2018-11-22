@@ -8,16 +8,21 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+
+import mx.itesm.naughty.Pantallas.MenuScreen;
 import mx.itesm.naughty.Screens.Button;
+import mx.itesm.naughty.Screens.PlayScreen;
 
 
 import static mx.itesm.naughty.MainGame.ALTO_JUEGO;
@@ -54,14 +59,28 @@ public class Hud implements Disposable {
 
     private Image letras;
     private Image corazon;
+    private PlayScreen playScreen;
 
-    public Hud(SpriteBatch sb){
+    public boolean isFirstPause() {
+        return firstPause;
+    }
+
+    public void setFirstPause(boolean firstPause) {
+        this.firstPause = firstPause;
+    }
+
+    public boolean firstPause;
+
+    public Hud(PlayScreen playScreen){
+        this.playScreen = playScreen;
         worldTimer = 000;
         timeCount = 0;
         score = 0;
         viewport = new StretchViewport(ANCHO_JUEGO, ALTO_JUEGO,new OrthographicCamera());
-        stage = new Stage(viewport, sb);
+        stage = new Stage(viewport, playScreen.getGame().batch);
+        firstPause = true;
 
+        createButtons();
         Table table = new Table();
         table.top();
         table.setFillParent(true);
@@ -70,7 +89,7 @@ public class Hud implements Disposable {
         timeLabel = new Label("TIME", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         naughtyLabel = new Label("Jhony", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
-        createButtons();
+
 
         table.add(naughtyLabel).expandX().padTop(10);
         table.add(timeLabel).expandX().padTop(10);
@@ -126,6 +145,22 @@ public class Hud implements Disposable {
         corazon = new Image(new Texture("Personajes/corazon.png"));
         corazon.setPosition(ANCHO_JUEGO*0.10f , ALTO_JUEGO*0.9f);
 
+        getBtnPausa().addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                if(firstPause) {
+                    if (isCreatedPauseButtonsCreated()) {
+                        createButtonsPaused();
+                        addActors();
+                    }
+                    playScreen.pause();
+                    firstPause = false;
+                }
+            }
+        });
+
+
         stage.addActor(btnA.getImageButton());
         stage.addActor(btnPausa.getImageButton());
         stage.addActor(btnB.getImageButton());
@@ -143,6 +178,44 @@ public class Hud implements Disposable {
         btnPlay = new Button("Botones/continuarBtn.png","Botones/continuarBtnPres.png",(ANCHO_JUEGO / PPM) + 200, (ALTO_JUEGO / PPM) +150);
         btnExit = new Button("Botones/salirBtn.png", "Botones/salirBtnPres.png", (ANCHO_JUEGO / PPM)+500, (ALTO_JUEGO/PPM) + 150);
         btnSound = new Button("Botones/sonidoBtn.png", "Botones/sonidoBtnPres.png", (ANCHO_JUEGO / PPM)+350, (ALTO_JUEGO/PPM) + 250);
+
+        btnPlay.getImageButton().addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                playScreen.updateObjets = true;
+                stage.getActors().removeValue(getBtnPlay(), true);
+                stage.getActors().removeValue(getBtnExit(), true);
+                stage.getActors().removeValue(getLetters(), true);
+                stage.getActors().removeValue(getBtnSound(), true);
+                playScreen.getHud().setInputProcessor();
+                firstPause = true;
+
+            }
+        });
+
+        btnExit.getImageButton().addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                playScreen.getMusic().stop();
+                playScreen.getGame().setScreen(new MenuScreen(playScreen.getGame()));
+            }
+        });
+
+        btnSound.getImageButton().addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                if(getBtnSound().isChecked()){
+                    getBtnSound().setChecked(true);
+                    playScreen.getMusic().stop();
+                } else{
+                    getBtnSound().setChecked(false);
+                    playScreen.getMusic().play();
+                }
+            }
+        });
     }
 
     public boolean isCreatedPauseButtonsCreated() {
@@ -208,4 +281,7 @@ public class Hud implements Disposable {
         return corazon;
     }
 
+    public void setInputProcessor(){
+        Gdx.input.setInputProcessor(stage);
+    }
 }
