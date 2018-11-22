@@ -16,7 +16,6 @@ import mx.itesm.naughty.Sprites.Items.Pistola;
 
 public class Cofre extends InteractiveTileObject {
     private static TiledMapTileSet tileSet;
-    private final int BLANK_COIN = 109;
     public Cofre(PlayScreen screen, MapObject object) {
         super(screen, object);
         tileSet = map.getTileSets().getTileSet("70377b86-59d2-4993-9a44-c61a4f16fd0c");
@@ -27,9 +26,10 @@ public class Cofre extends InteractiveTileObject {
     @Override
     public void onHeadHit() {
         //Gdx.app.log("Cofre", "Collision");
-        if(getCell().getTile().getId() == BLANK_COIN){
-            MainGame.manager.get("Musica/error.mp3", Music.class).play();
-        } else {
+
+        Object tipoPared = getCell().getTile().getProperties().get("Tipo");
+        if("Cofre".equals(tipoPared)){
+            //MainGame.manager.get("Musica/error.mp3", Music.class).play();
             if(object.getProperties().containsKey("katana")){
                 screen.spawnItem(new ItemDef(new Vector2(body.getPosition().x + 32 / MainGame.PPM, body.getPosition().y), Katana.class));
             }
@@ -41,7 +41,6 @@ public class Cofre extends InteractiveTileObject {
             }
 
             MainGame.manager.get("Musica/chest.mp3", Music.class).play();
-
         }
         getCell().setTile(tileSet.getTile(BLANK_COIN));
         Hud.addScore(100);

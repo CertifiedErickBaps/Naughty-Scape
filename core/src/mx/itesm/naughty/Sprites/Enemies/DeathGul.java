@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.utils.Array;
 
 import mx.itesm.naughty.MainGame;
+import mx.itesm.naughty.Scenes.Hud;
 import mx.itesm.naughty.Screens.PlayScreen;
 
 public class DeathGul extends Enemy {
@@ -82,6 +83,7 @@ public class DeathGul extends Enemy {
     @Override
     public void hitOnHead() {
         setToDestroy = true;
+        Hud.addScore(100);
     }
 
 }

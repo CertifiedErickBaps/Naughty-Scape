@@ -28,6 +28,7 @@ public abstract class InteractiveTileObject {
     protected MapObject object;
 
     protected Fixture fixture;
+    protected int BLANK_COIN;
 
     public InteractiveTileObject(PlayScreen screen, MapObject object){
         this.screen = screen;
@@ -47,6 +48,12 @@ public abstract class InteractiveTileObject {
         shape.setAsBox((bounds.getWidth() / 2) / MainGame.PPM, (bounds.getHeight() / 2) / MainGame.PPM);
         fdef.shape = shape;
         fixture = body.createFixture(fdef);
+
+        if(screen.getLevel() == 2){
+            BLANK_COIN = 93;
+        } else if(screen.getLevel() == 1){
+            BLANK_COIN = 109;
+        }
     }
 
     public abstract void onHeadHit();

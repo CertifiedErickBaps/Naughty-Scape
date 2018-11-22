@@ -61,6 +61,11 @@ public class PlayScreen extends MainScreen {
 
     //Sound effects
     private Music music;
+
+    public int getLevel() {
+        return level;
+    }
+
     private int level;
 
 
@@ -76,9 +81,7 @@ public class PlayScreen extends MainScreen {
         return atlas;
     }
 
-    public TiledMap getMap(){
-        return map;
-    }
+
 
     public World getWorld(){
         return world;
@@ -98,6 +101,9 @@ public class PlayScreen extends MainScreen {
         }
 
         renderer = new OrthogonalTiledMapRenderer(map, 1 / PPM);
+    }
+    public TiledMap getMap(){
+        return map;
     }
     
     public void update(float dt){
@@ -152,7 +158,6 @@ public class PlayScreen extends MainScreen {
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                     if((hud.getBtnDown().isPressed()) && (player.b2body.getLinearVelocity().y >= -2.3f)){
                         player.b2body.applyLinearImpulse(new Vector2(0, -2.3f), player.b2body.getWorldCenter(), true);
-                        //player.redefineColision(new Vector2(-20/ PPM, -30 / PPM), new Vector2(20/ PPM, -30 / PPM));
                     }
                     return super.touchDown(event, x, y, pointer, button);
                 }
@@ -169,7 +174,6 @@ public class PlayScreen extends MainScreen {
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                     if((hud.getBtnLeft().isPressed()) && (player.b2body.getLinearVelocity().x >= -2.3f)){
                         player.b2body.applyLinearImpulse(new Vector2(-2.3f, 0f), player.b2body.getWorldCenter(), true);
-                        //player.redefineColision(new Vector2(-30/ PPM, 30 / PPM), new Vector2(-30/ PPM, -30 / PPM));
                     }
                     return super.touchDown(event, x, y, pointer, button);
                 }
@@ -186,7 +190,6 @@ public class PlayScreen extends MainScreen {
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                     if((hud.getBtnRight().isPressed()) && (player.b2body.getLinearVelocity().x <= 2.3f)){
                         player.b2body.applyLinearImpulse(new Vector2(2.3f, 0f), player.b2body.getWorldCenter(), true);
-                        //redefineColision(new Vector2(30/ PPM, 30 / PPM), new Vector2(30/ PPM, -30 / PPM));
                     }
                     return super.touchDown(event, x, y, pointer, button);
                 }

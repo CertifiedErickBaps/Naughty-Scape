@@ -2,6 +2,11 @@
 <map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="40" height="90" tilewidth="32" tileheight="32" infinite="0" nextlayerid="10" nextobjectid="67">
  <tileset firstgid="1" name="Paredes2" tilewidth="32" tileheight="32" tilecount="9" columns="3">
   <image source="Paredes2.png" width="96" height="96"/>
+  <tile id="0">
+   <properties>
+    <property name="Tipo" value="Pared"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="10" name="2b7ae0f4-3755-4249-b77c-aa1f1f087fe4" tilewidth="32" tileheight="32" tilecount="4" columns="1">
   <image source="2b7ae0f4-3755-4249-b77c-aa1f1f087fe4.png" width="32" height="128"/>
@@ -11,6 +16,16 @@
  </tileset>
  <tileset firstgid="26" name="70377b86-59d2-4993-9a44-c61a4f16fd0c" tilewidth="32" tileheight="32" tilecount="77" columns="11">
   <image source="70377b86-59d2-4993-9a44-c61a4f16fd0c.png" width="352" height="224"/>
+  <tile id="66">
+   <properties>
+    <property name="Tipo" value="Cofre"/>
+   </properties>
+  </tile>
+  <tile id="67">
+   <properties>
+    <property name="Tipo" value="CofreA"/>
+   </properties>
+  </tile>
  </tileset>
  <layer id="4" name="BackGround" width="40" height="90">
   <data encoding="csv">
@@ -419,26 +434,6 @@
   <object id="28" x="1216" y="64" height="1216"/>
   <object id="29" x="64" y="64" height="1440"/>
   <object id="30" x="64" y="64" width="544"/>
-  <object id="31" x="896" y="2632" width="32" height="24">
-   <properties>
-    <property name="bate" value=""/>
-   </properties>
-  </object>
-  <object id="32" x="608" y="2344" width="32" height="24">
-   <properties>
-    <property name="katana" value=""/>
-   </properties>
-  </object>
-  <object id="33" x="384" y="2344" width="32" height="24">
-   <properties>
-    <property name="chaleco" value=""/>
-   </properties>
-  </object>
-  <object id="34" x="704" y="1448" width="32" height="24">
-   <properties>
-    <property name="pistola" value=""/>
-   </properties>
-  </object>
   <object id="35" x="448" y="648" width="32" height="24">
    <properties>
     <property name="pistola" value=""/>
@@ -447,7 +442,28 @@
   <object id="36" x="672" y="64" width="544"/>
  </objectgroup>
  <objectgroup id="6" name="Armas"/>
- <objectgroup id="8" name="Cofres"/>
+ <objectgroup id="8" name="Cofres">
+  <object id="33" x="384" y="2344" width="32" height="24">
+   <properties>
+    <property name="chaleco" value=""/>
+   </properties>
+  </object>
+  <object id="32" x="608" y="2344" width="32" height="24">
+   <properties>
+    <property name="katana" value=""/>
+   </properties>
+  </object>
+  <object id="31" x="896" y="2632" width="32" height="24">
+   <properties>
+    <property name="bate" value=""/>
+   </properties>
+  </object>
+  <object id="34" x="704" y="1448" width="32" height="24">
+   <properties>
+    <property name="pistola" value=""/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup id="7" name="DeathGul">
   <object id="38" x="864" y="1600" width="32" height="32"/>
   <object id="39" x="1056" y="1920" width="32" height="32"/>
