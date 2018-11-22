@@ -46,7 +46,7 @@ class PantallaDificultad extends MainScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                mainGame.setScreen(new PlayScreen(mainGame, 1));
+                mainGame.setScreen(new PlayScreen(mainGame, 1, "Jhony"));
             }
         });
 
@@ -54,7 +54,7 @@ class PantallaDificultad extends MainScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                mainGame.setScreen(new PlayScreen(mainGame, 2));
+                mainGame.setScreen(new PlayScreen(mainGame, 2, "Orlando"));
             }
         });
 
@@ -62,7 +62,7 @@ class PantallaDificultad extends MainScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                mainGame.setScreen(new PlayScreen(mainGame, 1));
+                mainGame.setScreen(new PlayScreen(mainGame, 1, "Jiovanny"));
             }
         });
 

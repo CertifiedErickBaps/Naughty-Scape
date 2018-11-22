@@ -56,6 +56,10 @@ public class PlayScreen extends MainScreen {
     private Player player;
     private Array<Item> items;
     private LinkedBlockingDeque<ItemDef> itemsToSpawn;
+
+
+
+    private String isJhony;
     //Sistema de particulas
     //private ParticleEffect sp;
 
@@ -65,16 +69,18 @@ public class PlayScreen extends MainScreen {
     public int getLevel() {
         return level;
     }
+    public String getJhony() {
+        return isJhony;
+    }
 
     private int level;
 
-
-
     private boolean pause;
 
-    public PlayScreen(MainGame game, int level){
+    public PlayScreen(MainGame game, int level, String isJhony){
         this.game = game;
         this.level = level;
+        this.isJhony = isJhony;
     }
 
     public TextureAtlas getAtlas(){
@@ -203,7 +209,7 @@ public class PlayScreen extends MainScreen {
             hud.getBtnA().addListener(new ClickListener(){
                 @Override
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                    if(player.isJhonyIsWithPistola()){
+                    if(player.isPlayerIsWithPistola()){
                         player.fire();
                     } else {
                         player.setPushing(true);

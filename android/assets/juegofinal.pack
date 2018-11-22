@@ -5,198 +5,184 @@ filter: Nearest,Nearest
 repeat: none
 DeathG2Walk
   rotate: false
-  xy: 1, 915
+  xy: 1, 927
   size: 960, 96
   orig: 960, 96
-  offset: 0, 0
-  index: -1
-DeathG2WalkSide
-  rotate: false
-  xy: 1, 817
-  size: 960, 96
-  orig: 960, 96
-  offset: 0, 0
-  index: -1
-DeathGulAnimDer
-  rotate: false
-  xy: 1, 783
-  size: 960, 32
-  orig: 960, 32
-  offset: 0, 0
-  index: -1
-DeathG2Damage
-  rotate: false
-  xy: 1, 685
-  size: 768, 96
-  orig: 768, 96
-  offset: 0, 0
-  index: -1
-DeathG2DamageSide
-  rotate: false
-  xy: 1, 587
-  size: 768, 96
-  orig: 768, 96
-  offset: 0, 0
-  index: -1
-jhony_caminado_bate_lado
-  rotate: false
-  xy: 1, 495
-  size: 540, 90
-  orig: 540, 90
-  offset: 0, 0
-  index: -1
-jhony_caminado_katana_lado
-  rotate: false
-  xy: 1, 403
-  size: 540, 90
-  orig: 540, 90
-  offset: 0, 0
-  index: -1
-jhony_caminando_pistola
-  rotate: false
-  xy: 1, 311
-  size: 540, 90
-  orig: 540, 90
-  offset: 0, 0
-  index: -1
-jhony_caminando_pistola_lado
-  rotate: false
-  xy: 1, 219
-  size: 540, 90
-  orig: 540, 90
-  offset: 0, 0
-  index: -1
-jiovany_caminando
-  rotate: false
-  xy: 1, 127
-  size: 540, 90
-  orig: 540, 90
-  offset: 0, 0
-  index: -1
-jiovany_caminando_bate
-  rotate: false
-  xy: 1, 35
-  size: 540, 90
-  orig: 540, 90
-  offset: 0, 0
-  index: -1
-AK-47
-  rotate: false
-  xy: 1, 1
-  size: 352, 32
-  orig: 352, 32
-  offset: 0, 0
-  index: -1
-jhony_ataque_bate_lado
-  rotate: false
-  xy: 543, 495
-  size: 360, 90
-  orig: 360, 90
-  offset: 0, 0
-  index: -1
-jhony_ataque_katana_lado
-  rotate: false
-  xy: 543, 403
-  size: 360, 90
-  orig: 360, 90
-  offset: 0, 0
-  index: -1
-Jhony_bateAttackUpDown
-  rotate: false
-  xy: 543, 311
-  size: 360, 90
-  orig: 360, 90
-  offset: 0, 0
-  index: -1
-jhony_da�o_lado
-  rotate: false
-  xy: 543, 219
-  size: 450, 90
-  orig: 450, 90
-  offset: 0, 0
-  index: -1
-Jhony_golpeado
-  rotate: false
-  xy: 543, 127
-  size: 450, 90
-  orig: 450, 90
-  offset: 0, 0
-  index: -1
-jiovany_hurted
-  rotate: false
-  xy: 543, 35
-  size: 450, 90
-  orig: 450, 90
-  offset: 0, 0
-  index: -1
-AnimCorazon
-  rotate: false
-  xy: 355, 1
-  size: 352, 32
-  orig: 352, 32
-  offset: 0, 0
-  index: -1
-Jhony_standingUpDown
-  rotate: false
-  xy: 771, 691
-  size: 90, 90
-  orig: 90, 90
-  offset: 0, 0
-  index: -1
-jhony_standing_lado
-  rotate: false
-  xy: 771, 599
-  size: 90, 90
-  orig: 90, 90
-  offset: 0, 0
-  index: -1
-jiovany_standing
-  rotate: false
-  xy: 863, 691
-  size: 90, 90
-  orig: 90, 90
-  offset: 0, 0
-  index: -1
-jiovany_standing_lado
-  rotate: false
-  xy: 863, 599
-  size: 90, 90
-  orig: 90, 90
-  offset: 0, 0
-  index: -1
-orlando_standing
-  rotate: false
-  xy: 905, 507
-  size: 90, 90
-  orig: 90, 90
-  offset: 0, 0
-  index: -1
-orlando_standing_lado
-  rotate: false
-  xy: 905, 415
-  size: 90, 90
-  orig: 90, 90
   offset: 0, 0
   index: -1
 Bala
   rotate: false
-  xy: 709, 1
+  xy: 963, 991
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 chaleco
   rotate: false
-  xy: 963, 979
+  xy: 963, 957
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 corazon
   rotate: false
-  xy: 905, 381
+  xy: 963, 923
   size: 32, 32
   orig: 32, 32
+  offset: 0, 0
+  index: -1
+DeathG2WalkSide
+  rotate: false
+  xy: 1, 829
+  size: 960, 96
+  orig: 960, 96
+  offset: 0, 0
+  index: -1
+DeathG2Damage
+  rotate: false
+  xy: 1, 731
+  size: 768, 96
+  orig: 768, 96
+  offset: 0, 0
+  index: -1
+Jhony_standingUpDown
+  rotate: false
+  xy: 771, 737
+  size: 90, 90
+  orig: 90, 90
+  offset: 0, 0
+  index: -1
+jhony_standing_lado
+  rotate: false
+  xy: 863, 737
+  size: 90, 90
+  orig: 90, 90
+  offset: 0, 0
+  index: -1
+jiovany_standing
+  rotate: false
+  xy: 771, 645
+  size: 90, 90
+  orig: 90, 90
+  offset: 0, 0
+  index: -1
+jiovany_standing_lado
+  rotate: false
+  xy: 863, 645
+  size: 90, 90
+  orig: 90, 90
+  offset: 0, 0
+  index: -1
+DeathG2DamageSide
+  rotate: false
+  xy: 1, 633
+  size: 768, 96
+  orig: 768, 96
+  offset: 0, 0
+  index: -1
+orlando_standing
+  rotate: false
+  xy: 771, 553
+  size: 90, 90
+  orig: 90, 90
+  offset: 0, 0
+  index: -1
+orlando_standing_lado
+  rotate: false
+  xy: 863, 553
+  size: 90, 90
+  orig: 90, 90
+  offset: 0, 0
+  index: -1
+jhony_caminado_bate_lado
+  rotate: false
+  xy: 1, 541
+  size: 540, 90
+  orig: 540, 90
+  offset: 0, 0
+  index: -1
+jhony_dano_lado
+  rotate: false
+  xy: 543, 461
+  size: 450, 90
+  orig: 450, 90
+  offset: 0, 0
+  index: -1
+jhony_caminado_katana_lado
+  rotate: false
+  xy: 1, 449
+  size: 540, 90
+  orig: 540, 90
+  offset: 0, 0
+  index: -1
+Jhony_golpeado
+  rotate: false
+  xy: 543, 369
+  size: 450, 90
+  orig: 450, 90
+  offset: 0, 0
+  index: -1
+jhony_caminando_pistola
+  rotate: false
+  xy: 1, 357
+  size: 540, 90
+  orig: 540, 90
+  offset: 0, 0
+  index: -1
+jiovany_hurted
+  rotate: false
+  xy: 543, 277
+  size: 450, 90
+  orig: 450, 90
+  offset: 0, 0
+  index: -1
+jhony_caminando_pistola_lado
+  rotate: false
+  xy: 1, 265
+  size: 540, 90
+  orig: 540, 90
+  offset: 0, 0
+  index: -1
+jiovany_hurted_lado
+  rotate: false
+  xy: 543, 185
+  size: 450, 90
+  orig: 450, 90
+  offset: 0, 0
+  index: -1
+jiovany_caminando
+  rotate: false
+  xy: 1, 173
+  size: 540, 90
+  orig: 540, 90
+  offset: 0, 0
+  index: -1
+orlando_dano
+  rotate: false
+  xy: 543, 93
+  size: 450, 90
+  orig: 450, 90
+  offset: 0, 0
+  index: -1
+jiovany_caminando_bate
+  rotate: false
+  xy: 1, 81
+  size: 540, 90
+  orig: 540, 90
+  offset: 0, 0
+  index: -1
+orlando_dano_lado
+  rotate: false
+  xy: 543, 1
+  size: 450, 90
+  orig: 450, 90
+  offset: 0, 0
+  index: -1
+Animacion Explosion
+  rotate: false
+  xy: 1, 15
+  size: 512, 64
+  orig: 512, 64
   offset: 0, 0
   index: -1
 
@@ -211,11 +197,25 @@ jiovany_caminando_bate_lado
   orig: 540, 90
   offset: 0, 0
   index: -1
+jhony_ataque_bate_lado
+  rotate: false
+  xy: 543, 921
+  size: 360, 90
+  orig: 360, 90
+  offset: 0, 0
+  index: -1
 jiovany_caminando_katana
   rotate: false
   xy: 1, 829
   size: 540, 90
   orig: 540, 90
+  offset: 0, 0
+  index: -1
+jhony_ataque_katana_lado
+  rotate: false
+  xy: 543, 829
+  size: 360, 90
+  orig: 360, 90
   offset: 0, 0
   index: -1
 jiovany_caminando_katana_lado
@@ -225,11 +225,25 @@ jiovany_caminando_katana_lado
   orig: 540, 90
   offset: 0, 0
   index: -1
+Jhony_bateAttackUpDown
+  rotate: false
+  xy: 543, 737
+  size: 360, 90
+  orig: 360, 90
+  offset: 0, 0
+  index: -1
 jiovany_caminando_lado
   rotate: false
   xy: 1, 645
   size: 540, 90
   orig: 540, 90
+  offset: 0, 0
+  index: -1
+Jhony_golpesUpDown
+  rotate: false
+  xy: 543, 645
+  size: 360, 90
+  orig: 360, 90
   offset: 0, 0
   index: -1
 orlando_caminando_bate
@@ -239,11 +253,25 @@ orlando_caminando_bate
   orig: 540, 90
   offset: 0, 0
   index: -1
+jhony_golpes_lado
+  rotate: false
+  xy: 543, 553
+  size: 360, 90
+  orig: 360, 90
+  offset: 0, 0
+  index: -1
 orlando_caminando_bate_lado
   rotate: false
   xy: 1, 461
   size: 540, 90
   orig: 540, 90
+  offset: 0, 0
+  index: -1
+Jhony_katanaAttackUpDown
+  rotate: false
+  xy: 543, 461
+  size: 360, 90
+  orig: 360, 90
   offset: 0, 0
   index: -1
 orlando_caminando_frente
@@ -253,6 +281,13 @@ orlando_caminando_frente
   orig: 540, 90
   offset: 0, 0
   index: -1
+jiovany_ataque_bate
+  rotate: false
+  xy: 543, 369
+  size: 360, 90
+  orig: 360, 90
+  offset: 0, 0
+  index: -1
 orlando_caminando_katana
   rotate: false
   xy: 1, 277
@@ -260,11 +295,25 @@ orlando_caminando_katana
   orig: 540, 90
   offset: 0, 0
   index: -1
+jiovany_ataque_bate_lado
+  rotate: false
+  xy: 543, 277
+  size: 360, 90
+  orig: 360, 90
+  offset: 0, 0
+  index: -1
 orlando_caminando_katana_lado
   rotate: false
   xy: 1, 185
   size: 540, 90
   orig: 540, 90
+  offset: 0, 0
+  index: -1
+jiovany_ataque_katana
+  rotate: false
+  xy: 543, 185
+  size: 360, 90
+  orig: 360, 90
   offset: 0, 0
   index: -1
 orlando_caminando_lado
@@ -281,79 +330,16 @@ Jhony_walkLeft
   orig: 537, 90
   offset: 0, 0
   index: -1
-jiovany_hurted_lado
-  rotate: false
-  xy: 543, 921
-  size: 450, 90
-  orig: 450, 90
-  offset: 0, 0
-  index: -1
-Jhony_golpesUpDown
-  rotate: false
-  xy: 543, 829
-  size: 360, 90
-  orig: 360, 90
-  offset: 0, 0
-  index: -1
-jhony_golpes_lado
-  rotate: false
-  xy: 543, 737
-  size: 360, 90
-  orig: 360, 90
-  offset: 0, 0
-  index: -1
-Jhony_katanaAttackUpDown
-  rotate: false
-  xy: 543, 645
-  size: 360, 90
-  orig: 360, 90
-  offset: 0, 0
-  index: -1
-jiovany_ataque_bate
-  rotate: false
-  xy: 543, 553
-  size: 360, 90
-  orig: 360, 90
-  offset: 0, 0
-  index: -1
-jiovany_ataque_bate_lado
-  rotate: false
-  xy: 543, 461
-  size: 360, 90
-  orig: 360, 90
-  offset: 0, 0
-  index: -1
-jiovany_ataque_katana
-  rotate: false
-  xy: 543, 369
-  size: 360, 90
-  orig: 360, 90
-  offset: 0, 0
-  index: -1
 jiovany_ataque_katana_lado
   rotate: false
-  xy: 543, 277
+  xy: 540, 1
   size: 360, 90
   orig: 360, 90
   offset: 0, 0
   index: -1
 orlando_ataque_bate
   rotate: false
-  xy: 543, 185
-  size: 360, 90
-  orig: 360, 90
-  offset: 0, 0
-  index: -1
-orlando_ataque_bate_lado
-  rotate: false
   xy: 543, 93
-  size: 360, 90
-  orig: 360, 90
-  offset: 0, 0
-  index: -1
-orlando_ataque_katana
-  rotate: false
-  xy: 540, 1
   size: 360, 90
   orig: 360, 90
   offset: 0, 0
@@ -363,53 +349,81 @@ juegofinal3.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+DeathGulAnimDer
+  rotate: false
+  xy: 1, 781
+  size: 960, 32
+  orig: 960, 32
+  offset: 0, 0
+  index: -1
 Jhony_walkRight
   rotate: false
-  xy: 1, 629
+  xy: 1, 689
   size: 537, 90
   orig: 537, 90
   offset: 0, 0
   index: -1
 Jhony_walkUpDown
   rotate: false
-  xy: 1, 537
+  xy: 1, 597
   size: 537, 90
   orig: 537, 90
   offset: 0, 0
   index: -1
 Jhony_walk_bate
   rotate: false
-  xy: 1, 445
+  xy: 1, 505
   size: 537, 90
   orig: 537, 90
   offset: 0, 0
   index: -1
 Jhony_walk_katana
   rotate: false
-  xy: 1, 353
+  xy: 1, 413
   size: 537, 90
   orig: 537, 90
   offset: 0, 0
   index: -1
 Jhony_weapon
   rotate: false
-  xy: 1, 261
+  xy: 1, 321
   size: 537, 90
   orig: 537, 90
   offset: 0, 0
   index: -1
-Animacion Explosion
+orlando_ataque_bate_lado
   rotate: false
-  xy: 1, 195
-  size: 512, 64
-  orig: 512, 64
+  xy: 540, 689
+  size: 360, 90
+  orig: 360, 90
+  offset: 0, 0
+  index: -1
+orlando_ataque_katana
+  rotate: false
+  xy: 1, 229
+  size: 360, 90
+  orig: 360, 90
   offset: 0, 0
   index: -1
 orlando_ataque_katana_lado
   rotate: false
-  xy: 540, 629
+  xy: 540, 597
   size: 360, 90
   orig: 360, 90
+  offset: 0, 0
+  index: -1
+AK-47
+  rotate: false
+  xy: 1, 195
+  size: 352, 32
+  orig: 352, 32
+  offset: 0, 0
+  index: -1
+AnimCorazon
+  rotate: false
+  xy: 540, 563
+  size: 352, 32
+  orig: 352, 32
   offset: 0, 0
   index: -1
 Bate
@@ -421,7 +435,7 @@ Bate
   index: -1
 Granada
   rotate: false
-  xy: 540, 595
+  xy: 540, 529
   size: 352, 32
   orig: 352, 32
   offset: 0, 0
@@ -435,7 +449,7 @@ Katana
   index: -1
 Lanzagranadas
   rotate: false
-  xy: 540, 561
+  xy: 540, 495
   size: 352, 32
   orig: 352, 32
   offset: 0, 0
@@ -449,7 +463,7 @@ Pistola
   index: -1
 jhony_ataque_pistola
   rotate: false
-  xy: 540, 469
+  xy: 540, 403
   size: 270, 90
   orig: 270, 90
   offset: 0, 0

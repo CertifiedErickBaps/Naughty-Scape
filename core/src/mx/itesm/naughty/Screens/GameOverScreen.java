@@ -39,7 +39,7 @@ public class GameOverScreen extends MainScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                mainGame.setScreen(new PlayScreen(mainGame, 1));
+                mainGame.setScreen(new PlayScreen(mainGame, 1, "Jhony"));
             }
         });
         ImageButton btnReg=new ImageButton(trdRegresar_up,trdRegresar_down);

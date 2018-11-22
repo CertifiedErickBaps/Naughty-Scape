@@ -49,7 +49,7 @@ public class WinScreen extends MainScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                mainGame.setScreen(new PlayScreen(mainGame, 2));
+                mainGame.setScreen(new PlayScreen(mainGame, 2, "Jhony"));
             }
         });
 

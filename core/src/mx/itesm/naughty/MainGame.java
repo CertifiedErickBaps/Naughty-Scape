@@ -35,9 +35,12 @@ public class MainGame extends Game {
 	public static AssetManager manager;
 	public MainScreen menuScreen, gameOverScreen, playScreen, winScreen;
 
+	private String isJhony;
+
 	private int level;
-	public MainGame( int level){
+	public MainGame( int level, String isJhony){
 		this.level = level;
+		this.isJhony = isJhony;
 	}
 
 	@Override
@@ -57,7 +60,7 @@ public class MainGame extends Game {
 	public void finishLoading(){
 		menuScreen = new MenuScreen(this);
 		gameOverScreen = new GameOverScreen(this);
-		playScreen = new PlayScreen(this, level);
+		playScreen = new PlayScreen(this, level, isJhony);
 		winScreen = new WinScreen(this);
 		setScreen(menuScreen);
 	}
@@ -66,6 +69,9 @@ public class MainGame extends Game {
 		return manager;
 	}
 
+	public String getJhony() {
+		return isJhony;
+	}
 	@Override
 	public void dispose() {
 		super.dispose();
