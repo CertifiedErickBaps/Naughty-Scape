@@ -308,6 +308,8 @@ public class PlayScreen extends MainScreen {
 
     @Override
     public void show() {
+        LoadMap();
+        music.play();
         /*
         //Inicializa el sistema de particulas
         sp = new ParticleEffect();
@@ -325,7 +327,7 @@ public class PlayScreen extends MainScreen {
 
         gameCam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
-        LoadMap();
+
         world = new World(new Vector2(0,0), true);
         b2dr = new Box2DDebugRenderer();
 
@@ -335,8 +337,6 @@ public class PlayScreen extends MainScreen {
 
         world.setContactListener(new WorldContactListener());
 
-
-        music.play();
         items = new Array<Item>();
         itemsToSpawn = new LinkedBlockingDeque<ItemDef>();
         Gdx.input.setCatchBackKey(true);
@@ -380,6 +380,7 @@ public class PlayScreen extends MainScreen {
 
     @Override
     public void render(float delta) {
+
         if(!pause) {
             Gdx.gl.glClearColor(0, 0, 0, 1);
             Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

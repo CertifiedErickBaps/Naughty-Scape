@@ -434,18 +434,13 @@
   <object id="28" x="1216" y="64" height="1216"/>
   <object id="29" x="64" y="64" height="1440"/>
   <object id="30" x="64" y="64" width="544"/>
-  <object id="35" x="448" y="648" width="32" height="24">
-   <properties>
-    <property name="pistola" value=""/>
-   </properties>
-  </object>
   <object id="36" x="672" y="64" width="544"/>
  </objectgroup>
  <objectgroup id="6" name="Armas"/>
  <objectgroup id="8" name="Cofres">
   <object id="33" x="384" y="2344" width="32" height="24">
    <properties>
-    <property name="chaleco" value=""/>
+    <property name="bate" value=""/>
    </properties>
   </object>
   <object id="32" x="608" y="2344" width="32" height="24">
@@ -459,6 +454,11 @@
    </properties>
   </object>
   <object id="34" x="704" y="1448" width="32" height="24">
+   <properties>
+    <property name="pistola" value=""/>
+   </properties>
+  </object>
+  <object id="35" x="448" y="648" width="32" height="24">
    <properties>
     <property name="pistola" value=""/>
    </properties>
