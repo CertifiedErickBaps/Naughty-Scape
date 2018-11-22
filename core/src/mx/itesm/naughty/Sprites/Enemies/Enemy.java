@@ -32,4 +32,10 @@ public abstract class Enemy extends Sprite {
         else if(y)
             velocity.y = -velocity.y;
     }
+    protected boolean toFlip(){
+        if(this.screen.getPlayer().b2body.getPosition().x>this.b2body.getPosition().x){
+            return true;
+        }
+        return false;
+    }
 }

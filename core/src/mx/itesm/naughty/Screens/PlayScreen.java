@@ -63,6 +63,10 @@ public class PlayScreen extends MainScreen {
     private Box2DCreator box2DCreator;
     private Box2DDebugRenderer b2dr;
 
+    public Player getPlayer() {
+        return player;
+    }
+
     // Sprite
     private Player player;
     private Array<Item> items;
@@ -286,7 +290,7 @@ public class PlayScreen extends MainScreen {
         world = new World(new Vector2(0,0), true);
         b2dr = new Box2DDebugRenderer();
         //Ocultar fixtures
-        //b2dr.setDrawBodies(false);
+        b2dr.setDrawBodies(false);
 
         //Color de fixture
         //b2dr.SHAPE_STATIC.set(0, 0, 0, 0);
