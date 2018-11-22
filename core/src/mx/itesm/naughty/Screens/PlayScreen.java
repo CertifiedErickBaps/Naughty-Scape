@@ -102,13 +102,11 @@ public class PlayScreen extends MainScreen {
             manager.finishLoading(); // Espera
             map = manager.get("Mapas/Nivel1.tmx");
             music = MainGame.manager.get("Musica/niveluno.mp3", Music.class);
-            music.setLooping(true);
         } else if(level == 2){
             manager.load("Mapas/Nivel2.tmx",TiledMap.class);
             manager.finishLoading(); // Espera
             map = manager.get("Mapas/Nivel2.tmx");
             music = MainGame.manager.get("Musica/niveldos.mp3", Music.class);
-            music.setLooping(true);
         }
 
         renderer = new OrthogonalTiledMapRenderer(map, 1 / PPM);
@@ -309,6 +307,7 @@ public class PlayScreen extends MainScreen {
     @Override
     public void show() {
         LoadMap();
+        music.setLooping(true);
         music.play();
         /*
         //Inicializa el sistema de particulas
@@ -412,8 +411,10 @@ public class PlayScreen extends MainScreen {
 
             if(gameOver()){
                 game.setScreen(new GameOverScreen(game));
+                music.stop();
                 dispose();
             } else if(gameWin()){
+                music.stop();
                 game.setScreen(new WinScreen(game));
                 dispose();
             }
@@ -464,7 +465,6 @@ public class PlayScreen extends MainScreen {
         world.dispose();
         b2dr.dispose();
         hud.dispose();
-        music.dispose();
         //sp.dispose();
     }
 }
