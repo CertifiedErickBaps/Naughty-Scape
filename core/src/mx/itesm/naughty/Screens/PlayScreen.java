@@ -33,7 +33,6 @@ import mx.itesm.naughty.Sprites.Items.Pistola;
 import mx.itesm.naughty.Sprites.Player;
 
 import static mx.itesm.naughty.MainGame.ALTO_JUEGO;
-import static mx.itesm.naughty.MainGame.ALTO_PANTALLA;
 import static mx.itesm.naughty.MainGame.ANCHO_JUEGO;
 import static mx.itesm.naughty.MainGame.PPM;
 
@@ -62,13 +61,15 @@ public class PlayScreen extends MainScreen {
 
     //Sound effects
     private Music music;
+    private int level;
 
 
 
     private boolean pause;
 
-    public PlayScreen(MainGame game){
+    public PlayScreen(MainGame game, int level){
         this.game = game;
+        this.level = level;
     }
 
     public TextureAtlas getAtlas(){
@@ -86,9 +87,16 @@ public class PlayScreen extends MainScreen {
     private void LoadMap() {
         AssetManager manager = new AssetManager();
         manager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
-        manager.load("Mapas/Nivel1.tmx",TiledMap.class);
-        manager.finishLoading(); // Espera
-        map = manager.get("Mapas/Nivel1.tmx");
+        if(level == 1){
+            manager.load("Mapas/Nivel1.tmx",TiledMap.class);
+            manager.finishLoading(); // Espera
+            map = manager.get("Mapas/Nivel1.tmx");
+        } else if(level == 2){
+            manager.load("Mapas/Nivel2.tmx",TiledMap.class);
+            manager.finishLoading(); // Espera
+            map = manager.get("Mapas/Nivel2.tmx");
+        }
+
         renderer = new OrthogonalTiledMapRenderer(map, 1 / PPM);
     }
     

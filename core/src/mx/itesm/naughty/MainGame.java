@@ -35,6 +35,11 @@ public class MainGame extends Game {
 	public static AssetManager manager;
 	public MainScreen menuScreen, gameOverScreen, playScreen, winScreen;
 
+	private int level;
+	public MainGame( int level){
+		this.level = level;
+	}
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
@@ -46,13 +51,13 @@ public class MainGame extends Game {
 		manager.load("Musica/punch.mp3", Music.class);
 		manager.load("Musica/error.mp3", Music.class);
 		manager.finishLoading();
-		setScreen(new LoadingScreen(this));
+		setScreen(new MenuScreen(this));
 	}
 
 	public void finishLoading(){
 		menuScreen = new MenuScreen(this);
 		gameOverScreen = new GameOverScreen(this);
-		playScreen = new PlayScreen(this);
+		playScreen = new PlayScreen(this, level);
 		winScreen = new WinScreen(this);
 		setScreen(menuScreen);
 	}

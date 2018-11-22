@@ -19,16 +19,6 @@ class WorldContactListener implements ContactListener {
         Fixture fixB = contact.getFixtureB();
 
         int cDef = fixA.getFilterData().categoryBits | fixB.getFilterData().categoryBits;
-        /*
-        if(fixA.getUserData() == "up" || fixB.getUserData() == "up"){
-            Fixture up = fixA.getUserData() == "up" ? fixA : fixB;
-            Fixture object = up == fixA ? fixB : fixA;
-
-            if(object.getUserData() instanceof InteractiveTileObject){
-                ((InteractiveTileObject) object.getUserData()).onHeadHit();
-            }
-        }
-         */
         switch (cDef){
             case MainGame.PLAYER_BIT | MainGame.COFRE_BIT:
                 if(fixA.getFilterData().categoryBits == MainGame.PLAYER_BIT){
