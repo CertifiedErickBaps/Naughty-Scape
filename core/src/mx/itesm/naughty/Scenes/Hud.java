@@ -207,11 +207,9 @@ public class Hud implements Disposable {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                if(getBtnSound().isChecked()){
-                    getBtnSound().setChecked(true);
+                if(getBtnSound().isPressed()){
                     playScreen.getMusic().stop();
                 } else{
-                    getBtnSound().setChecked(false);
                     playScreen.getMusic().play();
                 }
             }
