@@ -69,16 +69,10 @@ public class PlayScreen extends MainScreen {
     //Sistema de particulas
     //private ParticleEffect sp;
 
+
+
     //Sound effects
     private Music music;
-
-    public int getLevel() {
-        return level;
-    }
-    public String getJhony() {
-        return isJhony;
-    }
-
     private int level;
 
     private boolean pause;
@@ -87,6 +81,7 @@ public class PlayScreen extends MainScreen {
         this.game = game;
         this.level = level;
         this.isJhony = isJhony;
+        this.music = getMusic();
     }
 
     public TextureAtlas getAtlas(){
@@ -106,10 +101,14 @@ public class PlayScreen extends MainScreen {
             manager.load("Mapas/Nivel1.tmx",TiledMap.class);
             manager.finishLoading(); // Espera
             map = manager.get("Mapas/Nivel1.tmx");
+            music = MainGame.manager.get("Musica/niveluno.mp3", Music.class);
+            music.setLooping(true);
         } else if(level == 2){
             manager.load("Mapas/Nivel2.tmx",TiledMap.class);
             manager.finishLoading(); // Espera
             map = manager.get("Mapas/Nivel2.tmx");
+            music = MainGame.manager.get("Musica/niveldos.mp3", Music.class);
+            music.setLooping(true);
         }
 
         renderer = new OrthogonalTiledMapRenderer(map, 1 / PPM);
@@ -272,6 +271,7 @@ public class PlayScreen extends MainScreen {
                     hud.stage.getActors().removeValue(hud.getBtnPlay(), true);
                     hud.stage.getActors().removeValue(hud.getBtnExit(), true);
                     hud.stage.getActors().removeValue(hud.getLetters(), true);
+                    hud.stage.getActors().removeValue(hud.getBtnSound(), true);
 
                     setPause(false);
 
@@ -282,7 +282,22 @@ public class PlayScreen extends MainScreen {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     super.clicked(event, x, y);
+                    music.stop();
                     game.setScreen(new MenuScreen(game));
+                }
+            });
+
+            hud.getBtnSound().addListener(new ClickListener(){
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    super.clicked(event, x, y);
+                    if(hud.getBtnSound().isChecked()){
+                        hud.getBtnSound().setChecked(true);
+                        music.stop();
+                    } else{
+                        hud.getBtnSound().setChecked(false);
+                        music.play();
+                    }
                 }
             });
         }
@@ -322,8 +337,7 @@ public class PlayScreen extends MainScreen {
 
         world.setContactListener(new WorldContactListener());
 
-        music = MainGame.manager.get("Musica/niveluno.mp3", Music.class);
-        music.setLooping(true);
+
         music.play();
         items = new Array<Item>();
         itemsToSpawn = new LinkedBlockingDeque<ItemDef>();
@@ -352,6 +366,7 @@ public class PlayScreen extends MainScreen {
 
     public boolean gameOver(){
         if(player.currentState == Player.State.DEAD && player.getStateTimer() > 1f){
+            music.stop();
             return true;
         }
         return false;
@@ -359,6 +374,7 @@ public class PlayScreen extends MainScreen {
 
     public boolean gameWin(){
         if(player.currentState == Player.State.WIN && player.getStateTimer() > 1f){
+            music.stop();
             return true;
         }
         return false;
@@ -403,18 +419,6 @@ public class PlayScreen extends MainScreen {
                 dispose();
             }
 
-
-        /*
-
-
-        if(isPause()){
-            Gdx.app.log("Pausa" ,"esta en pausa");
-        } else {
-            Gdx.app.log("Pausa" ,"ya no");
-        }
-        //sp.update(delta);
-        */
-
     }
 
     public boolean isPause() {
@@ -423,6 +427,15 @@ public class PlayScreen extends MainScreen {
 
     public void setPause(boolean pause) {
         this.pause = pause;
+    }
+    public Music getMusic() {
+        return music;
+    }
+    public int getLevel() {
+        return level;
+    }
+    public String getJhony() {
+        return isJhony;
     }
 
     @Override

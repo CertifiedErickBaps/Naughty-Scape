@@ -1,6 +1,7 @@
 package mx.itesm.naughty.Pantallas;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -22,12 +23,20 @@ public class MenuScreen extends MainScreen {
     private Sprite logo;
     private Texture fondo;
 
+
+    private Music music;
+
     public MenuScreen(MainGame mainGame){
         this.mainGame = mainGame;
     }
 
     @Override
     public void show() {
+
+        music = MainGame.manager.get("Musica/menu.mp3", Music.class);
+        music.setLooping(true);
+        music.play();
+
         crearEscena();
         fondo=new Texture("menu_fondo.jpg");
         logo =new Sprite(new Texture("logo.png"));
@@ -63,6 +72,7 @@ public class MenuScreen extends MainScreen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
+                music.stop();
                 mainGame.setScreen( new PantallaDificultad(mainGame));
             }
         });

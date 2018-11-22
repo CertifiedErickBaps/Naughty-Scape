@@ -145,6 +145,7 @@ public class Hud implements Disposable {
         letras.setPosition(ANCHO_JUEGO*0.15f , ALTO_JUEGO*0.7f);
         btnPlay = new Button("Botones/continuarBtn.png","Botones/continuarBtnPres.png",(ANCHO_JUEGO / PPM) + 200, (ALTO_JUEGO / PPM) +150);
         btnExit = new Button("Botones/salirBtn.png", "Botones/salirBtnPres.png", (ANCHO_JUEGO / PPM)+500, (ALTO_JUEGO/PPM) + 150);
+        btnSound = new Button("Botones/sonidoBtn.png", "Botones/sonidoBtnPres.png", (ANCHO_JUEGO / PPM)+350, (ALTO_JUEGO/PPM) + 250);
     }
 
     public boolean isCreatedPauseButtonsCreated() {
@@ -159,6 +160,7 @@ public class Hud implements Disposable {
         stage.addActor(letras);
         stage.addActor(btnPlay.getImageButton());
         stage.addActor(btnExit.getImageButton());
+        stage.addActor(btnSound.getImageButton());
     }
 
 
@@ -196,6 +198,9 @@ public class Hud implements Disposable {
 
     public ImageButton getBtnExit(){
         return btnExit.getImageButton();
+    }
+    public ImageButton getBtnSound(){
+        return btnSound.getImageButton();
     }
 
 }
